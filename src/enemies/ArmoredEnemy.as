@@ -9,7 +9,7 @@ package enemies
 		
 		public function ArmoredEnemy() 
 		{
-			
+			type = "armored";
 		}
 		
 	}

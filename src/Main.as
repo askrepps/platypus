@@ -1,5 +1,6 @@
 package
 {
+	import levels.TestWorld;
 	import net.flashpunk.Engine;	
 	import net.flashpunk.FP;
 	
@@ -10,8 +11,8 @@ package
 		
 		public function Main()
 		{
-			super(800, 600, 60, false);
-			//FP.world = new MyWorld();
+			super(1024, 768, 60, false);
+			FP.world = new TestWorld();
 		}
 		
 		override public function init():void
