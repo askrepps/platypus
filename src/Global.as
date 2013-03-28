@@ -18,7 +18,7 @@ package
 		public static const MELEE_TOWERDESCIPT:String = "Basic melee tower.  Can only hit ground units.";
 		
 		// Ranged Tower starting attributes
-		public static const RANGED_RANGE:Number = 100;
+		public static const RANGED_RANGE:Number = 200;
 		public static const RANGED_DAMAGE:Number = 2;		
 		public static const RANGED_SPEED:Number = .5;			
 		public static const RANGED_CANATTACK:Array = new Array("normal", "fast", "armored", "flying"); 		

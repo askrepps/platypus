@@ -5,6 +5,7 @@ package towers
 	import net.flashpunk.graphics.Image;
 	import net.flashpunk.FP;
 	import enemies.Enemy;
+	import net.flashpunk.utils.Input;
 	/**
 	 * ...
 	 * @author Jonathan Benkovic
@@ -37,6 +38,7 @@ package towers
 			towerImage = new Image(Assets.RANGED_TOWER);
 			graphic = towerImage;
 			timer = 0;
+			setHitboxTo(towerImage);
 		}
 		
 		public function attack():void
@@ -88,8 +90,14 @@ package towers
 				timer = 0;
 				attack();
 			}
-			super.update();
 			
+			if (collidePoint(x, y, world.mouseX, world.mouseY))
+			{
+				if(Input.mousePressed)
+					world.add(new TowerUI(centerX, centerY));
+			}
+			
+			super.update();
 		}
 	}
 

@@ -9,6 +9,8 @@ package
 	{
 		[Embed(source = "assets/rangedTower.png")] public static const RANGED_TOWER:Class;
 		[Embed(source = "assets/normalEnemy.png")] public static const NORMAL_ENEMY:Class;
+		[Embed(source = "assets/upgradeUI.png")] public static const UPGRADE_UI:Class;
 	}
+	
 
 }
