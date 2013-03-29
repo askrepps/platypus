@@ -4,14 +4,14 @@ package
 	import net.flashpunk.Engine;	
 	import net.flashpunk.FP;
 	
-	[SWF(width="800", height="600")]
+	[SWF(width="800", height="600")]     // Note: change constants in Global.as to match
 	
 	public class Main extends Engine
 	{
 		
 		public function Main()
 		{
-			super(1024, 768, 60, false);
+			super(Global.GAME_WIDTH, Global.GAME_HEIGHT, 60, false);
 			FP.world = new TestWorld();
 		}
 		

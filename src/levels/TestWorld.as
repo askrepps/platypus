@@ -2,7 +2,11 @@ package levels
 {
 	import enemies.FastEnemy;
 	import enemies.NormalEnemy;
+	
+	import hero.Hero;
+	
 	import net.flashpunk.World;
+	
 	import towers.RangedTower;
 	import towers.Tower;
 	
@@ -19,6 +23,8 @@ package levels
 			add(new NormalEnemy(20, 100));
 			add(new NormalEnemy(100, 20));
 			//add(new FastEnemy(0,8));
+			
+			add(new Hero());
 		}
 		
 	}
