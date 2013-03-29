@@ -3,7 +3,7 @@ package levels
 	import enemies.FastEnemy;
 	import enemies.NormalEnemy;
 	
-	import hero.Hero;
+	import hero.Warrior;
 	
 	import net.flashpunk.World;
 	
@@ -24,7 +24,7 @@ package levels
 			add(new NormalEnemy(100, 20));
 			//add(new FastEnemy(0,8));
 			
-			add(new Hero());
+			add(new Warrior());
 		}
 		
 	}

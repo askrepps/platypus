@@ -51,6 +51,8 @@ package
 		
 		
 		// Hero Attributes, see Hero.as for description of variables
+		public static const HERO_SPEED_SCALE:Number = 50;
+		
 		
 		// Warrior starting attributes
 		public static const WARRIOR_HEALTH:Number = 10;
