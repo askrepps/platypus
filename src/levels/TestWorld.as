@@ -24,7 +24,7 @@ package levels
 			add(new NormalEnemy(100, 20));
 			//add(new FastEnemy(0,8));
 			
-			add(new Warrior());
+			add(new Warrior(Global.GAME_WIDTH / 2, Global.GAME_HEIGHT / 2));
 		}
 		
 	}

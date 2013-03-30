@@ -1,0 +1,5 @@
+#!/bin/sh
+
+cp -R ~/codez/games/platypus/src/ .
+
+

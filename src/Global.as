@@ -53,29 +53,68 @@ package
 		// Hero Attributes, see Hero.as for description of variables
 		public static const HERO_SPEED_SCALE:Number = 50;
 		
+		// Level to unlock each ability
+		public static const ABILITY_1_LEVEL:Number = 2;
+		public static const ABILITY_2_LEVEL:Number = 5;
+		public static const ABILITY_3_LEVEL:Number = 10;
 		
-		// Warrior starting attributes
+		// Warrior attributes
 		public static const WARRIOR_HEALTH:Number = 10;
 		public static const WARRIOR_ATTACK:Number = 1;
 		public static const WARRIOR_DEFENSE:Number = 1;
 		public static const WARRIOR_SPEED:Number = 5;
 		
-		// Ranger starting attributes
+		public static const WARRIOR_ABIL_1_NAME = "blah";
+		public static const WARRIOR_ABIL_1_DESC = "blah blah";
+		public static const WARRIOR_ABIL_1_CD = 3;
+		
+		public static const WARRIOR_ABIL_2_NAME = "blah";
+		public static const WARRIOR_ABIL_2_DESC = "blah blah";
+		public static const WARRIOR_ABIL_2_CD = 5;
+		
+		public static const WARRIOR_ABIL_3_NAME = "blah";
+		public static const WARRIOR_ABIL_3_DESC = "blah blah";
+		public static const WARRIOR_ABIL_3_CD = 10;
+		
+		// Ranger attributes
 		public static const RANGER_HEALTH:Number = 10;
 		public static const RANGER_ATTACK:Number = 1;
 		public static const RANGER_DEFENSE:Number = 1;
 		public static const RANGER_SPEED:Number = 5;
+		
+		public static const RANGER_ABIL_1_NAME = "blah";
+		public static const RANGER_ABIL_1_DESC = "blah blah";
+		public static const RANGER_ABIL_1_CD = 10;
+		
+		public static const RANGER_ABIL_2_NAME = "blah";
+		public static const RANGER_ABIL_2_DESC = "blah blah";
+		public static const RANGER_ABIL_2_CD = 10;
+		
+		public static const RANGER_ABIL_3_NAME = "blah";
+		public static const RANGER_ABIL_3_DESC = "blah blah";
+		public static const RANGER_ABIL_3_CD = 10;
 
-		// Mage starting attributes
+		// Mage attributes
 		public static const MAGE_HEALTH:Number = 10;
 		public static const MAGE_ATTACK:Number = 1;
 		public static const MAGE_DEFENSE:Number = 1;
 		public static const MAGE_SPEED:Number = 5;
+		
+		public static const MAGE_ABIL_1_NAME = "blah";
+		public static const MAGE_ABIL_1_DESC = "blah blah";
+		public static const MAGE_ABIL_1_CD = 10;
+		
+		public static const MAGE_ABIL_2_NAME = "blah";
+		public static const MAGE_ABIL_2_DESC = "blah blah";
+		public static const MAGE_ABIL_2_CD = 10;
+		
+		public static const MAGE_ABIL_3_NAME = "blah";
+		public static const MAGE_ABIL_3_DESC = "blah blah";
+		public static const MAGE_ABIL_3_CD = 10;
 
 		// Experience stuff
 		public static const MAX_LEVELS = 10;
 		public static const XP_TO_LEVEL = new Array (1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
 		
 	}
-
 }
