@@ -4,7 +4,7 @@ package
 	import net.flashpunk.Engine;	
 	import net.flashpunk.FP;
 	
-	[SWF(width="800", height="600")]     // Note: change constants in Global.as to match
+	[SWF(width="1024", height="768")]     // Note: change constants in Global.as to match
 	
 	public class Main extends Engine
 	{
@@ -13,6 +13,7 @@ package
 		{
 			super(Global.GAME_WIDTH, Global.GAME_HEIGHT, 60, false);
 			FP.world = new TestWorld();
+			FP.console.enable();
 		}
 		
 		override public function init():void
