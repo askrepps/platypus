@@ -7,9 +7,8 @@ package
 	public class Global 
 	{
 		// Game Parameters
-		public static const GAME_WIDTH:Number = 800;             // Note: change SWF parameters in Main.as to match
-		public static const GAME_HEIGHT:Number = 600;
-		
+		public static const GAME_WIDTH:Number = 1024;             // Note: change SWF parameters in Main.as to match
+		public static const GAME_HEIGHT:Number = 768;
 		
 		// Tower Attributes, see Tower.as for description of variables
 		
@@ -64,17 +63,19 @@ package
 		public static const WARRIOR_DEFENSE:Number = 1;
 		public static const WARRIOR_SPEED:Number = 5;
 		
-		public static const WARRIOR_ABIL_1_NAME = "blah";
-		public static const WARRIOR_ABIL_1_DESC = "blah blah";
-		public static const WARRIOR_ABIL_1_CD = 3;
+		public static const WARRIOR_BASIC_CD:Number = 0.5;
 		
-		public static const WARRIOR_ABIL_2_NAME = "blah";
-		public static const WARRIOR_ABIL_2_DESC = "blah blah";
-		public static const WARRIOR_ABIL_2_CD = 5;
+		public static const WARRIOR_ABIL_1_NAME:String = "blah";
+		public static const WARRIOR_ABIL_1_DESC:String = "blah blah";
+		public static const WARRIOR_ABIL_1_CD:Number = 3;
 		
-		public static const WARRIOR_ABIL_3_NAME = "blah";
-		public static const WARRIOR_ABIL_3_DESC = "blah blah";
-		public static const WARRIOR_ABIL_3_CD = 10;
+		public static const WARRIOR_ABIL_2_NAME:String = "blah";
+		public static const WARRIOR_ABIL_2_DESC:String = "blah blah";
+		public static const WARRIOR_ABIL_2_CD:Number = 5;
+		
+		public static const WARRIOR_ABIL_3_NAME:String = "blah";
+		public static const WARRIOR_ABIL_3_DESC:String = "blah blah";
+		public static const WARRIOR_ABIL_3_CD:Number = 10;
 		
 		// Ranger attributes
 		public static const RANGER_HEALTH:Number = 10;
@@ -82,17 +83,19 @@ package
 		public static const RANGER_DEFENSE:Number = 1;
 		public static const RANGER_SPEED:Number = 5;
 		
-		public static const RANGER_ABIL_1_NAME = "blah";
-		public static const RANGER_ABIL_1_DESC = "blah blah";
-		public static const RANGER_ABIL_1_CD = 10;
+		public static const RANGER_BASIC_CD:Number = 0.5;
 		
-		public static const RANGER_ABIL_2_NAME = "blah";
-		public static const RANGER_ABIL_2_DESC = "blah blah";
-		public static const RANGER_ABIL_2_CD = 10;
+		public static const RANGER_ABIL_1_NAME:String = "blah";
+		public static const RANGER_ABIL_1_DESC:String = "blah blah";
+		public static const RANGER_ABIL_1_CD:Number = 3;
 		
-		public static const RANGER_ABIL_3_NAME = "blah";
-		public static const RANGER_ABIL_3_DESC = "blah blah";
-		public static const RANGER_ABIL_3_CD = 10;
+		public static const RANGER_ABIL_2_NAME:String = "blah";
+		public static const RANGER_ABIL_2_DESC:String = "blah blah";
+		public static const RANGER_ABIL_2_CD:Number = 5;
+		
+		public static const RANGER_ABIL_3_NAME:String = "blah";
+		public static const RANGER_ABIL_3_DESC:String = "blah blah";
+		public static const RANGER_ABIL_3_CD:Number = 10;
 
 		// Mage attributes
 		public static const MAGE_HEALTH:Number = 10;
@@ -100,17 +103,19 @@ package
 		public static const MAGE_DEFENSE:Number = 1;
 		public static const MAGE_SPEED:Number = 5;
 		
-		public static const MAGE_ABIL_1_NAME = "blah";
-		public static const MAGE_ABIL_1_DESC = "blah blah";
-		public static const MAGE_ABIL_1_CD = 10;
+		public static const MAGE_BASIC_CD:Number = 0.5;
 		
-		public static const MAGE_ABIL_2_NAME = "blah";
-		public static const MAGE_ABIL_2_DESC = "blah blah";
-		public static const MAGE_ABIL_2_CD = 10;
+		public static const MAGE_ABIL_1_NAME:String = "blah";
+		public static const MAGE_ABIL_1_DESC:String = "blah blah";
+		public static const MAGE_ABIL_1_CD:Number = 3;
 		
-		public static const MAGE_ABIL_3_NAME = "blah";
-		public static const MAGE_ABIL_3_DESC = "blah blah";
-		public static const MAGE_ABIL_3_CD = 10;
+		public static const MAGE_ABIL_2_NAME:String = "blah";
+		public static const MAGE_ABIL_2_DESC:String = "blah blah";
+		public static const MAGE_ABIL_2_CD:Number = 5;
+		
+		public static const MAGE_ABIL_3_NAME:String = "blah";
+		public static const MAGE_ABIL_3_DESC:String = "blah blah";
+		public static const MAGE_ABIL_3_CD:Number = 10;
 
 		// Experience stuff
 		public static const MAX_LEVELS = 10;

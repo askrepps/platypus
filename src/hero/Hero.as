@@ -5,9 +5,19 @@ package hero
 	import net.flashpunk.graphics.Image;
 	import net.flashpunk.utils.Input;
 	import net.flashpunk.utils.Key;
+	import net.flashpunk.utils.Draw;
 	
 	public class Hero extends Entity
 	{
+		public static const LEFT:Number = 1;
+		public static const LEFT_UP:Number = 2;
+		public static const UP:Number = 3;
+		public static const RIGHT_UP:Number = 4;
+		public static const RIGHT:Number = 5;
+		public static const RIGHT_DOWN:Number = 6;
+		public static const DOWN:Number = 7;
+		public static const LEFT_DOWN:Number = 8;
+		
 		public var maxHealth:Number;             // max health
 		public var currentHealth:Number;         // current health
 		public var attack:Number;                // attack power
@@ -21,6 +31,9 @@ package hero
 		public var ability1CD:Number;            // remaining cooldown on ability 1
 		public var ability2CD:Number;            // remaining cooldown on ability 2
 		public var ability3CD:Number;            // remaining cooldown on ability 3
+		public var basicCD:Number;               // remaining cooldown on basic attacks
+		
+		public var facing:Number;
 		
 		public var heroImage:Image;              // hero graphic
 		
@@ -35,19 +48,39 @@ package hero
 			ability1CD = 0;
 			ability2CD = 0;
 			ability3CD = 0;
+			basicCD = 0;
+			
+			facing = RIGHT_UP;
 		}
 		
 		override public function update():void
 		{	
 			// check movement input
-			if (Input.check(Key.W) || Input.check(Key.UP))          // move up
+			if (Input.check(Key.W))                                      // move up
 				y -= speed * FP.elapsed * Global.HERO_SPEED_SCALE;
-			if (Input.check(Key.S) || Input.check(Key.DOWN))        // move down
+			if (Input.check(Key.S))                                      // move down
 				y += speed * FP.elapsed * Global.HERO_SPEED_SCALE;
-			if (Input.check(Key.A) || Input.check(Key.LEFT))        // move left
+			if (Input.check(Key.A))                                      // move left
 				x -= speed * FP.elapsed * Global.HERO_SPEED_SCALE;
-			if (Input.check(Key.D) || Input.check(Key.RIGHT))       // move right
+			if (Input.check(Key.D))                                      // move right
 				x += speed * FP.elapsed * Global.HERO_SPEED_SCALE;
+			
+			if (Input.check(Key.W) && Input.check(Key.A))
+				facing = LEFT_UP;
+			else if (Input.check(Key.W) && Input.check(Key.D))
+				facing = RIGHT_UP;
+			else if (Input.check(Key.S) && Input.check(Key.A))
+				facing = LEFT_DOWN;
+			else if (Input.check(Key.S) && Input.check(Key.D))
+				facing = RIGHT_DOWN;
+			else if (Input.check(Key.W))
+				facing = UP;
+			else if (Input.check(Key.A))
+				facing = LEFT;
+			else if (Input.check(Key.S))
+				facing = DOWN;
+			else if (Input.check(Key.D))
+				facing = RIGHT;
 			
 			// temp code to keep hero on screen
 			if (x < 0) { x = 0; }
@@ -63,7 +96,14 @@ package hero
 			if (unlockedAbilities >= 3 && ability3CD <=0 && Input.pressed(Key.DIGIT_3))
 				ability3();
 			
+			if (basicCD <= 0 && Input.pressed(Key.SPACE))
+				basicAttack();
+			
 			// update ability cooldown timers
+			basicCD -= FP.elapsed;
+			if (basicCD < 0)
+				basicCD = 0;
+			
 			ability1CD -= FP.elapsed;
 			if (ability1CD < 0)
 				ability1CD = 0;
@@ -101,6 +141,40 @@ package hero
 			}
 		}
 		
+		public override function render():void
+		{
+			super.render();
+			
+			switch (facing)
+			{
+				case UP:
+					Draw.rect(x, y - width, width, width, 0xFFFFFF, 1, true);
+					break;
+				case LEFT:
+					Draw.rect(x - width, y + 0.25*height, width, width, 0xFFFFFF, 1, true);
+					break;
+				case RIGHT:
+					Draw.rect(x + width, y + 0.25*height, width, width, 0xFFFFFF, 1, true);
+					break;
+				case DOWN:
+					Draw.rect(x, y + height, width, width, 0xFFFFFF, 1, true);
+					break;
+				case LEFT_UP:
+					Draw.rect(x - width, y - width, width, width, 0xFFFFFF, 1, true);
+					break;
+				case LEFT_DOWN:
+					Draw.rect(x - width, y + height, width, width, 0xFFFFFF, 1, true);
+					break;
+				case RIGHT_UP:
+					Draw.rect(x + width, y - width, width, width, 0xFFFFFF, 1, true);
+					break;
+				case RIGHT_DOWN:
+					Draw.rect(x + width, y + height, width, width, 0xFFFFFF, 1, true);
+					break;
+				default:
+			}
+		}
+		
 		public function ability1():void
 		{
 			trace("Ability 1 used!");
@@ -114,6 +188,11 @@ package hero
 		public function ability3():void
 		{
 			trace("Ability 3 used!");
+		}
+		
+		public function basicAttack():void
+		{
+			trace("Basic Attack!");
 		}
 	}
 }

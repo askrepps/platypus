@@ -36,5 +36,11 @@ package hero
 			super.ability3();
 			ability3CD = Global.MAGE_ABIL_3_CD;
 		}
+		
+		public override function basicAttack():void
+		{
+			super.basicAttack();
+			basicCD = Global.MAGE_BASIC_CD;
+		}
 	}
 }

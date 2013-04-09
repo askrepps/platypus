@@ -36,5 +36,11 @@ package hero
 			super.ability3();
 			ability3CD = Global.WARRIOR_ABIL_3_CD;
 		}
+		
+		public override function basicAttack():void
+		{
+			super.basicAttack();
+			basicCD = Global.WARRIOR_BASIC_CD;
+		}
 	}
 }
