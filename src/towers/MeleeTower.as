@@ -1,6 +1,5 @@
 package towers 
 {
-	import net.flashpunk.FP;
 	/**
 	 * ...
 	 * @author Jonathan Benkovic
@@ -11,7 +10,7 @@ package towers
 		
 		public function MeleeTower(x:Number, y:Number) 
 		{
-			super(x, y, Global.MELEE_RANGE, Global.MELEE_DAMAGE, Global.MELEE_SPEED, Global.MELEE_CANATTACK, Global.MELEE_ARMORPIERCING, "", Global.MELEE_TOWERDESCIPT);
+			super(x, y, Global.MELEE_RANGE, Global.MELEE_DAMAGE, Global.MELEE_SPEED, Global.MELEE_CANATTACK, Global.MELEE_ARMORPIERCING, Global.MELEE_SPECIAL, Global.MELEE_TOWERDESCIPT);
 			// graphic = ;
 			timer = 0;
 		}
@@ -41,10 +40,8 @@ package towers
 		
 		override public function update():void
 		{
-			timer += FP.elapsed;
+			timer++;
 			
-			
-
 			if (timer >= speed)
 			{
 				timer = 0;

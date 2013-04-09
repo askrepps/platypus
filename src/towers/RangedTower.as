@@ -6,55 +6,43 @@ package towers
 	import net.flashpunk.FP;
 	import enemies.Enemy;
 	import net.flashpunk.utils.Input;
-	import net.flashpunk.utils.Key;
 	/**
 	 * ...
 	 * @author Jonathan Benkovic
 	 */
-	public class RangedTower extends Tower
-	{	
-		
+	public class RangedTower extends Entity 
+	{			
 		private var towerImage:Image;
 		private var timer:Number;
-		private static var towerUI:TowerUI;
-
+		public var range:Number;			// Pixel range the tower can hit.
+		public var damage:Number;			// Damage the tower does per hit.
+		public var speed:Number;			// Num of attacks per second.
+		public var canAttack:Array; 		// Array of strings that holds the type of enemies the tower can hit.
+		public var upgradeCur:Number;		// Current upgrade level.
+		public var armorPiercing:Number;  	// Percentage of armor ignored by attacks.
+		public var special:String;			// Special effect from attack (e.g. slow, stun, etc.)
+		public var towerDescipt:String;
+		
 		public function RangedTower(x:Number, y:Number)
 		{
-			super(x, y, Global.RANGED_RANGE, Global.RANGED_DAMAGE, Global.RANGED_SPEED, Global.RANGED_CANATTACK, Global.RANGED_ARMORPIERCING, "", Global.RANGED_TOWERDESCIPT);
+			this.x = x;
+			this.y = y;
+			range = Global.RANGED_RANGE;
+			damage = Global.RANGED_DAMAGE;
+			speed = Global.RANGED_SPEED;
+			canAttack = Global.RANGED_CANATTACK;
+			armorPiercing = Global.RANGED_ARMORPIERCING;
+			special = Global.RANGED_SPECIAL;
+			towerDescipt = Global.RANGED_TOWERDESCIPT;
 			type = "ranged";
 			towerImage = new Image(Assets.RANGED_TOWER);
-			super.graphic = towerImage;
+			graphic = towerImage;
 			timer = 0;
 			setHitboxTo(towerImage);
-			towerUI = new TowerUI(centerX, centerY, this);
 		}
 		
-		public function upgrade():void
+		public function attack():void
 		{
-			if (upgradeCur < 2)
-				upgradeCur++;
-			
-			switch (upgradeCur)
-			{
-				case 1:
-					range = Global.RANGED_RANGE_UPGRADE1;
-					damage = Global.RANGED_DAMAGE_UPGRADE1;
-					speed = Global.RANGED_SPEED_UPGRADE1;
-					break;
-				case 2:
-					range = Global.RANGED_RANGE_UPGRADE2;
-					damage = Global.RANGED_DAMAGE_UPGRADE2;
-					speed = Global.RANGED_SPEED_UPGRADE2;
-					special = Global.RANGED_SPECIAL;
-					towerDescipt = "A highly powerful melee tower. Due to the totally-non-copyright-infringing lightsword it ignores unit armor!"
-			}
-		}
-		
-		
-		override public function attack():void
-		{
-			
-			
 			var closestEnemy:Entity;
 			
 			// Attacks the same enemy until it is dead or out of range.
@@ -85,8 +73,7 @@ package towers
 			
 			// Do nothing if there aren't any enemies.
 			if(closestEnemy.type != null)
-				world.add(new Projectile(x, y, (Enemy)(closestEnemy), damage, armorPiercing, upgradeCur));
-			//(Enemy)(closestEnemy).takeDamage(this.damage, this.armorPiercing, this.special); 
+				(Enemy)(closestEnemy).takeDamage(this.damage, this.armorPiercing, this.special);
 		}
 		
 		public function test():void
@@ -96,7 +83,7 @@ package towers
 		
 		override public function update():void
 		{
-			timer += FP.elapsed;
+			timer++;
 			
 			if (timer >= speed)
 			{
@@ -107,12 +94,7 @@ package towers
 			if (collidePoint(x, y, world.mouseX, world.mouseY))
 			{
 				if(Input.mousePressed)
-					world.add(towerUI);
-			}
-			
-			if (Input.pressed(Key.U))
-			{
-				upgrade();
+					world.add(new TowerUI(centerX, centerY));
 			}
 			
 			super.update();

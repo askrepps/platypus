@@ -19,11 +19,11 @@ package towers
 		public var towerDescipt:String;
 		
 		// Constructor for default tower.
-/*		public function Tower()
+		public function Tower()
 		{
 			this.upgradeCur = 0;
 		}
-*/		
+		
 		public function Tower(x:Number, y:Number, range:Number, damage:Number, speed:Number, canAttack:Array, armorPiercing:Number, special:String, towerDescript:String)
 		{
 			this.x = x;
