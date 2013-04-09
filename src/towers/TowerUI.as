@@ -4,6 +4,8 @@ package towers
 	import net.flashpunk.Graphic;
 	import net.flashpunk.graphics.Image;
 	import net.flashpunk.utils.Input;
+	import net.flashpunk.utils.Draw;
+	
 	/**
 	 * ...
 	 * @author Jonathan Benkovic
@@ -11,7 +13,8 @@ package towers
 	public class TowerUI extends Entity 
 	{
 		private var uiImage:Image;
-		public function TowerUI(x:int, y:int) 
+		private var tower:Tower;
+		public function TowerUI(x:int, y:int, tower:Tower) 
 		{
 			uiImage = new Image(Assets.UPGRADE_UI);
 			setHitboxTo(uiImage);
@@ -19,6 +22,7 @@ package towers
 			this.y = y - this.halfHeight;
 			graphic = uiImage;
 			type = "upgradeUI";
+			this.tower = tower;
 		}
 		
 		override public function update():void
@@ -32,6 +36,11 @@ package towers
 					world.remove(this);
 		}
 		
+		override public function render():void
+		{
+			super.render();
+			Draw.circlePlus(centerX, centerY, tower.range,	0xbbd0fb , .08, true); 	
+		}
 	}
 
 }
