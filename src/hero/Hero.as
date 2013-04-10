@@ -1,11 +1,13 @@
 package hero
 {
+	import enemies.Enemy;
+	
 	import net.flashpunk.Entity;
 	import net.flashpunk.FP;
 	import net.flashpunk.graphics.Image;
+	import net.flashpunk.utils.Draw;
 	import net.flashpunk.utils.Input;
 	import net.flashpunk.utils.Key;
-	import net.flashpunk.utils.Draw;
 	
 	public class Hero extends Entity
 	{
@@ -41,6 +43,7 @@ package hero
 		{
 			x = startX;
 			y = startY;
+			type = "hero";
 			
 			level = 1;
 			xp = 0;
@@ -148,28 +151,28 @@ package hero
 			switch (facing)
 			{
 				case UP:
-					Draw.rect(x, y - width, width, width, 0xFFFFFF, 1, true);
+					Draw.rect(x, y - width, width, width, 0xFFFFFF, 0.25, true);
 					break;
 				case LEFT:
-					Draw.rect(x - width, y + 0.25*height, width, width, 0xFFFFFF, 1, true);
+					Draw.rect(x - width, y + 0.25*height, width, width, 0xFFFFFF, 0.25, true);
 					break;
 				case RIGHT:
-					Draw.rect(x + width, y + 0.25*height, width, width, 0xFFFFFF, 1, true);
+					Draw.rect(x + width, y + 0.25*height, width, width, 0xFFFFFF, 0.25, true);
 					break;
 				case DOWN:
-					Draw.rect(x, y + height, width, width, 0xFFFFFF, 1, true);
+					Draw.rect(x, y + height, width, width, 0xFFFFFF, 0.25, true);
 					break;
 				case LEFT_UP:
-					Draw.rect(x - width, y - width, width, width, 0xFFFFFF, 1, true);
+					Draw.rect(x - width, y - width, width, width, 0xFFFFFF, 0.25, true);
 					break;
 				case LEFT_DOWN:
-					Draw.rect(x - width, y + height, width, width, 0xFFFFFF, 1, true);
+					Draw.rect(x - width, y + height, width, width, 0xFFFFFF, 0.25, true);
 					break;
 				case RIGHT_UP:
-					Draw.rect(x + width, y - width, width, width, 0xFFFFFF, 1, true);
+					Draw.rect(x + width, y - width, width, width, 0xFFFFFF, 0.25, true);
 					break;
 				case RIGHT_DOWN:
-					Draw.rect(x + width, y + height, width, width, 0xFFFFFF, 1, true);
+					Draw.rect(x + width, y + height, width, width, 0xFFFFFF, 0.25, true);
 					break;
 				default:
 			}
@@ -193,6 +196,49 @@ package hero
 		public function basicAttack():void
 		{
 			trace("Basic Attack!");
+			
+			var entities:Array = new Array();
+			var collision:Boolean;
+			world.getAll(entities);
+			
+			for each(var enemy:Entity in entities)
+			{
+				if (enemy is Enemy)
+				{
+					switch (facing)
+					{
+						case UP:
+							collision = enemy.collideRect(enemy.x, enemy.y, x, y - width, width, width);
+							break;
+						case LEFT:
+							collision = enemy.collideRect(enemy.x, enemy.y, x - width, y + 0.25*height, width, width);
+							break;
+						case RIGHT:
+							collision = enemy.collideRect(enemy.x, enemy.y, x + width, y + 0.25*height, width, width);
+							break;
+						case DOWN:
+							collision = enemy.collideRect(enemy.x, enemy.y, x, y + height, width, width);
+							break;
+						case LEFT_UP:
+							collision = enemy.collideRect(enemy.x, enemy.y, x - width, y - width, width, width);
+							break;
+						case LEFT_DOWN:
+							collision = enemy.collideRect(enemy.x, enemy.y, x - width, y + height, width, width);
+							break;
+						case RIGHT_UP:
+							collision = enemy.collideRect(enemy.x, enemy.y, x + width, y - width, width, width);
+							break;
+						case RIGHT_DOWN:
+							collision = enemy.collideRect(enemy.x, enemy.y, x + width, y + height, width, width);
+							break;
+						default:
+							collision = false;
+					}
+					
+					if (collision)
+						(enemy as Enemy).takeDamage(attack, 0, "wheee!");
+				}
+			}
 		}
 	}
 }

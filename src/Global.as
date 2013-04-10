@@ -81,7 +81,10 @@ package
 		
 		public static const AIR_RANGE_UPGRADE2:Number;
 		public static const AIR_DAMAGE_UPGRADE2:Number;		
-		public static const AIR_SPEED_UPGRADE2:Number;	
+		public static const AIR_SPEED_UPGRADE2:Number;
+		
+		// Enemy attributes, see Enemy.as for desription of variables
+		public static const ENEMY_TYPES = new Array("normal", "fast", "armored", "flying");
 		
 		// Hero Attributes, see Hero.as for description of variables
 		public static const HERO_SPEED_SCALE:Number = 50;
@@ -93,7 +96,7 @@ package
 		
 		// Warrior attributes
 		public static const WARRIOR_HEALTH:Number = 10;
-		public static const WARRIOR_ATTACK:Number = 1;
+		public static const WARRIOR_ATTACK:Number = 5;
 		public static const WARRIOR_DEFENSE:Number = 1;
 		public static const WARRIOR_SPEED:Number = 5;
 		
