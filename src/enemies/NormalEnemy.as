@@ -2,6 +2,7 @@ package enemies
 {
 	import net.flashpunk.Entity;
 	import net.flashpunk.graphics.Image;
+	import net.flashpunk.masks.Pixelmask;
 	/**
 	 * ...
 	 * @author Jonathan Benkovic
@@ -17,8 +18,14 @@ package enemies
 			super(x, y, 50, 2, 0);
 			
 			graphic = enemyImage;
+			mask = new Pixelmask(Assets.NORMAL_ENEMY);
 		}
 		
+		override public function update():void
+		{
+			// This is just for testing, remove for actual path stuff.
+			x++;
+		}
 	}
 
 }
