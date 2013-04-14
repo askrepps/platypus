@@ -46,7 +46,6 @@ package towers
 					damage = Global.RANGED_DAMAGE_UPGRADE2;
 					speed = Global.RANGED_SPEED_UPGRADE2;
 					special = Global.RANGED_SPECIAL;
-					towerDescipt = "A highly powerful melee tower. Due to the totally-non-copyright-infringing lightsword it ignores unit armor!"
 			}
 		}
 		
@@ -85,13 +84,8 @@ package towers
 			
 			// Do nothing if there aren't any enemies.
 			if(closestEnemy.type != null)
-				world.add(new Projectile(x, y, (Enemy)(closestEnemy), damage, armorPiercing, upgradeCur));
+				world.add(new Projectile(centerX, centerY, (Enemy)(closestEnemy), damage, armorPiercing, upgradeCur));
 			//(Enemy)(closestEnemy).takeDamage(this.damage, this.armorPiercing, this.special); 
-		}
-		
-		public function test():void
-		{
-			trace("This is a test");
 		}
 		
 		override public function update():void
@@ -106,6 +100,7 @@ package towers
 			
 			if (collidePoint(x, y, world.mouseX, world.mouseY))
 			{
+				world.add(new HoverText(x,y));
 				if(Input.mousePressed)
 					world.add(towerUI);
 			}

@@ -24,18 +24,15 @@ package towers
 			switch (upgradeCur)
 			{
 				case 1:
-					range += ;
-					damage += ;
-					speed += ;
-					armorPiercing += ;
+					range = Global.MELEE_RANGE_UPGRADE1;
+					damage = Global.MELEE_DAMAGE_UPGRADE1;
+					speed = Global.MELEE_SPEED_UPGRADE1;
 					break;
 				case 2:
-					range += ;
-					damage += ;
-					speed += ;
-					armorPiercing += ;
-					special = "Ignore Armor";
-					towerDescipt = "A highly powerful melee tower. Due to the totally-non-copyright-infringing lightsword it ignores unit armor!"
+					range = Global.MELEE_RANGE_UPGRADE2;
+					damage = Global.MELEE_DAMAGE_UPGRADE2;
+					speed = Global.MELEE_SPEED_UPGRADE2;
+					special = Global.MELEE_SPECIAL;
 			}
 		}
 		

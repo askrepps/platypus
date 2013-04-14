@@ -24,7 +24,7 @@ package
 		
 		// Ranged Tower starting attributes
 		public static const RANGED_RANGE:Number = 100;
-		public static const RANGED_DAMAGE:Number = 2;		
+		public static const RANGED_DAMAGE:Number = 4;		
 		public static const RANGED_SPEED:Number = .8;			
 		public static const RANGED_CANATTACK:Array = new Array("normal", "fast", "armored", "flying"); 		
 		public static const RANGED_ARMORPIERCING:Number = 1;  
@@ -32,12 +32,12 @@ package
 		public static const RANGED_TOWERDESCIPT:String = "Basic ranged tower. Can hit any unit.";
 		
 		// AoE Tower starting attributes
-		public static const AOE_RANGE:Number;
-		public static const AOE_DAMAGE:Number;		
-		public static const AOE_SPEED:Number;			
+		public static const AOE_RANGE:Number = 75;
+		public static const AOE_DAMAGE:Number = 2;		
+		public static const AOE_SPEED:Number = 1;			
 		public static const AOE_CANATTACK:Array = new Array("normal", "fast", "armored"); 		
-		public static const AOE_ARMORPIERCING:Number;  
-		public static const AOE_SPECIAL:String;		
+		public static const AOE_ARMORPIERCING:Number = 5;  
+		public static const AOE_SPECIAL:String = "Poison";		
 		public static const AOE_TOWERDESCIPT:String;
 		
 		// Air Tower starting attributes
@@ -60,11 +60,11 @@ package
 		public static const MELEE_SPEED_UPGRADE2:Number = 1;		
 		
 		public static const RANGED_RANGE_UPGRADE1:Number = 120;
-		public static const RANGED_DAMAGE_UPGRADE1:Number = 4;		
+		public static const RANGED_DAMAGE_UPGRADE1:Number = 6;		
 		public static const RANGED_SPEED_UPGRADE1:Number = .6;	
 		
 		public static const RANGED_RANGE_UPGRADE2:Number = 140;
-		public static const RANGED_DAMAGE_UPGRADE2:Number = 6;		
+		public static const RANGED_DAMAGE_UPGRADE2:Number = 8;		
 		public static const RANGED_SPEED_UPGRADE2:Number = .15;	
 		
 		
@@ -81,10 +81,7 @@ package
 		
 		public static const AIR_RANGE_UPGRADE2:Number;
 		public static const AIR_DAMAGE_UPGRADE2:Number;		
-		public static const AIR_SPEED_UPGRADE2:Number;
-		
-		// Enemy attributes, see Enemy.as for desription of variables
-		public static const ENEMY_TYPES = new Array("normal", "fast", "armored", "flying");
+		public static const AIR_SPEED_UPGRADE2:Number;	
 		
 		// Hero Attributes, see Hero.as for description of variables
 		public static const HERO_SPEED_SCALE:Number = 50;
