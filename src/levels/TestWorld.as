@@ -20,7 +20,7 @@ package levels
 		
 		public function TestWorld() 
 		{
-			add(new RangedTower(300, 300));
+			//add(new RangedTower(300, 300));
 			add(new NormalEnemy(20, 200));
 			add(new NormalEnemy(100, 275));
 			add(new AoETower(500, 300));

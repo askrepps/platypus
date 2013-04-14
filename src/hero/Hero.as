@@ -26,6 +26,11 @@ package hero
 		public var defense:Number;               // defense
 		public var speed:Number;                 // maximum speed
 		
+		public var healthArray:Array;            // max health at each level
+		public var attackArray:Array;            // attack at each level
+		public var defenseArray:Array;           // defense at each level
+		public var speedArray:Array;             // speed at each level
+		
 		public var level:Number;                 // current level
 		public var xp:Number;                    // current experience points
 		public var unlockedAbilities:Number;     // number of abilities available
@@ -53,7 +58,7 @@ package hero
 			ability3CD = 0;
 			basicCD = 0;
 			
-			facing = RIGHT_UP;
+			facing = UP;
 		}
 		
 		override public function update():void
@@ -84,6 +89,10 @@ package hero
 				facing = DOWN;
 			else if (Input.check(Key.D))
 				facing = RIGHT;
+			
+			if (Input.pressed(Key.L))
+				gainXP(1);
+				
 			
 			// temp code to keep hero on screen
 			if (x < 0) { x = 0; }
@@ -129,10 +138,17 @@ package hero
 				trace("ability 3 cd: " + ability3CD);
 			
 			// check if hero should level up
-			if (xp >= Global.XP_TO_LEVEL[level])
+			if (level <= Global.MAX_LEVELS && xp >= Global.XP_TO_LEVEL[level - 1])
 			{
 				xp -= Global.XP_TO_LEVEL[level];
 				level++;
+				FP.log("Hero reached level " + level + "!");
+				
+				maxHealth = healthArray[level - 1];
+				currentHealth = maxHealth;
+				attack = attackArray[level - 1];
+				defense = defenseArray[level - 1];
+				speed = speedArray[level - 1];
 				
 				// set appropriate unlocked abilities
 				if (level == Global.ABILITY_1_LEVEL)
@@ -151,28 +167,28 @@ package hero
 			switch (facing)
 			{
 				case UP:
-					Draw.rect(x, y - width, width, width, 0xFFFFFF, 0.25, true);
+					Draw.rectPlus(x, y - width, width, width, 0xFFFFFF, 0.25, true);
 					break;
 				case LEFT:
-					Draw.rect(x - width, y + 0.25*height, width, width, 0xFFFFFF, 0.25, true);
+					Draw.rectPlus(x - width, y + 0.25*height, width, width, 0xFFFFFF, 0.25, true);
 					break;
 				case RIGHT:
-					Draw.rect(x + width, y + 0.25*height, width, width, 0xFFFFFF, 0.25, true);
+					Draw.rectPlus(x + width, y + 0.25*height, width, width, 0xFFFFFF, 0.25, true);
 					break;
 				case DOWN:
-					Draw.rect(x, y + height, width, width, 0xFFFFFF, 0.25, true);
+					Draw.rectPlus(x, y + height, width, width, 0xFFFFFF, 0.25, true);
 					break;
 				case LEFT_UP:
-					Draw.rect(x - width, y - width, width, width, 0xFFFFFF, 0.25, true);
+					Draw.rectPlus(x - width, y - width, width, width, 0xFFFFFF, 0.25, true);
 					break;
 				case LEFT_DOWN:
-					Draw.rect(x - width, y + height, width, width, 0xFFFFFF, 0.25, true);
+					Draw.rectPlus(x - width, y + height, width, width, 0xFFFFFF, 0.25, true);
 					break;
 				case RIGHT_UP:
-					Draw.rect(x + width, y - width, width, width, 0xFFFFFF, 0.25, true);
+					Draw.rectPlus(x + width, y - width, width, width, 0xFFFFFF, 0.25, true);
 					break;
 				case RIGHT_DOWN:
-					Draw.rect(x + width, y + height, width, width, 0xFFFFFF, 0.25, true);
+					Draw.rectPlus(x + width, y + height, width, width, 0xFFFFFF, 0.25, true);
 					break;
 				default:
 			}
@@ -239,6 +255,11 @@ package hero
 						(enemy as Enemy).takeDamage(attack, 0, "wheee!");
 				}
 			}
+		}
+		
+		public function gainXP(toGain:Number):void
+		{
+			xp += toGain;
 		}
 	}
 }
