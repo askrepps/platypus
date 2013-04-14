@@ -19,14 +19,6 @@ package towers
 		
 		public function TowerRangeMask(tower:Tower) 
 		{
-<<<<<<< HEAD
-=======
-			var buttonBmp:BitmapData = new BitmapData(width + 20, height + 20, true, 0);
-			
-			graphic = new Stamp(buttonBmp, tower.x, tower.y);
-			
-			
->>>>>>> 0c4eef1e9ff94abee90aa7e343f7e5369faf0701
 			sprite = new Sprite;
 			g = sprite.graphics;
 			g.drawCircle(tower.x - tower.range, tower.y - tower.range, tower.range);
@@ -34,10 +26,6 @@ package towers
 			bd.draw(sprite);
 			
 			mask = new Pixelmask(bd);
-<<<<<<< HEAD
-			
-=======
->>>>>>> 0c4eef1e9ff94abee90aa7e343f7e5369faf0701
 		}
 		
 		override public function update():void
