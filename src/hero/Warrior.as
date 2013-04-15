@@ -12,11 +12,16 @@ package hero
 			graphic = heroImage;
 			setHitboxTo(heroImage);
 			
-			maxHealth = Global.WARRIOR_HEALTH;
-			currentHealth = Global.WARRIOR_HEALTH;
-			attack = Global.WARRIOR_ATTACK;
-			defense = Global.WARRIOR_DEFENSE;
-			speed = Global.WARRIOR_SPEED;
+			healthArray = Global.WARRIOR_HEALTH_ARRAY;
+			attackArray = Global.WARRIOR_ATTACK_ARRAY;
+			defenseArray = Global.WARRIOR_DEFENSE_ARRAY;
+			speedArray = Global.WARRIOR_SPEED_ARRAY;
+			
+			maxHealth = healthArray[0];
+			currentHealth = maxHealth;
+			attack = attackArray[0];
+			defense = defenseArray[0];
+			speed = speedArray[0];
 		}
 		
 		public override function ability1():void

@@ -18,7 +18,7 @@ package
 		
 		override public function init():void
 		{
-			trace("FlashPunk has started successfully!");
+			FP.log("FlashPunk has started successfully!");
 		}
 	}
 }
