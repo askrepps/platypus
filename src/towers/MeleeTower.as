@@ -18,7 +18,7 @@ package towers
 			timer = 0;
 		}
 		
-		public function upgrade():void
+		override public function upgrade():void
 		{
 			if (upgradeCur < 2)
 				upgradeCur++;

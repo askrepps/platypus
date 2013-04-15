@@ -26,7 +26,7 @@ package towers
 			towerUI = new TowerUI(centerX, centerY, this);
 		}
 		
-		public function upgrade():void
+		override public function upgrade():void
 		{
 			if (upgradeCur < 2)
 				upgradeCur++;

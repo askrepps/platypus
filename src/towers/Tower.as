@@ -37,7 +37,14 @@ package towers
 			this.towerUI = towerUI;
 		}
 		
+		// Override this function
 		public function attack():void
+		{
+			
+		}
+		
+		// Override this function
+		public function upgrade():void
 		{
 			
 		}

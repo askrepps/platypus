@@ -26,14 +26,12 @@ package towers
 			this.tower = tower;
 			
 			
-			button = new Button(this.x + 40, this.y, "Ranged", build, "Ranged"); 
+			button = new Button(this.x + 40, this.y, "Upgrade", upgrade); 
 		}
 		
-		public function build(towerBuild:String):void
+		public function upgrade():void
 		{
-			if(towerBuild == "Ranged")
-				FP.world.add(new RangedTower(this.x, this.y));
-			FP.world.remove(this.tower);
+			this.tower.upgrade();
 		}
 		
 		override public function removed():void

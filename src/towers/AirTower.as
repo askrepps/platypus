@@ -1,6 +1,10 @@
 package towers
 {
-	
+	import net.flashpunk.graphics.Image;
+	import enemies.Enemy;
+	import net.flashpunk.Entity;
+	import net.flashpunk.FP;
+	import net.flashpunk.utils.Input;
 	/**
 	 * ...
 	 * @author Jonathan Benkovic
@@ -19,7 +23,7 @@ package towers
 			towerUI = new TowerUI(centerX, centerY, this);
 		}
 		
-		public function upgrade():void
+		override public function upgrade():void
 		{
 			if (upgradeCur < 2)
 				upgradeCur++;

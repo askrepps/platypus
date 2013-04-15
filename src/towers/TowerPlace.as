@@ -20,7 +20,7 @@ package towers
 			
 			towerImage = new Image(Assets.PLACE_TOWER);
 			
-			buildUI = new BuildTowerUI(centerX, centerY);
+			buildUI = new BuildTowerUI(centerX, centerY, this);
 			
 			graphic = towerImage;
 			
