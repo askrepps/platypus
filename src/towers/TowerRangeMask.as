@@ -19,6 +19,11 @@ package towers
 		
 		public function TowerRangeMask(tower:Tower) 
 		{
+			var buttonBmp:BitmapData = new BitmapData(width + 20, height + 20, true, 0);
+			
+			graphic = new Stamp(buttonBmp, tower.x, tower.y);
+			
+			
 			sprite = new Sprite;
 			g = sprite.graphics;
 			g.drawCircle(tower.x - tower.range, tower.y - tower.range, tower.range);

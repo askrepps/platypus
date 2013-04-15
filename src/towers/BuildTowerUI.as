@@ -10,21 +10,19 @@ package towers
 	 * ...
 	 * @author Jonathan Benkovic
 	 */
-	public class TowerUI extends Entity 
+	public class BuildTowerUI extends Entity 
 	{
 		private var uiImage:Image;
 		private var tower:Tower;
 		private var button:Button;
-		public function TowerUI(x:int, y:int, tower:Tower) 
+		public function BuildTowerUI(x:int, y:int) 
 		{	
 			uiImage = new Image(Assets.UPGRADE_UI);
 			setHitboxTo(uiImage);
-			this.x = x - this.halfWidth;
-			this.y = y - this.halfHeight;
+			this.x = x - width/3.0;
+			this.y = y - height/3.0;
 			graphic = uiImage;
 			type = "upgradeUI";
-			this.tower = tower;
-			
 			
 			button = new Button(this.x + 40, this.y, "Ranged", build, "Ranged"); 
 		}
@@ -32,8 +30,7 @@ package towers
 		public function build(towerBuild:String):void
 		{
 			if(towerBuild == "Ranged")
-				FP.world.add(new RangedTower(this.x, this.y));
-			FP.world.remove(this.tower);
+				FP.world.add(new RangedTower(x + width/3.0, y + height/3.0));
 		}
 		
 		override public function removed():void
@@ -43,11 +40,11 @@ package towers
 		
 		override public function update():void
 		{
-			if (world.getInstance(button.toString()) == null)
+			if (button.name == null)
 			{
+				button.name = "done";
 				world.add(button);
 			}
-			
 			
 			if (collidePoint(x, y, world.mouseX, world.mouseY))
 			{
@@ -57,12 +54,5 @@ package towers
 				if(Input.mousePressed)
 					world.remove(this);
 		}
-		
-		override public function render():void
-		{
-			super.render();
-			Draw.circlePlus(centerX, centerY, tower.range,	0xbbd0fb , .08, true); 	
-		}
 	}
-
 }

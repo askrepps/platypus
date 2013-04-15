@@ -16,17 +16,15 @@ package towers
 		
 		private var towerImage:Image;
 		private var timer:Number;
-		private static var towerUI:TowerUI;
 
 		public function RangedTower(x:Number, y:Number)
 		{
-			super(x, y, Global.RANGED_RANGE, Global.RANGED_DAMAGE, Global.RANGED_SPEED, Global.RANGED_CANATTACK, Global.RANGED_ARMORPIERCING, "", Global.RANGED_TOWERDESCIPT);
+			super(x, y, Global.RANGED_RANGE, Global.RANGED_DAMAGE, Global.RANGED_SPEED, Global.RANGED_CANATTACK, Global.RANGED_ARMORPIERCING, "", Global.RANGED_TOWERDESCIPT, new TowerUI(centerX, centerY, this));
 			type = "ranged";
 			towerImage = new Image(Assets.RANGED_TOWER);
 			super.graphic = towerImage;
 			timer = 0;
 			setHitboxTo(towerImage);
-			towerUI = new TowerUI(centerX, centerY, this);
 		}
 		
 		public function upgrade():void
@@ -98,13 +96,7 @@ package towers
 				attack();
 			}
 			
-			if (collidePoint(x, y, world.mouseX, world.mouseY))
-			{
-				world.add(new HoverText(x,y));
-				if(Input.mousePressed)
-					world.add(towerUI);
-			}
-			
+
 			if (Input.pressed(Key.U))
 			{
 				upgrade();
