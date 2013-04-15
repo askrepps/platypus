@@ -92,10 +92,10 @@ package
 		public static const ABILITY_3_LEVEL:Number = 10;
 		
 		// Warrior attributes
-		public static const WARRIOR_HEALTH:Number = 10;
-		public static const WARRIOR_ATTACK:Number = 5;
-		public static const WARRIOR_DEFENSE:Number = 1;
-		public static const WARRIOR_SPEED:Number = 5;
+		public static const WARRIOR_HEALTH_ARRAY:Array =  new Array(10, 10, 10, 10, 10, 10, 10, 10, 10, 10);
+		public static const WARRIOR_ATTACK_ARRAY:Array =  new Array(10, 10, 10, 10, 10, 10, 10, 10, 10, 10);
+		public static const WARRIOR_DEFENSE_ARRAY:Array = new Array(10, 10, 10, 10, 10, 10, 10, 10, 10, 10);
+		public static const WARRIOR_SPEED_ARRAY:Array =   new Array( 1,  2,  3,  4,  5,  6,  7,  8,  9, 10);
 		
 		public static const WARRIOR_BASIC_CD:Number = 0.5;
 		
@@ -112,10 +112,10 @@ package
 		public static const WARRIOR_ABIL_3_CD:Number = 10;
 		
 		// Ranger attributes
-		public static const RANGER_HEALTH:Number = 10;
-		public static const RANGER_ATTACK:Number = 1;
-		public static const RANGER_DEFENSE:Number = 1;
-		public static const RANGER_SPEED:Number = 5;
+		public static const RANGER_HEALTH_ARRAY:Array =  new Array(10, 10, 10, 10, 10, 10, 10, 10, 10, 10);
+		public static const RANGER_ATTACK_ARRAY:Array =  new Array(10, 10, 10, 10, 10, 10, 10, 10, 10, 10);
+		public static const RANGER_DEFENSE_ARRAY:Array = new Array(10, 10, 10, 10, 10, 10, 10, 10, 10, 10);
+		public static const RANGER_SPEED_ARRAY:Array =   new Array( 5,  5,  5,  5,  5,  5,  5,  5,  5,  5);
 		
 		public static const RANGER_BASIC_CD:Number = 0.5;
 		
@@ -132,10 +132,10 @@ package
 		public static const RANGER_ABIL_3_CD:Number = 10;
 
 		// Mage attributes
-		public static const MAGE_HEALTH:Number = 10;
-		public static const MAGE_ATTACK:Number = 1;
-		public static const MAGE_DEFENSE:Number = 1;
-		public static const MAGE_SPEED:Number = 5;
+		public static const MAGE_HEALTH_ARRAY:Array =  new Array(10, 10, 10, 10, 10, 10, 10, 10, 10, 10);
+		public static const MAGE_ATTACK_ARRAY:Array =  new Array(10, 10, 10, 10, 10, 10, 10, 10, 10, 10);
+		public static const MAGE_DEFENSE_ARRAY:Array = new Array(10, 10, 10, 10, 10, 10, 10, 10, 10, 10);
+		public static const MAGE_SPEED_ARRAY:Array =   new Array( 5,  5,  5,  5,  5,  5,  5,  5,  5,  5);
 		
 		public static const MAGE_BASIC_CD:Number = 0.5;
 		
@@ -152,8 +152,8 @@ package
 		public static const MAGE_ABIL_3_CD:Number = 10;
 
 		// Experience stuff
-		public static const MAX_LEVELS = 10;
-		public static const XP_TO_LEVEL = new Array (1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+		public static const MAX_LEVELS:Number = 10;
+		public static const XP_TO_LEVEL:Array = new Array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
 		
 	}
 }

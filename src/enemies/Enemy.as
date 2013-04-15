@@ -1,6 +1,7 @@
 package enemies 
 {
 	import net.flashpunk.Entity;
+	import net.flashpunk.FP;
 	
 	/**
 	 * ...
@@ -26,7 +27,7 @@ package enemies
 			var modifiedArmor:Number = armor * (1 - armorPiercing);		// Amount of armor left after armor piercing is applied. 
 			health = health - (damage * (1 - (modifiedArmor / 100.0)));		
 			
-			trace("Enemy takes damage at " + x + "," + y + " " + health + " health remains");
+			FP.log("Enemy takes damage at " + x + "," + y + " " + health + " health remains");
 			
 			if (health <= 0)
 			{
