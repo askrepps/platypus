@@ -108,9 +108,6 @@ package hero
 			if (unlockedAbilities >= 3 && ability3CD <=0 && Input.pressed(Key.DIGIT_3))
 				ability3();
 			
-			if (basicCD <= 0 && Input.pressed(Key.SPACE))
-				basicAttack();
-			
 			// update ability cooldown timers
 			basicCD -= FP.elapsed;
 			if (basicCD < 0)
@@ -163,35 +160,6 @@ package hero
 		public override function render():void
 		{
 			super.render();
-			
-			switch (facing)
-			{
-				case UP:
-					Draw.rectPlus(x, y - width, width, width, 0xFFFFFF, 0.25, true);
-					break;
-				case LEFT:
-					Draw.rectPlus(x - width, y + 0.25*height, width, width, 0xFFFFFF, 0.25, true);
-					break;
-				case RIGHT:
-					Draw.rectPlus(x + width, y + 0.25*height, width, width, 0xFFFFFF, 0.25, true);
-					break;
-				case DOWN:
-					Draw.rectPlus(x, y + height, width, width, 0xFFFFFF, 0.25, true);
-					break;
-				case LEFT_UP:
-					Draw.rectPlus(x - width, y - width, width, width, 0xFFFFFF, 0.25, true);
-					break;
-				case LEFT_DOWN:
-					Draw.rectPlus(x - width, y + height, width, width, 0xFFFFFF, 0.25, true);
-					break;
-				case RIGHT_UP:
-					Draw.rectPlus(x + width, y - width, width, width, 0xFFFFFF, 0.25, true);
-					break;
-				case RIGHT_DOWN:
-					Draw.rectPlus(x + width, y + height, width, width, 0xFFFFFF, 0.25, true);
-					break;
-				default:
-			}
 		}
 		
 		public function ability1():void
@@ -207,54 +175,6 @@ package hero
 		public function ability3():void
 		{
 			trace("Ability 3 used!");
-		}
-		
-		public function basicAttack():void
-		{
-			trace("Basic Attack!");
-			
-			var entities:Array = new Array();
-			var collision:Boolean;
-			world.getAll(entities);
-			
-			for each(var enemy:Entity in entities)
-			{
-				if (enemy is Enemy)
-				{
-					switch (facing)
-					{
-						case UP:
-							collision = enemy.collideRect(enemy.x, enemy.y, x, y - width, width, width);
-							break;
-						case LEFT:
-							collision = enemy.collideRect(enemy.x, enemy.y, x - width, y + 0.25*height, width, width);
-							break;
-						case RIGHT:
-							collision = enemy.collideRect(enemy.x, enemy.y, x + width, y + 0.25*height, width, width);
-							break;
-						case DOWN:
-							collision = enemy.collideRect(enemy.x, enemy.y, x, y + height, width, width);
-							break;
-						case LEFT_UP:
-							collision = enemy.collideRect(enemy.x, enemy.y, x - width, y - width, width, width);
-							break;
-						case LEFT_DOWN:
-							collision = enemy.collideRect(enemy.x, enemy.y, x - width, y + height, width, width);
-							break;
-						case RIGHT_UP:
-							collision = enemy.collideRect(enemy.x, enemy.y, x + width, y - width, width, width);
-							break;
-						case RIGHT_DOWN:
-							collision = enemy.collideRect(enemy.x, enemy.y, x + width, y + height, width, width);
-							break;
-						default:
-							collision = false;
-					}
-					
-					if (collision)
-						(enemy as Enemy).takeDamage(attack, 0, "wheee!");
-				}
-			}
 		}
 		
 		public function gainXP(toGain:Number):void
