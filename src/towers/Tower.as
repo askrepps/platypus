@@ -57,7 +57,7 @@ package towers
 		override public function update():void
 		{
 			// Deal with displaying tower info when clicked
-						if (collidePoint(x, y, world.mouseX, world.mouseY))
+			if (collidePoint(x, y, world.mouseX, world.mouseY))
 			{
 				//world.add(new HoverText(x,y));
 				if(Input.mousePressed)
