@@ -85,6 +85,8 @@ package
 		
 		// Hero Attributes, see Hero.as for description of variables
 		public static const HERO_SPEED_SCALE:Number = 50;
+		public static const HERO_RECOVER_TIME:Number = 1;
+		public static const HERO_BLINK_RATE:Number = 0.05;
 		
 		// Level to unlock each ability
 		public static const ABILITY_1_LEVEL:Number = 2;
@@ -96,8 +98,6 @@ package
 		public static const WARRIOR_ATTACK_ARRAY:Array =  new Array(10, 10, 10, 10, 10, 10, 10, 10, 10, 10);
 		public static const WARRIOR_DEFENSE_ARRAY:Array = new Array(10, 10, 10, 10, 10, 10, 10, 10, 10, 10);
 		public static const WARRIOR_SPEED_ARRAY:Array =   new Array( 1,  2,  3,  4,  5,  6,  7,  8,  9, 10);
-		
-		public static const WARRIOR_BASIC_CD:Number = 0.5;
 		
 		public static const WARRIOR_ABIL_1_NAME:String = "blah";
 		public static const WARRIOR_ABIL_1_DESC:String = "blah blah";
@@ -117,8 +117,6 @@ package
 		public static const RANGER_DEFENSE_ARRAY:Array = new Array(10, 10, 10, 10, 10, 10, 10, 10, 10, 10);
 		public static const RANGER_SPEED_ARRAY:Array =   new Array( 5,  5,  5,  5,  5,  5,  5,  5,  5,  5);
 		
-		public static const RANGER_BASIC_CD:Number = 0.5;
-		
 		public static const RANGER_ABIL_1_NAME:String = "blah";
 		public static const RANGER_ABIL_1_DESC:String = "blah blah";
 		public static const RANGER_ABIL_1_CD:Number = 10;
@@ -136,8 +134,6 @@ package
 		public static const MAGE_ATTACK_ARRAY:Array =  new Array(10, 10, 10, 10, 10, 10, 10, 10, 10, 10);
 		public static const MAGE_DEFENSE_ARRAY:Array = new Array(10, 10, 10, 10, 10, 10, 10, 10, 10, 10);
 		public static const MAGE_SPEED_ARRAY:Array =   new Array( 5,  5,  5,  5,  5,  5,  5,  5,  5,  5);
-		
-		public static const MAGE_BASIC_CD:Number = 0.5;
 		
 		public static const MAGE_ABIL_1_NAME:String = "blah";
 		public static const MAGE_ABIL_1_DESC:String = "blah blah";
