@@ -1,5 +1,8 @@
 package hero
 {
+	import net.flashpunk.Entity;
+	import enemies.Enemy;
+	
 	public class Warrior extends Hero
 	{
 		import net.flashpunk.graphics.Image;
@@ -28,6 +31,48 @@ package hero
 		{
 			super.ability1();
 			ability1CD = Global.WARRIOR_ABIL_1_CD;
+			var entities:Array = new Array();
+			var collision:Boolean;
+			world.getAll(entities);
+			
+			for each(var enemy:Entity in entities)
+			{
+				if (enemy is Enemy)
+				{
+					switch (facing)
+					{
+						case UP:
+							collision = enemy.collideRect(enemy.x, enemy.y, x, y - width, width, width);
+							break;
+						case LEFT:
+							collision = enemy.collideRect(enemy.x, enemy.y, x - width, y + 0.25*height, width, width);
+							break;
+						case RIGHT:
+							collision = enemy.collideRect(enemy.x, enemy.y, x + width, y + 0.25*height, width, width);
+							break;
+						case DOWN:
+							collision = enemy.collideRect(enemy.x, enemy.y, x, y + height, width, width);
+							break;
+						case LEFT_UP:
+							collision = enemy.collideRect(enemy.x, enemy.y, x - width, y - width, width, width);
+							break;
+						case LEFT_DOWN:
+							collision = enemy.collideRect(enemy.x, enemy.y, x - width, y + height, width, width);
+							break;
+						case RIGHT_UP:
+							collision = enemy.collideRect(enemy.x, enemy.y, x + width, y - width, width, width);
+							break;
+						case RIGHT_DOWN:
+							collision = enemy.collideRect(enemy.x, enemy.y, x + width, y + height, width, width);
+							break;
+						default:
+							collision = false;
+					}
+					
+					if (collision)
+						(enemy as Enemy).takeDamage(attack, 0, "wheee!");
+				}
+			}
 		}
 		
 		public override function ability2():void
