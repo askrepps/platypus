@@ -14,7 +14,6 @@ package
 			super(Global.GAME_WIDTH, Global.GAME_HEIGHT, 60, false);
 			FP.world = new TestWorld();
 			FP.console.enable();
-			
 		}
 		
 		override public function init():void

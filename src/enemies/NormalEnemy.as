@@ -15,10 +15,16 @@ package enemies
 		{
 			type = "normal";
 			enemyImage = new Image(Assets.NORMAL_ENEMY);
-			super(x, y, 50, 250, 0);
+			super(x, y, 50, 2, 0);
 			
 			graphic = enemyImage;
 			mask = new Pixelmask(Assets.NORMAL_ENEMY);
+		}
+		
+		override public function update():void
+		{
+			// This is just for testing, remove for actual path stuff.
+			x++;
 		}
 	}
 
