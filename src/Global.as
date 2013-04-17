@@ -4,12 +4,41 @@ package
 	 * Stores global variables for the entire program.
 	 * @author Jonathan Benkovic
 	 */
+	
+	import flash.geom.Point;
+	
 	public class Global 
 	{
 		// Game Parameters
 		public static const GAME_WIDTH:Number = 1024;             // Note: change SWF parameters in Main.as to match
 		public static const GAME_HEIGHT:Number = 768;
 		
+		// Path data
+		public static var curLevel:Number;
+		public static const paths:Vector.<Vector.<Point>> = new Vector.<Vector.<Point>>(5);
+		paths[0] = new Vector.<Point>(6);
+		paths[1] = new Vector.<Point>(5);
+		
+		// First path
+		paths[0][0] = new Point(.1, .1);
+		paths[0][1] = new Point(.2, .1);
+		paths[0][2] = new Point(.3, .2);
+		paths[0][3] = new Point(.5, .5);
+		paths[0][4] = new Point(.7, .0);
+		paths[0][5] = new Point(.0, .8);
+		
+		// Second path
+		paths[1][0] = new Point(.2, .2);
+		paths[1][1] = new Point(.5, .5);
+		paths[1][2] = new Point(.8, .2);
+		paths[1][3] = new Point(.2, .8);
+		paths[1][4] = new Point(.8, .8);
+		
+		public static function genPoint(a:Point):Point
+		{
+			return new Point(a.x * GAME_WIDTH, a.y * GAME_HEIGHT);
+		}
+
 		
 		// Tower Attributes, see Tower.as for description of variables
 		
