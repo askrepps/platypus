@@ -14,7 +14,7 @@ package
 		// Tower Attributes, see Tower.as for description of variables
 		
 		// Melee Tower starting attributes
-		public static const MELEE_RANGE:Number = 10;
+		public static const MELEE_RANGE:Number = 50;
 		public static const MELEE_DAMAGE:Number = 10;		
 		public static const MELEE_SPEED:Number = 1;			
 		public static const MELEE_CANATTACK:Array = new Array("normal", "fast", "armored"); 		
@@ -41,23 +41,23 @@ package
 		public static const AOE_TOWERDESCIPT:String;
 		
 		// Air Tower starting attributes
-		public static const AIR_RANGE:Number;
-		public static const AIR_DAMAGE:Number;		
-		public static const AIR_SPEED:Number;			
+		public static const AIR_RANGE:Number = 150;
+		public static const AIR_DAMAGE:Number = 5;		
+		public static const AIR_SPEED:Number = .5;			
 		public static const AIR_CANATTACK:Array = new Array("flying"); 	
-		public static const AIR_ARMORPIERCING:Number;  
-		public static const AIR_SPECIAL:String;		
-		public static const AIR_TOWERDESCIPT:String;
+		public static const AIR_ARMORPIERCING:Number = 5;  
+		public static const AIR_SPECIAL:String = "";		
+		public static const AIR_TOWERDESCIPT:String = "";
 		
 		
 		// Upgrade variables
-		public static const MELEE_RANGE_UPGRADE1:Number = 10;
-		public static const MELEE_DAMAGE_UPGRADE1:Number = 10;		
-		public static const MELEE_SPEED_UPGRADE1:Number = 1;		
+		public static const MELEE_RANGE_UPGRADE1:Number = 52;
+		public static const MELEE_DAMAGE_UPGRADE1:Number = 12;		
+		public static const MELEE_SPEED_UPGRADE1:Number = .9;		
 		
-		public static const MELEE_RANGE_UPGRADE2:Number = 10;
-		public static const MELEE_DAMAGE_UPGRADE2:Number = 10;		
-		public static const MELEE_SPEED_UPGRADE2:Number = 1;		
+		public static const MELEE_RANGE_UPGRADE2:Number = 55;
+		public static const MELEE_DAMAGE_UPGRADE2:Number = 15;		
+		public static const MELEE_SPEED_UPGRADE2:Number = .75;		
 		
 		public static const RANGED_RANGE_UPGRADE1:Number = 120;
 		public static const RANGED_DAMAGE_UPGRADE1:Number = 6;		
@@ -68,20 +68,20 @@ package
 		public static const RANGED_SPEED_UPGRADE2:Number = .15;	
 		
 		
-		public static const AOE_RANGE_UPGRADE1:Number;
-		public static const AOE_DAMAGE_UPGRADE1:Number;		
-		public static const AOE_SPEED_UPGRADE1:Number;	
-		public static const AOE_RANGE_UPGRADE2:Number;
-		public static const AOE_DAMAGE_UPGRADE2:Number;		
-		public static const AOE_SPEED_UPGRADE2:Number;	
+		public static const AOE_RANGE_UPGRADE1:Number = 80;
+		public static const AOE_DAMAGE_UPGRADE1:Number = 2.5;		
+		public static const AOE_SPEED_UPGRADE1:Number = .8;	
+		public static const AOE_RANGE_UPGRADE2:Number = 85;
+		public static const AOE_DAMAGE_UPGRADE2:Number = 3;		
+		public static const AOE_SPEED_UPGRADE2:Number = 1;	
 		
-		public static const AIR_RANGE_UPGRADE1:Number;
-		public static const AIR_DAMAGE_UPGRADE1:Number;		
-		public static const AIR_SPEED_UPGRADE1:Number;	
+		public static const AIR_RANGE_UPGRADE1:Number = 155;
+		public static const AIR_DAMAGE_UPGRADE1:Number = 5.5;		
+		public static const AIR_SPEED_UPGRADE1:Number = .4;	
 		
-		public static const AIR_RANGE_UPGRADE2:Number;
-		public static const AIR_DAMAGE_UPGRADE2:Number;		
-		public static const AIR_SPEED_UPGRADE2:Number;	
+		public static const AIR_RANGE_UPGRADE2:Number = 160;
+		public static const AIR_DAMAGE_UPGRADE2:Number = 6;		
+		public static const AIR_SPEED_UPGRADE2:Number = .5;	
 		
 		// Hero Attributes, see Hero.as for description of variables
 		public static const HERO_SPEED_SCALE:Number = 50;

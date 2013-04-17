@@ -1,5 +1,6 @@
 package towers 
 {
+	import mx.core.ButtonAsset;
 	import net.flashpunk.Entity;
 	import net.flashpunk.Graphic;
 	import net.flashpunk.graphics.Image;
@@ -15,18 +16,20 @@ package towers
 		private var uiImage:Image;
 		private var tower:Tower;
 		private var button:Button;
+		private var deleteButton:Button;
+		
 		public function TowerUI(x:int, y:int, tower:Tower) 
 		{	
 			uiImage = new Image(Assets.UPGRADE_UI);
 			setHitboxTo(uiImage);
-			this.x = x - this.halfWidth;
-			this.y = y - this.halfHeight;
+			this.x = x - width/3;
+			this.y = y - height/3;
 			graphic = uiImage;
 			type = "upgradeUI";
 			this.tower = tower;
 			
-			
-			button = new Button(this.x + 40, this.y, "Upgrade", upgrade); 
+			button = new Button(this.x + width / 3, this.y, "Upgrade", upgrade); 
+			deleteButton = new Button(this.x + width / 3, this.y + (2 * (width / 3)), "Delete", deleteTower); 
 		}
 		
 		public function upgrade():void
@@ -34,16 +37,26 @@ package towers
 			this.tower.upgrade();
 		}
 		
+		public function deleteTower():void
+		{
+			world.add(new TowerPlace(tower.x, tower.y));
+			world.remove(tower);
+		}
+		
 		override public function removed():void
 		{
+			button.name = null;
 			FP.world.remove(button);
+			FP.world.remove(deleteButton);
 		}
 		
 		override public function update():void
 		{
-			if (world.getInstance(button.toString()) == null)
+			if (button.name == null)
 			{
+				button.name = "done";
 				world.add(button);
+				world.add(deleteButton);
 			}
 			
 			

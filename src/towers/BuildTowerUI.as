@@ -41,13 +41,9 @@ package towers
 			if(towerBuild == "Ranged")
 				FP.world.add(new RangedTower(x + width / 3.0, y + height / 3.0));
 			else if(towerBuild == "Melee")
-			{
-				//	FP.world.add(new MeleeTower(x + width / 3.0, y + height / 3.0));
-			}
+				FP.world.add(new MeleeTower(x + width / 3.0, y + height / 3.0));
 			else if(towerBuild == "Air")
-			{
-			//	FP.world.add(new AirTower(x + width / 3.0, y + height / 3.0));
-			}
+				FP.world.add(new AirTower(x + width / 3.0, y + height / 3.0));
 			else if(towerBuild == "AoE")
 				FP.world.add(new AoETower(x + width / 3.0, y + height / 3.0));
 			else

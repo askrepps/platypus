@@ -161,7 +161,7 @@ package hero
 			}
 			
 			// check if hero should level up
-			if (level < Global.MAX_LEVELS && xp >= Global.XP_TO_LEVEL[level - 1])
+			if (level <= Global.MAX_LEVELS && xp >= Global.XP_TO_LEVEL[level - 1])
 			{
 				xp -= Global.XP_TO_LEVEL[level];
 				level++;
