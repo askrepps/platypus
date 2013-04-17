@@ -1,28 +1,26 @@
 package towers
 {
-	import net.flashpunk.Entity;
 	import net.flashpunk.graphics.Image;
-	import net.flashpunk.FP;
 	import enemies.Enemy;
+	import net.flashpunk.Entity;
+	import net.flashpunk.FP;
 	import net.flashpunk.utils.Input;
-	import net.flashpunk.utils.Key;
 	/**
 	 * ...
 	 * @author Jonathan Benkovic
 	 */
 	public class AirTower extends Tower
 	{
-		private var towerImage:Image;
-		private var timer:Number;
 		
 		public function AirTower(x:Number, y:Number)
 		{
-			super(x, y, Global.AIR_RANGE, Global.AIR_DAMAGE, Global.AIR_SPEED, Global.AIR_CANATTACK, Global.AIR_ARMORPIERCING, "", Global.AIR_TOWERDESCIPT, new TowerUI(x, y, this));
+			super(x, y, Global.AIR_RANGE, Global.AIR_DAMAGE, Global.AIR_SPEED, Global.AIR_CANATTACK, Global.AIR_ARMORPIERCING, "", Global.AIR_TOWERDESCIPT, new TowerUI(centerX, centerY, this));
 			type = "air";
 			towerImage = new Image(Assets.AIR_TOWER);
 			super.graphic = towerImage;
 			timer = 0;
 			setHitboxTo(towerImage);
+			towerUI = new TowerUI(centerX, centerY, this);
 		}
 		
 		override public function upgrade():void
@@ -91,7 +89,18 @@ package towers
 				timer = 0;
 				attack();
 			}
-		
+			
+			if (collidePoint(x, y, world.mouseX, world.mouseY))
+			{
+				if (Input.mousePressed)
+					world.add(towerUI);
+			}
+			
+			if (Input.pressed(Key.U))
+			{
+				upgrade();
+			}
+			
 			super.update();
 		}
 	}

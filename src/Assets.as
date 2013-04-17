@@ -18,8 +18,6 @@ package
 		[Embed(source = "assets/spearProjectile.png")] public static const SPEAR_PROJ:Class;
 		[Embed(source="assets/bulletProjectile.png") ] public static const BULLET_PROJ:Class;
 		[Embed(source = "assets/aoeTower.png")] public static const AOE_TOWER:Class;
-		[Embed(source = "assets/airTower.png")] public static const AIR_TOWER:Class;
-		[Embed(source = "assets/meleeTower.png")] public static const MELEE_TOWER:Class;
 		[Embed(source = "assets/towerPlace.png")] public static const PLACE_TOWER:Class;
 		
 		// Enemies

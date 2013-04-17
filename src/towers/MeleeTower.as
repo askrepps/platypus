@@ -3,25 +3,19 @@ package towers
 	import net.flashpunk.FP;
 	import net.flashpunk.Entity;
 	import enemies.Enemy;
-	import net.flashpunk.graphics.Image;
-	
 	/**
 	 * ...
 	 * @author Jonathan Benkovic
 	 */
 	public class MeleeTower extends Tower 
 	{
-		private var towerImage:Image;
 		private var timer:Number;
 		
 		public function MeleeTower(x:Number, y:Number) 
 		{
-			super(x, y, Global.MELEE_RANGE, Global.MELEE_DAMAGE, Global.MELEE_SPEED, Global.MELEE_CANATTACK, Global.MELEE_ARMORPIERCING, "", Global.MELEE_TOWERDESCIPT, new TowerUI(x, y, this));
-			type = "melee";
-			towerImage = new Image(Assets.MELEE_TOWER);
-			super.graphic = towerImage;
+			super(x, y, Global.MELEE_RANGE, Global.MELEE_DAMAGE, Global.MELEE_SPEED, Global.MELEE_CANATTACK, Global.MELEE_ARMORPIERCING, "", Global.MELEE_TOWERDESCIPT, new TowerUI(centerX, centerY, this));
+			
 			timer = 0;
-			setHitboxTo(towerImage);
 		}
 		
 		override public function upgrade():void
@@ -89,8 +83,6 @@ package towers
 				timer = 0;
 				attack();
 			}
-			
-			super.update();
 		}
 	}
 }

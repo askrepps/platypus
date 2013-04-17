@@ -1,5 +1,6 @@
 package towers 
 {
+	import adobe.utils.CustomActions;
 	import net.flashpunk.Entity;
 	import net.flashpunk.graphics.Image;
 	import net.flashpunk.FP;
@@ -18,7 +19,7 @@ package towers
 
 		public function RangedTower(x:Number, y:Number)
 		{
-			super(x, y, Global.RANGED_RANGE, Global.RANGED_DAMAGE, Global.RANGED_SPEED, Global.RANGED_CANATTACK, Global.RANGED_ARMORPIERCING, "", Global.RANGED_TOWERDESCIPT, new TowerUI(x, y, this));
+			super(x, y, Global.RANGED_RANGE, Global.RANGED_DAMAGE, Global.RANGED_SPEED, Global.RANGED_CANATTACK, Global.RANGED_ARMORPIERCING, "", Global.RANGED_TOWERDESCIPT, new TowerUI(centerX, centerY, this));
 			type = "ranged";
 			towerImage = new Image(Assets.RANGED_TOWER);
 			super.graphic = towerImage;
@@ -49,6 +50,8 @@ package towers
 		
 		override public function attack():void
 		{
+			
+			
 			var closestEnemy:Entity;
 			
 			// Attacks the same enemy until it is dead or out of range.
@@ -91,6 +94,12 @@ package towers
 			{
 				timer = 0;
 				attack();
+			}
+			
+
+			if (Input.pressed(Key.U))
+			{
+				upgrade();
 			}
 			
 			super.update();

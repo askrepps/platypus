@@ -1,7 +1,6 @@
 package hero
 {
 	import net.flashpunk.Entity;
-	import net.flashpunk.utils.Draw;
 	import enemies.Enemy;
 	
 	public class Warrior extends Hero
@@ -32,7 +31,6 @@ package hero
 		{
 			super.ability1();
 			ability1CD = Global.WARRIOR_ABIL_1_CD;
-			
 			var entities:Array = new Array();
 			var collision:Boolean;
 			world.getAll(entities);
@@ -44,44 +42,28 @@ package hero
 					switch (facing)
 					{
 						case UP:
-							collision = enemy.collideRect(enemy.x, enemy.y, x, y - width, width, width)                 // up
-							         || enemy.collideRect(enemy.x, enemy.y, x - width, y - width, width, width)         // left-up
-									 || enemy.collideRect(enemy.x, enemy.y, x + width, y - width, width, width);        // right-up
+							collision = enemy.collideRect(enemy.x, enemy.y, x, y - width, width, width);
 							break;
 						case LEFT:
-							collision = enemy.collideRect(enemy.x, enemy.y, x - width, y, width, height)                // left
-							         || enemy.collideRect(enemy.x, enemy.y, x - width, y - width, width, width)         // left-up
-									 || enemy.collideRect(enemy.x, enemy.y, x - width, y + height, width, width);       // left-down
+							collision = enemy.collideRect(enemy.x, enemy.y, x - width, y + 0.25*height, width, width);
 							break;
 						case RIGHT:
-							collision = enemy.collideRect(enemy.x, enemy.y, x + width, y, width, height)                // right
-							         || enemy.collideRect(enemy.x, enemy.y, x + width, y - width, width, width)         // right-up
-									 || enemy.collideRect(enemy.x, enemy.y, x + width, y + height, width, width);       // right-down
+							collision = enemy.collideRect(enemy.x, enemy.y, x + width, y + 0.25*height, width, width);
 							break;
 						case DOWN:
-							collision = enemy.collideRect(enemy.x, enemy.y, x, y + height, width, width)                // down
-							         || enemy.collideRect(enemy.x, enemy.y, x - width, y + height, width, width)        // left-down
-									 || enemy.collideRect(enemy.x, enemy.y, x + width, y + height, width, width);       // right-down
+							collision = enemy.collideRect(enemy.x, enemy.y, x, y + height, width, width);
 							break;
 						case LEFT_UP:
-							collision = enemy.collideRect(enemy.x, enemy.y, x - width, y - width, width, width)         // left-up
-							         || enemy.collideRect(enemy.x, enemy.y, x - width, y, width, height)                // left
-									 || enemy.collideRect(enemy.x, enemy.y, x, y - width, width, width);                // up
+							collision = enemy.collideRect(enemy.x, enemy.y, x - width, y - width, width, width);
 							break;
 						case LEFT_DOWN:
-							collision = enemy.collideRect(enemy.x, enemy.y, x - width, y + height, width, width)        // left-down
-							         || enemy.collideRect(enemy.x, enemy.y, x - width, y, width, height)                // left
-									 || enemy.collideRect(enemy.x, enemy.y, x, y + height, width, width);               // down
+							collision = enemy.collideRect(enemy.x, enemy.y, x - width, y + height, width, width);
 							break;
 						case RIGHT_UP:
-							collision = enemy.collideRect(enemy.x, enemy.y, x + width, y - width, width, width)         // right-up
-							         || enemy.collideRect(enemy.x, enemy.y, x + width, y, width, height)                // right
-									 || enemy.collideRect(enemy.x, enemy.y, x, y - width, width, width);                // up
+							collision = enemy.collideRect(enemy.x, enemy.y, x + width, y - width, width, width);
 							break;
 						case RIGHT_DOWN:
-							collision = enemy.collideRect(enemy.x, enemy.y, x + width, y + height, width, width)        // riht-down
-							         || enemy.collideRect(enemy.x, enemy.y, x + width, y, width, height)                // right
-									 || enemy.collideRect(enemy.x, enemy.y, x, y + height, width, width);               // down
+							collision = enemy.collideRect(enemy.x, enemy.y, x + width, y + height, width, width);
 							break;
 						default:
 							collision = false;
@@ -97,75 +79,18 @@ package hero
 		{
 			super.ability2();
 			ability2CD = Global.WARRIOR_ABIL_2_CD;
-			
-			
 		}
 		
 		public override function ability3():void
 		{
 			super.ability3();
 			ability3CD = Global.WARRIOR_ABIL_3_CD;
-			
-			
 		}
 		
-		public override function render():void
+		public override function basicAttack():void
 		{
-			super.render();
-			
-			switch (facing)
-			{
-				case UP:
-					Draw.rectPlus(x, y - width, width, width, 0xFFFFFF, 0.25, true);
-					
-					Draw.rectPlus(x - width, y - width, width, width, 0xFFFFFF, 0.25, true);
-					Draw.rectPlus(x + width, y - width, width, width, 0xFFFFFF, 0.25, true);
-					break;
-				case LEFT:
-					Draw.rectPlus(x - width, y, width, height, 0xFFFFFF, 0.25, true);
-					
-					Draw.rectPlus(x - width, y - width, width, width, 0xFFFFFF, 0.25, true);
-					Draw.rectPlus(x - width, y + height, width, width, 0xFFFFFF, 0.25, true);
-					break;
-				case RIGHT:
-					Draw.rectPlus(x + width, y, width, height, 0xFFFFFF, 0.25, true);
-					
-					Draw.rectPlus(x + width, y - width, width, width, 0xFFFFFF, 0.25, true);
-					Draw.rectPlus(x + width, y + height, width, width, 0xFFFFFF, 0.25, true);
-					break;
-				case DOWN:
-					Draw.rectPlus(x, y + height, width, width, 0xFFFFFF, 0.25, true);
-					
-					Draw.rectPlus(x - width, y + height, width, width, 0xFFFFFF, 0.25, true);
-					Draw.rectPlus(x + width, y + height, width, width, 0xFFFFFF, 0.25, true);
-					break;
-				case LEFT_UP:
-					Draw.rectPlus(x - width, y - width, width, width, 0xFFFFFF, 0.25, true);
-					
-					Draw.rectPlus(x, y - width, width, width, 0xFFFFFF, 0.25, true);
-					Draw.rectPlus(x - width, y, width, height, 0xFFFFFF, 0.25, true);
-					break;
-				case LEFT_DOWN:
-					Draw.rectPlus(x - width, y + height, width, width, 0xFFFFFF, 0.25, true);
-					
-					Draw.rectPlus(x - width, y, width, height, 0xFFFFFF, 0.25, true);
-					Draw.rectPlus(x, y + height, width, width, 0xFFFFFF, 0.25, true);
-					break;
-				case RIGHT_UP:
-					Draw.rectPlus(x + width, y - width, width, width, 0xFFFFFF, 0.25, true);
-					
-					Draw.rectPlus(x + width, y, width, height, 0xFFFFFF, 0.25, true);
-					Draw.rectPlus(x, y - width, width, width, 0xFFFFFF, 0.25, true);
-					
-					break;
-				case RIGHT_DOWN:
-					Draw.rectPlus(x + width, y + height, width, width, 0xFFFFFF, 0.25, true);
-					
-					Draw.rectPlus(x + width, y, width, height, 0xFFFFFF, 0.25, true);
-					Draw.rectPlus(x, y + height, width, width, 0xFFFFFF, 0.25, true);
-					break;
-				default:
-			}
+			super.basicAttack();
+			basicCD = Global.WARRIOR_BASIC_CD;
 		}
 	}
 }
