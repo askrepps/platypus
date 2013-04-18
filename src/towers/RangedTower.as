@@ -4,8 +4,7 @@ package towers
 	import net.flashpunk.graphics.Image;
 	import net.flashpunk.FP;
 	import enemies.Enemy;
-	import net.flashpunk.utils.Input;
-	import net.flashpunk.utils.Key;
+	import ui.Button;
 	/**
 	 * ...
 	 * @author Jonathan Benkovic
@@ -18,7 +17,7 @@ package towers
 
 		public function RangedTower(x:Number, y:Number)
 		{
-			super(x, y, Global.RANGED_RANGE, Global.RANGED_DAMAGE, Global.RANGED_SPEED, Global.RANGED_CANATTACK, Global.RANGED_ARMORPIERCING, "", Global.RANGED_TOWERDESCIPT, new TowerUI(x, y, this));
+			super(x, y, Global.RANGED_RANGE, Global.RANGED_DAMAGE, Global.RANGED_SPEED, Global.RANGED_CANATTACK, Global.RANGED_ARMORPIERCING, "", Global.RANGED_TOWERDESCIPT, new TowerUI(x, y, this), Global.RANGED_COST, Global.RANGED_UPGRADE_COST);
 			type = "ranged";
 			towerImage = new Image(Assets.RANGED_TOWER);
 			super.graphic = towerImage;
@@ -83,18 +82,7 @@ package towers
 			//(Enemy)(closestEnemy).takeDamage(this.damage, this.armorPiercing, this.special); 
 		}
 		
-		override public function update():void
-		{
-			timer += FP.elapsed;
-			
-			if (timer >= speed)
-			{
-				timer = 0;
-				attack();
-			}
-			
-			super.update();
-		}
+
 	}
 
 }

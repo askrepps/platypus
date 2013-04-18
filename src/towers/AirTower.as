@@ -6,6 +6,7 @@ package towers
 	import enemies.Enemy;
 	import net.flashpunk.utils.Input;
 	import net.flashpunk.utils.Key;
+	import ui.Button;
 	/**
 	 * ...
 	 * @author Jonathan Benkovic
@@ -17,7 +18,7 @@ package towers
 		
 		public function AirTower(x:Number, y:Number)
 		{
-			super(x, y, Global.AIR_RANGE, Global.AIR_DAMAGE, Global.AIR_SPEED, Global.AIR_CANATTACK, Global.AIR_ARMORPIERCING, "", Global.AIR_TOWERDESCIPT, new TowerUI(x, y, this));
+			super(x, y, Global.AIR_RANGE, Global.AIR_DAMAGE, Global.AIR_SPEED, Global.AIR_CANATTACK, Global.AIR_ARMORPIERCING, "", Global.AIR_TOWERDESCIPT, new TowerUI(x, y, this), Global.AIR_COST, Global.AIR_UPGRADE_COST);
 			type = "air";
 			towerImage = new Image(Assets.AIR_TOWER);
 			super.graphic = towerImage;
@@ -80,19 +81,6 @@ package towers
 			// Do nothing if there aren't any enemies.
 			if (closestEnemy.type != null)
 				world.add(new Projectile(centerX, centerY, (Enemy)(closestEnemy), damage, armorPiercing, upgradeCur));
-		}
-		
-		override public function update():void
-		{
-			timer += FP.elapsed;
-			
-			if (timer >= speed)
-			{
-				timer = 0;
-				attack();
-			}
-		
-			super.update();
 		}
 	}
 

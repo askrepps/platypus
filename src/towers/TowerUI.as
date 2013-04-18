@@ -7,6 +7,7 @@ package towers
 	import net.flashpunk.utils.Input;
 	import net.flashpunk.utils.Draw;
 	import net.flashpunk.FP;
+	import ui.Button;
 	/**
 	 * ...
 	 * @author Jonathan Benkovic
@@ -34,11 +35,25 @@ package towers
 		
 		public function upgrade():void
 		{
-			this.tower.upgrade();
+			if (tower.upgradeCur < 2)
+			{
+				if(Global.playerGold >= tower.upgradeCost)
+				{
+					Global.playerGold -= tower.upgradeCost;
+					this.tower.upgrade();
+				}
+			}
 		}
 		
 		public function deleteTower():void
 		{
+			if(tower.upgradeCur == 0)
+				Global.playerGold += tower.cost * .30;
+			else if (tower.upgradeCur == 1)
+				Global.playerGold += (tower.cost + tower.upgradeCost) * .30;
+			else 
+				Global.playerGold += (tower.cost + tower.upgradeCost + tower.upgradeCost) * .30;
+				
 			world.add(new TowerPlace(tower.x, tower.y));
 			world.remove(tower);
 		}

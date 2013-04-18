@@ -6,6 +6,7 @@ package towers
 	import net.flashpunk.utils.Input;
 	import net.flashpunk.utils.Draw;
 	import net.flashpunk.FP;
+	import ui.Button;
 	/**
 	 * ...
 	 * @author Jonathan Benkovic
@@ -38,18 +39,35 @@ package towers
 		
 		public function build(towerBuild:String):void
 		{
-			if(towerBuild == "Ranged")
+			if(towerBuild == "Ranged" && (Global.playerGold >= Global.RANGED_COST))
+			{
+				Global.playerGold -= Global.RANGED_COST;
 				FP.world.add(new RangedTower(x + width / 3.0, y + height / 3.0));
-			else if(towerBuild == "Melee")
+				FP.world.remove(this.towerPlace);
+			}
+			else if(towerBuild == "Melee" && (Global.playerGold >= Global.MELEE_COST))
+			{
+				Global.playerGold -= Global.MELEE_COST;
 				FP.world.add(new MeleeTower(x + width / 3.0, y + height / 3.0));
-			else if(towerBuild == "Air")
+				FP.world.remove(this.towerPlace);
+			}
+			else if(towerBuild == "Air" && (Global.playerGold >= Global.AIR_COST))
+			{
+				Global.playerGold -= Global.AIR_COST;
 				FP.world.add(new AirTower(x + width / 3.0, y + height / 3.0));
-			else if(towerBuild == "AoE")
+				FP.world.remove(this.towerPlace);
+			}
+			else if(towerBuild == "AoE" && (Global.playerGold >= Global.AOE_COST))
+			{
+				Global.playerGold >= Global.AOE_COST;
 				FP.world.add(new AoETower(x + width / 3.0, y + height / 3.0));
+				FP.world.remove(this.towerPlace);
+			}
 			else
-				trace("This shouldn't have happen.");
-				
-			FP.world.remove(this.towerPlace);
+			{
+				// Not enough gold, do nothing.
+			}	
+			
 		}
 		
 		override public function removed():void

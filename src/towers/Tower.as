@@ -19,10 +19,12 @@ package towers
 		public var armorPiercing:Number;  	// Percentage of armor ignored by attacks.
 		public var special:String;			// Special effect from attack (e.g. slow, stun, etc.)
 		public var towerDescipt:String;
+		public var cost:Number;
+		public var upgradeCost:Number;
 		private var towerUI:TowerUI;
-	
+		private var timer:Number;
 		
-		public function Tower(x:Number, y:Number, range:Number, damage:Number, speed:Number, canAttack:Array, armorPiercing:Number, special:String, towerDescript:String, towerUI:TowerUI)
+		public function Tower(x:Number, y:Number, range:Number, damage:Number, speed:Number, canAttack:Array, armorPiercing:Number, special:String, towerDescript:String, towerUI:TowerUI, cost:Number, upgradeCost:Number)
 		{
 			this.x = x;
 			this.y = y;
@@ -35,6 +37,9 @@ package towers
 			this.special = special;
 			this.towerDescipt = towerDescipt;
 			this.towerUI = towerUI;
+			this.cost = cost;
+			this.upgradeCost = upgradeCost;
+			timer = 0;
 		}
 		
 		// Override this function
@@ -56,6 +61,13 @@ package towers
 		
 		override public function update():void
 		{
+			timer += FP.elapsed;
+			
+			if (timer >= speed)
+			{
+				timer = 0;
+				attack();
+			}
 			// Deal with displaying tower info when clicked
 			if (collidePoint(x, y, world.mouseX, world.mouseY))
 			{

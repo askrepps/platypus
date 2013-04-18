@@ -5,6 +5,7 @@ package towers
 	import net.flashpunk.graphics.Image;
 	import net.flashpunk.FP;
 	import net.flashpunk.utils.Input;
+	import ui.Button;
 	/**
 	 * ...
 	 * @author Jonathan Benkovic
@@ -17,7 +18,7 @@ package towers
 		
 		public function AoETower(x:Number, y:Number) 
 		{
-			super(x, y, Global.AOE_RANGE, Global.AOE_DAMAGE, Global.AOE_SPEED, Global.AOE_CANATTACK, Global.AOE_ARMORPIERCING, "", Global.AOE_TOWERDESCIPT, new TowerUI(x, y, this));
+			super(x, y, Global.AOE_RANGE, Global.AOE_DAMAGE, Global.AOE_SPEED, Global.AOE_CANATTACK, Global.AOE_ARMORPIERCING, "", Global.AOE_TOWERDESCIPT, new TowerUI(x, y, this), Global.AOE_COST, Global.AOE_UPGRADE_COST);
 			type = "aoe";
 			towerImage = new Image(Assets.AOE_TOWER);
 			super.graphic = towerImage;
@@ -65,19 +66,6 @@ package towers
 					}
 				}
 			}
-		}
-		
-		override public function update():void
-		{
-			timer += FP.elapsed;
-			
-			if (timer >= speed)
-			{
-				timer = 0;
-				attack();
-			}
-
-			super.update();
 		}
 	}
 }

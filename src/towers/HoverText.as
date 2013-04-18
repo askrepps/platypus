@@ -1,8 +1,13 @@
 package towers 
 {
 	import net.flashpunk.Entity;
-	import net.flashpunk.utils.Draw;
+	import net.flashpunk.FP;
+	import net.flashpunk.Graphic;
+	import net.flashpunk.graphics.Graphiclist;
+	import net.flashpunk.graphics.Image;
 	import net.flashpunk.graphics.Text;
+	import net.flashpunk.utils.Input;
+	
 	/**
 	 * ...
 	 * @author Jonathan Benkovic
@@ -10,23 +15,20 @@ package towers
 	public class HoverText extends Entity 
 	{
 		private var label:Text;
+		private var hoverBack:Graphiclist;
 		
-		public function HoverText(x:Number, y:Number) 
+		public function HoverText(x:Number, y:Number, text:String) 
 		{
 			this.x = x;
 			this.y = y;
 			
-			label = new Text("Testing the label", 10, 0, { size: 16, color: 0x000000, width: 120, wordWrap: true, align: "center" } );
+			var normalImage:Image = new Image(Assets.HOVER_BACK);
+			label = new Text(text, 1, 20, {size: 8, color: 0xFFFFFF, width: normalImage.width, wordWrap: true, align: "center"});
+			hoverBack = new Graphiclist(normalImage, label);
 			
+			graphic = hoverBack;
 			
-			graphic = label;
+			setHitboxTo(normalImage);
 		}
-		
-		override public function render():void
-		{
-			Draw.rectPlus(x, y, 150, 75, 0x626262, 1, true, 1, 10);
-		}
-		
 	}
-
 }

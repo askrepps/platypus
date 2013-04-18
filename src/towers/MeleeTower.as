@@ -4,7 +4,7 @@ package towers
 	import net.flashpunk.Entity;
 	import enemies.Enemy;
 	import net.flashpunk.graphics.Image;
-	
+	import ui.Button;
 	/**
 	 * ...
 	 * @author Jonathan Benkovic
@@ -16,7 +16,7 @@ package towers
 		
 		public function MeleeTower(x:Number, y:Number) 
 		{
-			super(x, y, Global.MELEE_RANGE, Global.MELEE_DAMAGE, Global.MELEE_SPEED, Global.MELEE_CANATTACK, Global.MELEE_ARMORPIERCING, "", Global.MELEE_TOWERDESCIPT, new TowerUI(x, y, this));
+			super(x, y, Global.MELEE_RANGE, Global.MELEE_DAMAGE, Global.MELEE_SPEED, Global.MELEE_CANATTACK, Global.MELEE_ARMORPIERCING, "", Global.MELEE_TOWERDESCIPT, new TowerUI(x, y, this), Global.MELEE_COST, Global.MELEE_UPGRADE_COST);
 			type = "melee";
 			towerImage = new Image(Assets.MELEE_TOWER);
 			super.graphic = towerImage;
@@ -78,19 +78,6 @@ package towers
 			// Do nothing if there aren't any enemies.
 			if(closestEnemy.type != null)
 				(Enemy)(closestEnemy).takeDamage(this.damage, this.armorPiercing, this.special);
-		}
-		
-		override public function update():void
-		{
-			timer += FP.elapsed;
-			
-			if (timer >= speed)
-			{
-				timer = 0;
-				attack();
-			}
-			
-			super.update();
 		}
 	}
 }

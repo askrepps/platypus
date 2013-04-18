@@ -1,4 +1,4 @@
-package towers 
+package ui 
 {
 	import net.flashpunk.Entity;
 	import net.flashpunk.FP;
@@ -17,13 +17,12 @@ package towers
 		public var callback:Function;
 		public var params:Object;
 		
-		[Embed(source="../assets/button.png")] public static const BUTTON:Class;
 		
 		//DEFAULT CONSTRUCTOR FOR BUTTONS
 		public function Button(x:Number = 0, y:Number = 0, text:String = "", callback:Function = null, params:Object = null
 		)
 		{
-			var normalImage:Image = new Image(BUTTON);
+			var normalImage:Image = new Image(Assets.BUTTON);
 			label = new Text(text, 1, 20, {size: 8, color: 0xFFFFFF, width: normalImage.width, wordWrap: true, align: "center"});
 			//label.y = (normalImage.height - label.textHeight) * 0.5;
 			
@@ -34,8 +33,6 @@ package towers
 			normal = new Graphiclist(normalImage, label);
 			
 			graphic = normal;
-			graphic.scrollX = 0;
-			graphic.scrollY = 0;
 			
 			setHitboxTo(normalImage);
 		}

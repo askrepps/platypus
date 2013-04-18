@@ -10,8 +10,23 @@ package
 		public static const GAME_WIDTH:Number = 1024;             // Note: change SWF parameters in Main.as to match
 		public static const GAME_HEIGHT:Number = 768;
 		
+		// Player variables
+		public static var playerGold:int;
 		
 		// Tower Attributes, see Tower.as for description of variables
+		
+		// Tower and Upgrade Costs
+		public static const RANGED_COST:Number = 50;
+		public static const RANGED_UPGRADE_COST:Number = 100;
+		
+		public static const MELEE_COST:Number = 75;
+		public static const MELEE_UPGRADE_COST:Number = 125;
+		
+		public static const AIR_COST:Number = 100;
+		public static const AIR_UPGRADE_COST:Number = 200;
+		
+		public static const AOE_COST:Number = 100;
+		public static const AOE_UPGRADE_COST:Number = 200;
 		
 		// Melee Tower starting attributes
 		public static const MELEE_RANGE:Number = 50;
