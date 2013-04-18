@@ -44,7 +44,7 @@ package hero
 		public var isRecovering:Boolean;
 		public var blinkCounter:Number;
 		
-		public var animationTime:Number;
+		public var collisionDamagesEnemies:Boolean;
 		
 		public var facing:Number;
 		public var canMove:Boolean;
@@ -69,6 +69,7 @@ package hero
 			blinkCounter = 0;
 			
 			canMove = true;
+			collisionDamagesEnemies = true;
 			
 			facing = UP;
 		}
@@ -77,6 +78,7 @@ package hero
 		{	
 			if (canMove)
 			{
+				/*
 				// check movement input
 				if (Input.check(Key.W))                                      // move up
 					y -= speed * FP.elapsed * Global.HERO_SPEED_SCALE;
@@ -86,23 +88,52 @@ package hero
 					x -= speed * FP.elapsed * Global.HERO_SPEED_SCALE;
 				if (Input.check(Key.D))                                      // move right
 					x += speed * FP.elapsed * Global.HERO_SPEED_SCALE;
+				*/
 				
 				if (Input.check(Key.W) && Input.check(Key.A))
+				{
 					facing = LEFT_UP;
+					y -= speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2;
+					x -= speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2;
+				}
 				else if (Input.check(Key.W) && Input.check(Key.D))
+				{
 					facing = RIGHT_UP;
+					y -= speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2;
+					x += speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2;
+				}
 				else if (Input.check(Key.S) && Input.check(Key.A))
+				{
 					facing = LEFT_DOWN;
+					y += speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2;
+					x -= speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2;
+				}
 				else if (Input.check(Key.S) && Input.check(Key.D))
+				{
 					facing = RIGHT_DOWN;
+					y += speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2;
+					x += speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2;
+				}
 				else if (Input.check(Key.W))
+				{
 					facing = UP;
+					y -= speed * FP.elapsed * Global.HERO_SPEED_SCALE;
+				}
 				else if (Input.check(Key.A))
+				{
 					facing = LEFT;
+					x -= speed * FP.elapsed * Global.HERO_SPEED_SCALE;
+				}
 				else if (Input.check(Key.S))
+				{
 					facing = DOWN;
+					y += speed * FP.elapsed * Global.HERO_SPEED_SCALE;
+				}
 				else if (Input.check(Key.D))
+				{
 					facing = RIGHT;
+					x += speed * FP.elapsed * Global.HERO_SPEED_SCALE;
+				}
 				
 				switch(facing)
 				{
@@ -204,7 +235,7 @@ package hero
 				if(!isRecovering)
 				{
 					var enemy:Entity = collide(type, x, y);
-					if (enemy != null)
+					if (enemy != null && !collisionDamagesEnemies)
 					{
 						isRecovering = true;
 						recoverTime = Global.HERO_RECOVER_TIME;
@@ -216,6 +247,10 @@ package hero
 						{
 							world.remove(this);
 						}
+					}
+					else if (enemy != null && collisionDamagesEnemies)
+					{
+						(enemy as Enemy).takeDamage(attack, 0, "probably dashing!");
 					}
 				}
 			}

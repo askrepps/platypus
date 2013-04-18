@@ -4,10 +4,14 @@ package hero
 	import net.flashpunk.utils.Draw;
 	import enemies.Enemy;
 	import net.flashpunk.graphics.Spritemap;
+	import net.flashpunk.graphics.Image;
+	import net.flashpunk.FP;
 	
 	public class Warrior extends Hero
 	{
-		import net.flashpunk.graphics.Image;
+		public var isDashing:Boolean;
+		public var dashTime:Number;
+		public var dashSpeed:Number;
 		
 		public function Warrior(startX:Number, startY:Number)
 		{
@@ -23,6 +27,11 @@ package hero
 			defenseArray = Global.WARRIOR_DEFENSE_ARRAY;
 			speedArray = Global.WARRIOR_SPEED_ARRAY;
 			
+			dashSpeed = Global.WARRIOR_DASH_SPEED;
+			dashTime = 0;
+			
+			isDashing = false;
+			
 			maxHealth = healthArray[0];
 			currentHealth = maxHealth;
 			attack = attackArray[0];
@@ -30,6 +39,58 @@ package hero
 			speed = speedArray[0];
 			
 			heroImage.play("walking");
+		}
+		
+		public override function update():void
+		{
+			super.update();
+			
+			
+			if (dashTime > 0)
+				dashTime -= FP.elapsed;
+			if (dashTime < 0)
+			{
+				dashTime = 0;
+				isDashing = false;
+				canMove = true;
+				collisionDamagesEnemies = false;
+				heroImage.play("walking");
+			}
+			else if (isDashing)
+			{
+				switch(facing)
+				{
+					case UP:
+						y -= dashSpeed;
+						break;
+					case LEFT:
+						x -= dashSpeed;
+						break;
+					case RIGHT:
+						x += dashSpeed;
+						break;
+					case DOWN:
+						y += dashSpeed;
+						break;
+					case LEFT_UP:
+						x -= dashSpeed / Math.SQRT2;
+						y -= dashSpeed / Math.SQRT2;
+						break;
+					case RIGHT_UP:
+						x += dashSpeed / Math.SQRT2;
+						y -= dashSpeed / Math.SQRT2;
+						break;
+					case LEFT_DOWN:
+						x -= dashSpeed / Math.SQRT2;
+						y += dashSpeed / Math.SQRT2;
+						break;
+					case RIGHT_DOWN:
+						x += dashSpeed / Math.SQRT2;
+						y += dashSpeed / Math.SQRT2;
+						break;
+					default:
+				}
+			}
 		}
 		
 		public override function ability1():void
@@ -41,7 +102,7 @@ package hero
 			var collision:Boolean;
 			world.getAll(entities);
 			
-			heroImage.setFrame(0);
+			heroImage.setAnimFrame("attack", 0);
 			heroImage.play("attack");
 			
 			
@@ -114,7 +175,12 @@ package hero
 			super.ability3();
 			ability3CD = Global.WARRIOR_ABIL_3_CD;
 			
+			isDashing = true;
+			dashTime = Global.WARRIOR_DASH_TIME;
+			canMove = false;
+			collisionDamagesEnemies = true;
 			
+			heroImage.play("dashing");
 		}
 		
 		public override function render():void
@@ -180,6 +246,7 @@ package hero
 		{
 			spriteMap.add("walking", [0], 0, false);
 			spriteMap.add("attack", [0, 1, 2, 1, 0], 10, false);
+			spriteMap.add("dashing", [2], 0, false);
 		}
 	}
 }

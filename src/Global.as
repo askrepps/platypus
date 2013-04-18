@@ -133,15 +133,21 @@ package
 		public static const HERO_BLINK_RATE:Number = 0.05;
 		
 		// Level to unlock each ability
-		public static const ABILITY_1_LEVEL:Number = 2;
-		public static const ABILITY_2_LEVEL:Number = 5;
-		public static const ABILITY_3_LEVEL:Number = 10;
+		public static const ABILITY_1_LEVEL:Number = 1;
+		public static const ABILITY_2_LEVEL:Number = 1;
+		public static const ABILITY_3_LEVEL:Number = 1;
 		
 		// Warrior attributes
 		public static const WARRIOR_HEALTH_ARRAY:Array =  new Array(10, 10, 10, 10, 10, 10, 10, 10, 10, 10);
 		public static const WARRIOR_ATTACK_ARRAY:Array =  new Array(10, 10, 10, 10, 10, 10, 10, 10, 10, 10);
 		public static const WARRIOR_DEFENSE_ARRAY:Array = new Array(10, 10, 10, 10, 10, 10, 10, 10, 10, 10);
 		public static const WARRIOR_SPEED_ARRAY:Array =   new Array( 1,  2,  3,  4,  5,  6,  7,  8,  9, 10);
+		
+		public static const WARRIOR_DASH_SPEED:Number = 8;
+		public static const WARRIOR_DASH_TIME:Number = 0.5;
+		
+		public static const WARRIOR_CLEAVE_RANGE:Number = 100;
+		public static const WARRIOR_LEAP_RANGE:Number = 200;
 		
 		public static const WARRIOR_ABIL_1_NAME:String = "Cleave";
 		public static const WARRIOR_ABIL_1_DESC:String = "Attack enemies in a wide arc in front of you. Cooldown: 0.5 seconds";
