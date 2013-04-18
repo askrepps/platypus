@@ -3,6 +3,7 @@ package hero
 	import net.flashpunk.Entity;
 	import net.flashpunk.utils.Draw;
 	import enemies.Enemy;
+	import net.flashpunk.graphics.Spritemap;
 	
 	public class Warrior extends Hero
 	{
@@ -12,7 +13,8 @@ package hero
 		{
 			super(startX, startY);
 			
-			heroImage = new Image(Assets.WARRIOR);
+			heroImage = new Spritemap(Assets.WARRIOR, 100, 100);
+			setupSprites(heroImage);
 			graphic = heroImage;
 			setHitboxTo(heroImage);
 			
@@ -26,6 +28,8 @@ package hero
 			attack = attackArray[0];
 			defense = defenseArray[0];
 			speed = speedArray[0];
+			
+			heroImage.play("walking");
 		}
 		
 		public override function ability1():void
@@ -36,6 +40,10 @@ package hero
 			var entities:Array = new Array();
 			var collision:Boolean;
 			world.getAll(entities);
+			
+			heroImage.setFrame(0);
+			heroImage.play("attack");
+			
 			
 			for each(var enemy:Entity in entities)
 			{
@@ -166,6 +174,12 @@ package hero
 					break;
 				default:
 			}
+		}
+		
+		public function setupSprites(spriteMap:Spritemap):void
+		{
+			spriteMap.add("walking", [0], 0, false);
+			spriteMap.add("attack", [0, 1, 2, 1, 0], 10, false);
 		}
 	}
 }

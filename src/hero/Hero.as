@@ -5,6 +5,7 @@ package hero
 	import net.flashpunk.Entity;
 	import net.flashpunk.FP;
 	import net.flashpunk.graphics.Image;
+	import net.flashpunk.graphics.Spritemap;
 	import net.flashpunk.utils.Draw;
 	import net.flashpunk.utils.Input;
 	import net.flashpunk.utils.Key;
@@ -43,10 +44,12 @@ package hero
 		public var isRecovering:Boolean;
 		public var blinkCounter:Number;
 		
+		public var animationTime:Number;
+		
 		public var facing:Number;
 		public var canMove:Boolean;
 		
-		public var heroImage:Image;              // hero graphic
+		public var heroImage:Spritemap;              // hero graphic
 		
 		public function Hero(startX:Number, startY:Number) 
 		{
@@ -100,6 +103,20 @@ package hero
 					facing = DOWN;
 				else if (Input.check(Key.D))
 					facing = RIGHT;
+				
+				switch(facing)
+				{
+					case LEFT:
+					case LEFT_UP:
+					case LEFT_DOWN:
+						heroImage.flipped = true;
+						break;
+					case RIGHT:
+					case RIGHT_UP:
+					case RIGHT_DOWN:
+						heroImage.flipped = false;
+					default:
+				}
 				
 				if (Input.pressed(Key.L))
 					gainXP(1);

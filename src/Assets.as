@@ -27,7 +27,7 @@ package
 		[Embed(source = "assets/normalEnemy.png")] public static const NORMAL_ENEMY:Class;
 		
 		// Heroes
-		[Embed(source = "assets/warriorHero.png")] public static const WARRIOR:Class;
+		[Embed(source = "assets/warriorCleave.png")] public static const WARRIOR:Class;
 		[Embed(source = "assets/rangerHero.png")] public static const RANGER:Class;
 		[Embed(source = "assets/mageHero.png")] public static const MAGE:Class;
 	}

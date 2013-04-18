@@ -143,9 +143,9 @@ package
 		public static const WARRIOR_DEFENSE_ARRAY:Array = new Array(10, 10, 10, 10, 10, 10, 10, 10, 10, 10);
 		public static const WARRIOR_SPEED_ARRAY:Array =   new Array( 1,  2,  3,  4,  5,  6,  7,  8,  9, 10);
 		
-		public static const WARRIOR_ABIL_1_NAME:String = "blah";
-		public static const WARRIOR_ABIL_1_DESC:String = "blah blah";
-		public static const WARRIOR_ABIL_1_CD:Number = 3;
+		public static const WARRIOR_ABIL_1_NAME:String = "Cleave";
+		public static const WARRIOR_ABIL_1_DESC:String = "Attack enemies in a wide arc in front of you. Cooldown: 0.5 seconds";
+		public static const WARRIOR_ABIL_1_CD:Number = 0.5;
 		
 		public static const WARRIOR_ABIL_2_NAME:String = "blah";
 		public static const WARRIOR_ABIL_2_DESC:String = "blah blah";
