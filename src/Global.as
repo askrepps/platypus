@@ -14,8 +14,7 @@ package
 		public static const GAME_HEIGHT:Number = 768;
 		
 		// Player variables
-		public static var playerGold:int;		// Player variables
-		public static var playerGold:int;
+		public static var playerGold:int;	
 		// Path data
 		public static var curLevel:Number;
 		public static const paths:Vector.<Vector.<Point>> = new Vector.<Vector.<Point>>(5);
