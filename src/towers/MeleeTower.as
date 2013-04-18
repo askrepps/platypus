@@ -1,22 +1,30 @@
 package towers 
 {
 	import net.flashpunk.FP;
+	import net.flashpunk.Entity;
+	import enemies.Enemy;
+	import net.flashpunk.graphics.Image;
+	import ui.Button;
 	/**
 	 * ...
 	 * @author Jonathan Benkovic
 	 */
 	public class MeleeTower extends Tower 
 	{
+		private var towerImage:Image;
 		private var timer:Number;
 		
 		public function MeleeTower(x:Number, y:Number) 
 		{
-			super(x, y, Global.MELEE_RANGE, Global.MELEE_DAMAGE, Global.MELEE_SPEED, Global.MELEE_CANATTACK, Global.MELEE_ARMORPIERCING, "", Global.MELEE_TOWERDESCIPT);
-			// graphic = ;
+			super(x, y, Global.MELEE_RANGE, Global.MELEE_DAMAGE, Global.MELEE_SPEED, Global.MELEE_CANATTACK, Global.MELEE_ARMORPIERCING, "", Global.MELEE_TOWERDESCIPT, new TowerUI(x, y, this), Global.MELEE_COST, Global.MELEE_UPGRADE_COST);
+			type = "melee";
+			towerImage = new Image(Assets.MELEE_TOWER);
+			super.graphic = towerImage;
 			timer = 0;
+			setHitboxTo(towerImage);
 		}
 		
-		public function upgrade():void
+		override public function upgrade():void
 		{
 			if (upgradeCur < 2)
 				upgradeCur++;
@@ -36,17 +44,40 @@ package towers
 			}
 		}
 		
-		override public function update():void
+		override public function attack():void
 		{
-			timer += FP.elapsed;
+			var closestEnemy:Entity;
 			
-			
+			// Attacks the same enemy until it is dead or out of range.
+			if (closestEnemy == null || (Math.sqrt((this.x - closestEnemy.x) * (this.x - closestEnemy.x) + (this.y - closestEnemy.y) * (this.y - closestEnemy.y)) > this.range))
+				closestEnemy = new Entity(FP.screen.width, FP.screen.height);
 
-			if (timer >= speed)
+			// Find closest enemy, check type, attack (keep attack until dead or out of range).
+		
+			// Finds the closest enemy of any type the tower can attack.
+			for each(var enemyType:String in canAttack)
 			{
-				timer = 0;
-				attack();
+				var enemy:Entity = world.nearestToEntity(enemyType, this, true);
+				
+				if (enemy != null)
+				{
+					var distToEnemy:Number = Math.sqrt((this.x - enemy.x) * (this.x - enemy.x) + ((this.y - enemy.y) * (this.y - enemy.y)));
+					var distToClosest:Number = Math.sqrt((this.x - closestEnemy.x) * (this.x - closestEnemy.x) + (this.y - closestEnemy.y) * (this.y - closestEnemy.y));
+					
+					// Ignore the enemy if it is out of range.
+					if(distToEnemy <= this.range)
+					{
+						if(distToClosest > distToEnemy)
+						{
+							closestEnemy = enemy;
+						}
+					}
+				}
 			}
+			
+			// Do nothing if there aren't any enemies.
+			if(closestEnemy.type != null)
+				(Enemy)(closestEnemy).takeDamage(this.damage, this.armorPiercing, this.special);
 		}
 	}
 }

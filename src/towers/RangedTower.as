@@ -1,12 +1,10 @@
 package towers 
 {
-	import adobe.utils.CustomActions;
 	import net.flashpunk.Entity;
 	import net.flashpunk.graphics.Image;
 	import net.flashpunk.FP;
 	import enemies.Enemy;
-	import net.flashpunk.utils.Input;
-	import net.flashpunk.utils.Key;
+	import ui.Button;
 	/**
 	 * ...
 	 * @author Jonathan Benkovic
@@ -16,20 +14,18 @@ package towers
 		
 		private var towerImage:Image;
 		private var timer:Number;
-		private static var towerUI:TowerUI;
 
 		public function RangedTower(x:Number, y:Number)
 		{
-			super(x, y, Global.RANGED_RANGE, Global.RANGED_DAMAGE, Global.RANGED_SPEED, Global.RANGED_CANATTACK, Global.RANGED_ARMORPIERCING, "", Global.RANGED_TOWERDESCIPT);
+			super(x, y, Global.RANGED_RANGE, Global.RANGED_DAMAGE, Global.RANGED_SPEED, Global.RANGED_CANATTACK, Global.RANGED_ARMORPIERCING, "", Global.RANGED_TOWERDESCIPT, new TowerUI(x, y, this), Global.RANGED_COST, Global.RANGED_UPGRADE_COST);
 			type = "ranged";
 			towerImage = new Image(Assets.RANGED_TOWER);
 			super.graphic = towerImage;
 			timer = 0;
 			setHitboxTo(towerImage);
-			towerUI = new TowerUI(centerX, centerY, this);
 		}
 		
-		public function upgrade():void
+		override public function upgrade():void
 		{
 			if (upgradeCur < 2)
 				upgradeCur++;
@@ -52,8 +48,6 @@ package towers
 		
 		override public function attack():void
 		{
-			
-			
 			var closestEnemy:Entity;
 			
 			// Attacks the same enemy until it is dead or out of range.
@@ -88,30 +82,7 @@ package towers
 			//(Enemy)(closestEnemy).takeDamage(this.damage, this.armorPiercing, this.special); 
 		}
 		
-		override public function update():void
-		{
-			timer += FP.elapsed;
-			
-			if (timer >= speed)
-			{
-				timer = 0;
-				attack();
-			}
-			
-			if (collidePoint(x, y, world.mouseX, world.mouseY))
-			{
-				world.add(new HoverText(x,y));
-				if(Input.mousePressed)
-					world.add(towerUI);
-			}
-			
-			if (Input.pressed(Key.U))
-			{
-				upgrade();
-			}
-			
-			super.update();
-		}
+
 	}
 
 }
