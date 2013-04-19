@@ -3,6 +3,7 @@ package enemies
 	import flash.geom.Point;
 	import net.flashpunk.Entity;
 	import net.flashpunk.FP;
+	import hero.Hero;
 	import Math;
 	
 	/**
@@ -17,6 +18,11 @@ package enemies
 		public var toNest:Boolean;
 		public var curPoint:Point;
 		public var pointIndex:Number;
+		public var isPoisoned:Boolean;
+		public var poisonDuration:Number;
+		public var poisonTimer:Number;
+		public var poisonDamage:Number;
+		public var poisonCounter:Number;
 		
 		public function Enemy(x:Number, y:Number, health:Number, speed:Number, armor:Number) 
 		{
@@ -26,8 +32,10 @@ package enemies
 			this.speed = speed;
 			this.armor = armor;
 			this.toNest = true;
-			curPoint = Global.genPoint(Global.paths[Global.curLevel][1]);
+			curPoint = Global.genPoint(Global.paths[Global.curLevel][0]);
+			nextPoint // Generate first point to move to with some randomness
 			pointIndex = 1;
+			isPoisoned = false;
 		}
 		
 		public function takeDamage(damage:Number, armorPiercing:Number, special:String):void
@@ -43,13 +51,44 @@ package enemies
 			}
 		}
 		
+		// Set poison DoT variables
+		public function getPoisoned(duration:Number, damage:Number):void {
+			poisonDuration = duration;
+			poisonDamage = damage;
+			isPoisoned = true;
+			
+		}
+		
+		// Check if enemy should be damaged by poison
+		public function takePoisonDamage(h:Hero):void {
+			if (poisonDuration > 0) {
+				poisonDuration -= FP.elapsed;
+				poisonCounter += FP.elapsed;
+				
+				if (poisonCounter > .5)
+				{
+					health -= poisonDamage;
+					poisonCounter -= .5
+				}
+			}
+			else {
+				poisonDuration = 0;
+				poisonCounter = 0;
+				isPoisoned = false;
+			}
+		}
 		public function nextPoint():void {
+			var radius:Number;
+			var theta:Number;
+			var x:Number;
+			var y:Number;
+				
 			if ((pointIndex + 1) == Global.paths[Global.curLevel].length) {
 				// If we've reached the end of the path, grab egg, switch directions and go back
 				//getEgg();
 				toNest = false;
 			}
-			else if (pointIndex == 0) {
+			else if (pointIndex == 0 && !toNest) {
 				//captureEgg();
 				dead();
 				return;
@@ -59,8 +98,13 @@ package enemies
 				
 				// If we're not moving towards the final point in the path (nest), add a bit of randomness
 				if (pointIndex != Global.paths[Global.curLevel].length) {
-					var radius:Number = Math.random() * (Global.GAME_HEIGHT / 20);
-					var theta:Number = Math.random() * 2 * Math.PI;
+					radius = Math.random() * (Global.GAME_HEIGHT / 5);
+					theta = Math.random() * 2 * Math.PI;
+					x = Math.sqrt(radius) * Math.cos(theta);
+					y = Math.sqrt(radius) * Math.sin(theta);
+					
+					curPoint.x += x;
+					curPoint.y += y;
 					
 				}
 			}
@@ -69,13 +113,22 @@ package enemies
 				
 				// If we're not moving towards the first point in the path (starting point), add a bit of randomness
 				if (pointIndex != 0) {
+					radius = Math.random() * (Global.GAME_HEIGHT / 5);
+					theta = Math.random() * 2 * Math.PI;
+					x = Math.sqrt(radius) * Math.cos(theta);
+					y = Math.sqrt(radius) * Math.sin(theta);
 					
+					curPoint.x += x;
+					curPoint.y += y;
 				}
 			}
 		}
 		
 		override public function update():void
 		{
+			if (isPoisoned)
+				takePoisonDamage();
+				
 			// This is just for testing, remove for actual path stuff.
 			if (distanceToPoint(curPoint.x, curPoint.y) < 5)
 				nextPoint();
@@ -86,7 +139,7 @@ package enemies
 		public function dead():void
 		{
 			world.remove(this);
-			
+			Global.hero.gainXP(5);
 			// Give player gold or hero expierence
 		}
 		
