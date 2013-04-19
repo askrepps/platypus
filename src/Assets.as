@@ -9,7 +9,10 @@ package
 	{
 		// UI Elements
 		[Embed(source = "assets/upgradeUI.png")] public static const UPGRADE_UI:Class;
+		[Embed(source = "assets/buildButton.png")] public static const BUILD_BUTTON:Class; 
 		[Embed(source = "assets/button.png")] public static const BUTTON:Class;
+		[Embed(source = "assets/button_down.png")] public static const BUTTON_DOWN:Class;
+		[Embed(source = "assets/button_hover.png")] public static const BUTTON_HOVER:Class;
 		[Embed(source = "assets/hoverBackground.png")] public static const HOVER_BACK:Class;
 		// Levels
 		

@@ -51,8 +51,8 @@ package levels
 		{
 			if (Input.pressed(Key.P))
 			{
-				FP.world = new PauseScreen(this);
 				// Add new world that is the pause screen.
+				FP.world = new PauseScreen(this);
 			}
 			
 			super.update();

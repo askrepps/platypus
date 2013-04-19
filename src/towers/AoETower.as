@@ -5,7 +5,7 @@ package towers
 	import net.flashpunk.graphics.Image;
 	import net.flashpunk.FP;
 	import net.flashpunk.utils.Input;
-	import ui.Button;
+	import ui.BuildButton;
 	/**
 	 * ...
 	 * @author Jonathan Benkovic

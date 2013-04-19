@@ -7,7 +7,7 @@ package towers
 	import net.flashpunk.utils.Input;
 	import net.flashpunk.utils.Draw;
 	import net.flashpunk.FP;
-	import ui.Button;
+	import ui.BuildButton;
 	/**
 	 * UI that appears when the player clicks on a tower.
 	 * @author Jonathan Benkovic
@@ -16,8 +16,8 @@ package towers
 	{
 		private var uiImage:Image;
 		private var tower:Tower;
-		private var upgradeButton:Button;
-		private var deleteButton:Button;
+		private var upgradeButton:BuildButton;
+		private var deleteButton:BuildButton;
 		
 		public function TowerUI(x:int, y:int, tower:Tower) 
 		{	
@@ -30,8 +30,8 @@ package towers
 			this.tower = tower;
 			
 			
-			upgradeButton = new Button(this.x + width / 3, this.y, "Upgrade", upgrade); 
-			deleteButton = new Button(this.x + width / 3, this.y + (2 * (width / 3)), "Delete", deleteTower); 
+			upgradeButton = new BuildButton(this.x + width / 3, this.y, "Upgrade", upgrade); 
+			deleteButton = new BuildButton(this.x + width / 3, this.y + (2 * (width / 3)), "Delete", deleteTower); 
 		}
 		
 		public function upgrade():void

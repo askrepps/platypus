@@ -6,7 +6,7 @@ package towers
 	import net.flashpunk.utils.Input;
 	import net.flashpunk.utils.Draw;
 	import net.flashpunk.FP;
-	import ui.Button;
+	import ui.BuildButton;
 	/**
 	 * ...
 	 * @author Jonathan Benkovic
@@ -15,10 +15,10 @@ package towers
 	{
 		private var uiImage:Image;
 		private var tower:Tower;
-		private var buttonR:Button;
-		private var buttonM:Button;
-		private var buttonA:Button;
-		private var buttonAoE:Button;
+		private var buttonR:BuildButton;
+		private var buttonM:BuildButton;
+		private var buttonA:BuildButton;
+		private var buttonAoE:BuildButton;
 		private var towerPlace:TowerPlace;
 		
 		public function BuildTowerUI(x:int, y:int, towerPlace:TowerPlace) 
@@ -31,10 +31,10 @@ package towers
 			type = "buildUI";
 			this.towerPlace = towerPlace;
 			this.collidable = false;
-			buttonR = new Button(this.x + this.width/3.0, this.y, "Ranged", build, "Ranged"); 
-			buttonM = new Button(this.x + (2*(this.width/3.0)), this.y + height/3.0, "Melee", build, "Melee"); 
-			buttonA = new Button(this.x + this.width/3.0, this.y + (2*(height/3.0)), "Air", build, "Air"); 
-			buttonAoE = new Button(this.x, this.y + this.width/3.0, "AoE", build, "AoE"); 
+			buttonR = new BuildButton(this.x + this.width/3.0, this.y, "Ranged", build, "Ranged"); 
+			buttonM = new BuildButton(this.x + (2*(this.width/3.0)), this.y + height/3.0, "Melee", build, "Melee"); 
+			buttonA = new BuildButton(this.x + this.width/3.0, this.y + (2*(height/3.0)), "Air", build, "Air"); 
+			buttonAoE = new BuildButton(this.x, this.y + this.width/3.0, "AoE", build, "AoE"); 
 		}
 		
 		public function build(towerBuild:String):void

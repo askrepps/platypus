@@ -4,7 +4,7 @@ package towers
 	import net.flashpunk.Entity;
 	import enemies.Enemy;
 	import net.flashpunk.graphics.Image;
-	import ui.Button;
+	import ui.BuildButton;
 	/**
 	 * ...
 	 * @author Jonathan Benkovic
