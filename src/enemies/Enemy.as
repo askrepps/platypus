@@ -5,7 +5,7 @@ package enemies
 	import net.flashpunk.FP;
 	import hero.Hero;
 	import Math;
-	
+	import ui.HealthBar;
 	/**
 	 * ...
 	 * @author Jonathan Benkovic
@@ -24,6 +24,9 @@ package enemies
 		public var poisonDamage:Number;
 		public var poisonCounter:Number;
 		
+		private var healthBar:HealthBar; 	// Enemies health bar.
+		private var maxHealth:Number;	
+		
 		public function Enemy(x:Number, y:Number, health:Number, speed:Number, armor:Number) 
 		{
 			this.x = x;
@@ -36,6 +39,9 @@ package enemies
 			//nextPoint // Generate first point to move to with some randomness
 			pointIndex = 1;
 			isPoisoned = false;
+			
+			maxHealth = health;
+			healthBar = new HealthBar(centerX, (this.y + 10), 20, 5, health);
 		}
 		
 		public function takeDamage(damage:Number, armorPiercing:Number, special:String):void
@@ -124,8 +130,32 @@ package enemies
 			}
 		}
 		
+		override public function removed():void
+		{
+			world.remove(healthBar);
+		}
+		
 		override public function update():void
 		{
+			if (healthBar.name == null)
+			{
+				healthBar.name = "done";
+				world.add(healthBar);
+			}
+			else
+			{
+				healthBar.updateVal(centerX, this.y, health/maxHealth);
+			}
+			
+			if (maxHealth == health)
+			{
+				healthBar.visible = false;
+			}
+			else
+				healthBar.visible = true;
+			
+			
+			
 			if (isPoisoned)
 				takePoisonDamage();
 				

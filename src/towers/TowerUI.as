@@ -9,14 +9,14 @@ package towers
 	import net.flashpunk.FP;
 	import ui.Button;
 	/**
-	 * ...
+	 * UI that appears when the player clicks on a tower.
 	 * @author Jonathan Benkovic
 	 */
 	public class TowerUI extends Entity 
 	{
 		private var uiImage:Image;
 		private var tower:Tower;
-		private var button:Button;
+		private var upgradeButton:Button;
 		private var deleteButton:Button;
 		
 		public function TowerUI(x:int, y:int, tower:Tower) 
@@ -29,7 +29,8 @@ package towers
 			type = "upgradeUI";
 			this.tower = tower;
 			
-			button = new Button(this.x + width / 3, this.y, "Upgrade", upgrade); 
+			
+			upgradeButton = new Button(this.x + width / 3, this.y, "Upgrade", upgrade); 
 			deleteButton = new Button(this.x + width / 3, this.y + (2 * (width / 3)), "Delete", deleteTower); 
 		}
 		
@@ -58,26 +59,28 @@ package towers
 			world.remove(tower);
 		}
 		
+		// Remove the buttons when the UI is removed.
 		override public function removed():void
 		{
-			button.name = null;
-			FP.world.remove(button);
+			upgradeButton.name = null;
+			FP.world.remove(upgradeButton);
 			FP.world.remove(deleteButton);
 		}
 		
 		override public function update():void
 		{
-			if (button.name == null)
+			// Prevents multiple buttons from being made.
+			if (upgradeButton.name == null)
 			{
-				button.name = "done";
-				world.add(button);
+				upgradeButton.name = "done";
+				world.add(upgradeButton);
 				world.add(deleteButton);
 			}
 			
-			
+			// Remove the UI if the player clicks away from it.
 			if (collidePoint(x, y, world.mouseX, world.mouseY))
 			{
-				// Do stuff
+				// Do nothing, keep the UI up.
 			}
 			else
 				if(Input.mousePressed)
@@ -87,6 +90,8 @@ package towers
 		override public function render():void
 		{
 			super.render();
+			
+			// Draw a circle representing the range of the tower.
 			Draw.circlePlus(centerX, centerY, tower.range,	0xbbd0fb , .08, true); 	
 		}
 	}

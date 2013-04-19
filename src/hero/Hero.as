@@ -9,6 +9,7 @@ package hero
 	import net.flashpunk.utils.Draw;
 	import net.flashpunk.utils.Input;
 	import net.flashpunk.utils.Key;
+	import ui.HealthBar;
 	
 	public class Hero extends Entity
 	{
@@ -52,6 +53,8 @@ package hero
 		
 		public var heroImage:Spritemap;              // hero graphic
 		
+		private var healthBar:HealthBar;			// The health bar (duh). 
+		
 		public function Hero(startX:Number, startY:Number) 
 		{
 			x = startX;
@@ -74,10 +77,12 @@ package hero
 			collidedEnemies = new Array();
 			
 			facing = UP;
+			
+			healthBar = new HealthBar(centerX, y, 30, 8, 0);
 		}
 		
 		override public function update():void
-		{	
+		{		
 			if (canMove)
 			{
 				/*
@@ -265,6 +270,18 @@ package hero
 						}
 					}
 				}
+			}
+						
+			// Prevents multiple health bars for being made
+			if (healthBar.name == null)
+			{
+				healthBar.name = "done";
+				world.add(healthBar);
+			}
+			else
+			{
+				// Updates location of healtbar so it moves with the entity.
+				healthBar.updateVal(centerX, this.y, currentHealth/maxHealth);
 			}
 		}
 		

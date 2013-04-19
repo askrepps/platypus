@@ -206,5 +206,11 @@ package
 		public static const MAX_LEVELS:Number = 10;
 		public static const XP_TO_LEVEL:Array = new Array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
 		
+		
+		// Enemy traits
+		public static const NORMAL_HEALTH = 50;
+		
+		
+		
 	}
 }

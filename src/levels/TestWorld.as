@@ -5,7 +5,6 @@ package levels
 	import flash.geom.Point;
 	import towers.AoETower;
 	import towers.HoverText;
-	import towers.TowerRangeMask;
 	import towers.TowerPlace;
 	import hero.Warrior;
 	import ui.HUD;
