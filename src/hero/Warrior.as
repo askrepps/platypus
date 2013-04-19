@@ -1,11 +1,12 @@
 package hero
 {
-	import net.flashpunk.Entity;
-	import net.flashpunk.utils.Draw;
 	import enemies.Enemy;
-	import net.flashpunk.graphics.Spritemap;
-	import net.flashpunk.graphics.Image;
+	
+	import net.flashpunk.Entity;
 	import net.flashpunk.FP;
+	import net.flashpunk.graphics.Image;
+	import net.flashpunk.graphics.Spritemap;
+	import net.flashpunk.utils.Draw;
 	
 	public class Warrior extends Hero
 	{
@@ -113,44 +114,36 @@ package hero
 					switch (facing)
 					{
 						case UP:
-							collision = enemy.collideRect(enemy.x, enemy.y, x, y - width, width, width)                 // up
-							         || enemy.collideRect(enemy.x, enemy.y, x - width, y - width, width, width)         // left-up
-									 || enemy.collideRect(enemy.x, enemy.y, x + width, y - width, width, width);        // right-up
+							collision = enemy.collideRect(enemy.x, enemy.y, x, y - height/4, width, height/2);
 							break;
 						case LEFT:
-							collision = enemy.collideRect(enemy.x, enemy.y, x - width, y, width, height)                // left
-							         || enemy.collideRect(enemy.x, enemy.y, x - width, y - width, width, width)         // left-up
-									 || enemy.collideRect(enemy.x, enemy.y, x - width, y + height, width, width);       // left-down
+							collision = enemy.collideRect(enemy.x, enemy.y, x - width/4, y, width/2, height);
 							break;
 						case RIGHT:
-							collision = enemy.collideRect(enemy.x, enemy.y, x + width, y, width, height)                // right
-							         || enemy.collideRect(enemy.x, enemy.y, x + width, y - width, width, width)         // right-up
-									 || enemy.collideRect(enemy.x, enemy.y, x + width, y + height, width, width);       // right-down
+							collision = enemy.collideRect(enemy.x, enemy.y, x + width - width/4, y, width/2, height);
 							break;
 						case DOWN:
-							collision = enemy.collideRect(enemy.x, enemy.y, x, y + height, width, width)                // down
-							         || enemy.collideRect(enemy.x, enemy.y, x - width, y + height, width, width)        // left-down
-									 || enemy.collideRect(enemy.x, enemy.y, x + width, y + height, width, width);       // right-down
+							collision = enemy.collideRect(enemy.x, enemy.y, x, y + height - height/4, width, height/2);
 							break;
 						case LEFT_UP:
-							collision = enemy.collideRect(enemy.x, enemy.y, x - width, y - width, width, width)         // left-up
-							         || enemy.collideRect(enemy.x, enemy.y, x - width, y, width, height)                // left
-									 || enemy.collideRect(enemy.x, enemy.y, x, y - width, width, width);                // up
+							collision = enemy.collideRect(enemy.x, enemy.y, x - width/4, y, width/2, height*0.6)         // left-up
+							         || enemy.collideRect(enemy.x, enemy.y, x, y - height/4, width*0.6, height/2)                // left
+									 || enemy.collideRect(enemy.x, enemy.y, x - width/4, y - height/4, width/4, height/4);                // up
 							break;
 						case LEFT_DOWN:
-							collision = enemy.collideRect(enemy.x, enemy.y, x - width, y + height, width, width)        // left-down
-							         || enemy.collideRect(enemy.x, enemy.y, x - width, y, width, height)                // left
-									 || enemy.collideRect(enemy.x, enemy.y, x, y + height, width, width);               // down
+							collision = enemy.collideRect(enemy.x, enemy.y, x - width/4, y + height*0.4, width/2, height*0.6)        // left-down
+							         || enemy.collideRect(enemy.x, enemy.y, x, y + height - height/4, width*0.6, height/2)                // left
+									 || enemy.collideRect(enemy.x, enemy.y, x - width/4, y + height, width/4, height/4);               // down
 							break;
 						case RIGHT_UP:
-							collision = enemy.collideRect(enemy.x, enemy.y, x + width, y - width, width, width)         // right-up
-							         || enemy.collideRect(enemy.x, enemy.y, x + width, y, width, height)                // right
-									 || enemy.collideRect(enemy.x, enemy.y, x, y - width, width, width);                // up
+							collision = enemy.collideRect(enemy.x, enemy.y, x + width - width/4, y, width/2, height*0.6)         // right-up
+							         || enemy.collideRect(enemy.x, enemy.y, x + width*0.4, y - height/4, width*0.6, height/2)                // right
+									 || enemy.collideRect(enemy.x, enemy.y, x + width, y - height/4, width/4, height/4);                // up
 							break;
 						case RIGHT_DOWN:
-							collision = enemy.collideRect(enemy.x, enemy.y, x + width, y + height, width, width)        // riht-down
-							         || enemy.collideRect(enemy.x, enemy.y, x + width, y, width, height)                // right
-									 || enemy.collideRect(enemy.x, enemy.y, x, y + height, width, width);               // down
+							collision = enemy.collideRect(enemy.x, enemy.y, x + width - width/4, y + height*0.4, width/2, height*0.6)        // riht-down
+							         || enemy.collideRect(enemy.x, enemy.y, x + width*0.4, y + height - height/4, width*0.6, height/2)                // right
+									 || enemy.collideRect(enemy.x, enemy.y, x + width, y + height, width/4, height/4);               // down
 							break;
 						default:
 							collision = false;
@@ -175,6 +168,7 @@ package hero
 			super.ability3();
 			ability3CD = Global.WARRIOR_ABIL_3_CD;
 			
+			collidedEnemies = new Array();
 			isDashing = true;
 			dashTime = Global.WARRIOR_DASH_TIME;
 			canMove = false;
@@ -190,53 +184,40 @@ package hero
 			switch (facing)
 			{
 				case UP:
-					Draw.rectPlus(x, y - width, width, width, 0xFFFFFF, 0.25, true);
-					
-					Draw.rectPlus(x - width, y - width, width, width, 0xFFFFFF, 0.25, true);
-					Draw.rectPlus(x + width, y - width, width, width, 0xFFFFFF, 0.25, true);
+					Draw.rectPlus(x, y - height/4, width, height/2, 0xFFFFFF, 0.25, true);
 					break;
 				case LEFT:
-					Draw.rectPlus(x - width, y, width, height, 0xFFFFFF, 0.25, true);
-					
-					Draw.rectPlus(x - width, y - width, width, width, 0xFFFFFF, 0.25, true);
-					Draw.rectPlus(x - width, y + height, width, width, 0xFFFFFF, 0.25, true);
+					Draw.rectPlus(x - width/4, y, width/2, height, 0xFFFFFF, 0.25, true);
 					break;
 				case RIGHT:
-					Draw.rectPlus(x + width, y, width, height, 0xFFFFFF, 0.25, true);
-					
-					Draw.rectPlus(x + width, y - width, width, width, 0xFFFFFF, 0.25, true);
-					Draw.rectPlus(x + width, y + height, width, width, 0xFFFFFF, 0.25, true);
+					Draw.rectPlus(x + width - width/4, y, width/2, height, 0xFFFFFF, 0.25, true);
 					break;
 				case DOWN:
-					Draw.rectPlus(x, y + height, width, width, 0xFFFFFF, 0.25, true);
-					
-					Draw.rectPlus(x - width, y + height, width, width, 0xFFFFFF, 0.25, true);
-					Draw.rectPlus(x + width, y + height, width, width, 0xFFFFFF, 0.25, true);
+					Draw.rectPlus(x, y + height - height/4, width, height/2, 0xFFFFFF, 0.25, true);
 					break;
 				case LEFT_UP:
-					Draw.rectPlus(x - width, y - width, width, width, 0xFFFFFF, 0.25, true);
+					Draw.rectPlus(x - width/4, y, width/2, height*0.6, 0xFFFFFF, 0.25, true);                          // some left
+					Draw.rectPlus(x, y - height/4, width*0.6, height/2, 0xFFFFFF, 0.25, true);                         // some up
 					
-					Draw.rectPlus(x, y - width, width, width, 0xFFFFFF, 0.25, true);
-					Draw.rectPlus(x - width, y, width, height, 0xFFFFFF, 0.25, true);
+					Draw.rectPlus(x - width/4, y - height/4, width/4, height/4, 0xFFFFFF, 0.25, true);                 // filler
 					break;
 				case LEFT_DOWN:
-					Draw.rectPlus(x - width, y + height, width, width, 0xFFFFFF, 0.25, true);
+					Draw.rectPlus(x - width/4, y + height*0.4, width/2, height*0.6, 0xFFFFFF, 0.25, true);             // some left
+					Draw.rectPlus(x, y + height - height/4, width*0.6, height/2, 0xFFFFFF, 0.25, true);                // some down
 					
-					Draw.rectPlus(x - width, y, width, height, 0xFFFFFF, 0.25, true);
-					Draw.rectPlus(x, y + height, width, width, 0xFFFFFF, 0.25, true);
+					Draw.rectPlus(x - width/4, y + height, width/4, height/4, 0xFFFFFF, 0.25, true);                   // filler
 					break;
 				case RIGHT_UP:
-					Draw.rectPlus(x + width, y - width, width, width, 0xFFFFFF, 0.25, true);
+					Draw.rectPlus(x + width - width/4, y, width/2, height*0.6, 0xFFFFFF, 0.25, true);                  // some right
+					Draw.rectPlus(x + width*0.4, y - height/4, width*0.6, height/2, 0xFFFFFF, 0.25, true);             // some up
 					
-					Draw.rectPlus(x + width, y, width, height, 0xFFFFFF, 0.25, true);
-					Draw.rectPlus(x, y - width, width, width, 0xFFFFFF, 0.25, true);
-					
+					Draw.rectPlus(x + width, y - height/4, width/4, height/4, 0xFFFFFF, 0.25, true);                   // filler
 					break;
 				case RIGHT_DOWN:
-					Draw.rectPlus(x + width, y + height, width, width, 0xFFFFFF, 0.25, true);
+					Draw.rectPlus(x + width - width/4, y + height*0.4, width/2, height*0.6, 0xFFFFFF, 0.25, true);     // some right
+					Draw.rectPlus(x + width*0.4, y + height - height/4, width*0.6, height/2, 0xFFFFFF, 0.25, true);    // some down
 					
-					Draw.rectPlus(x + width, y, width, height, 0xFFFFFF, 0.25, true);
-					Draw.rectPlus(x, y + height, width, width, 0xFFFFFF, 0.25, true);
+					Draw.rectPlus(x + width, y + height, width/4, height/4, 0xFFFFFF, 0.25, true);                     // filler
 					break;
 				default:
 			}

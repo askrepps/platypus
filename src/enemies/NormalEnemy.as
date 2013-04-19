@@ -15,7 +15,7 @@ package enemies
 		{
 			type = "normal";
 			enemyImage = new Image(Assets.NORMAL_ENEMY);
-			super(x, y, 50, 250, 0);
+			super(x, y, 50, 100, 0);
 			
 			graphic = enemyImage;
 			mask = new Pixelmask(Assets.NORMAL_ENEMY);

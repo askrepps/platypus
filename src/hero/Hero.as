@@ -45,6 +45,7 @@ package hero
 		public var blinkCounter:Number;
 		
 		public var collisionDamagesEnemies:Boolean;
+		public var collidedEnemies:Array;
 		
 		public var facing:Number;
 		public var canMove:Boolean;
@@ -69,7 +70,8 @@ package hero
 			blinkCounter = 0;
 			
 			canMove = true;
-			collisionDamagesEnemies = true;
+			collisionDamagesEnemies = false;
+			collidedEnemies = new Array();
 			
 			facing = UP;
 		}
@@ -250,7 +252,17 @@ package hero
 					}
 					else if (enemy != null && collisionDamagesEnemies)
 					{
-						(enemy as Enemy).takeDamage(attack, 0, "probably dashing!");
+						var shouldDamage:Boolean = true;
+						for each (var entity:Entity in collidedEnemies)
+						{
+							if (entity == enemy)
+								shouldDamage = false;
+						}
+						if (shouldDamage)
+						{
+							(enemy as Enemy).takeDamage(attack, 0, "probably dashing!");
+							collidedEnemies.push(enemy);
+						}
 					}
 				}
 			}
