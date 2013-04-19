@@ -107,7 +107,7 @@ package hero
 			
 			if (isLeaping)
 			{
-				if (distance(x + width/2, y + width/2, leapX, leapY) > Global.WARRIOR_LEAP_SPEED)
+				if (distanceToPoint(leapX - width/2, leapY - height/2) > Global.WARRIOR_LEAP_SPEED)
 				{
 					moveTowards(leapX - width/2, leapY - height/2, Global.WARRIOR_LEAP_SPEED);
 				}
@@ -143,7 +143,7 @@ package hero
 					clicked = false;
 					isLeapTargeting = false;
 					
-					if (distance(x + width/2, y + height/2, world.mouseX, world.mouseY) < leapRange)
+					if (distanceToPoint(world.mouseX - width/2, world. mouseY - height/2) < leapRange)
 					{
 						isLeaping = true;
 						canMove = false;
@@ -298,11 +298,6 @@ package hero
 			spriteMap.add("walking", [0], 0, false);
 			spriteMap.add("attack", [0, 1, 2, 1, 0], 10, false);
 			spriteMap.add("dashing", [2], 0, false);
-		}
-		
-		private function distance(x1:Number, y1:Number, x2:Number, y2:Number):Number
-		{
-			return Math.sqrt((x1 - x2)*(x1 - x2) + (y1 - y2)*(y1 - y2));
 		}
 	}
 }
