@@ -9,7 +9,6 @@ package ui
 	 */
 	public class HealthBar extends Entity 
 	{
-		private var maxVal:Number;
 		private var curVal:Number;
 		private var recWidth:Number;
 		private var recHeight:Number;
@@ -33,7 +32,7 @@ package ui
 		override public function render():void
 		{
 			Draw.rect(x - recWidth/2.0, y - 10, recWidth, recHeight, 0x000000);
-			Draw.rect(x - recWidth/2.0, y - 10, recWidth * curVal, recHeight, 0x9A1D1D);
+			Draw.rect(x - recWidth / 2.0, y - 10, recWidth * curVal, recHeight, 0x9A1D1D);
 		}
 		
 	}

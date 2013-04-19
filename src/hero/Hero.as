@@ -1,6 +1,7 @@
 package hero
 {
 	import enemies.Enemy;
+	import ui.CooldownDisplay;
 	
 	import net.flashpunk.Entity;
 	import net.flashpunk.FP;
@@ -54,6 +55,9 @@ package hero
 		public var heroImage:Spritemap;              // hero graphic
 		
 		private var healthBar:HealthBar;			// The health bar (duh). 
+		private var cooldown1:CooldownDisplay;
+		private var cooldown2:CooldownDisplay;
+		private var cooldown3:CooldownDisplay;
 		
 		public function Hero(startX:Number, startY:Number) 
 		{
@@ -79,6 +83,9 @@ package hero
 			facing = UP;
 			
 			healthBar = new HealthBar(centerX, y, 30, 8, 0);
+			cooldown1 = new CooldownDisplay(100, FP.screen.height - 120, ability1CD / Global.WARRIOR_ABIL_1_CD);
+			cooldown2 = new CooldownDisplay(150, FP.screen.height - 120, ability2CD / Global.WARRIOR_ABIL_2_CD);
+			cooldown3 = new CooldownDisplay(200, FP.screen.height - 120, ability3CD/Global.WARRIOR_ABIL_3_CD);
 		}
 		
 		override public function update():void
@@ -282,6 +289,21 @@ package hero
 			{
 				// Updates location of healtbar so it moves with the entity.
 				healthBar.updateVal(centerX, this.y, currentHealth/maxHealth);
+			}
+			
+			if (cooldown1.name == null)
+			{
+				cooldown1.name = "done";
+				world.add(cooldown1);
+				world.add(cooldown2);
+				world.add(cooldown3);
+			}
+			else
+			{
+				// Updates location of healtbar so it moves with the entity.
+				cooldown1.updateVal(this.ability1CD / Global.WARRIOR_ABIL_1_CD);
+				cooldown2.updateVal(this.ability2CD / Global.WARRIOR_ABIL_2_CD);
+				cooldown3.updateVal(this.ability3CD/Global.WARRIOR_ABIL_3_CD);
 			}
 		}
 		
