@@ -146,8 +146,10 @@ package
 		public static const WARRIOR_DASH_SPEED:Number = 8;
 		public static const WARRIOR_DASH_TIME:Number = 0.5;
 		
-		public static const WARRIOR_CLEAVE_RANGE:Number = 100;
+		//public static const WARRIOR_CLEAVE_RANGE:Number = 100;
 		public static const WARRIOR_LEAP_RANGE:Number = 200;
+		public static const WARRIOR_LEAP_SPEED:Number = 10;
+		public static const WARRIOR_LEAP_ATTACK_RANGE:Number = 100;
 		
 		public static const WARRIOR_ABIL_1_NAME:String = "Cleave";
 		public static const WARRIOR_ABIL_1_DESC:String = "Attack enemies in a wide arc in front of you. Cooldown: 0.5 seconds";
