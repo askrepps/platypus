@@ -67,6 +67,8 @@ package hero
 				isDashing = false;
 				canMove = true;
 				collisionDamagesEnemies = false;
+				isRecovering = true;
+				recoverTime = Global.HERO_RECOVER_TIME;
 				heroImage.play("walking");
 			}
 			else if (isDashing)
@@ -117,8 +119,10 @@ package hero
 					y = leapY - height/2;
 					isLeaping = false;
 					canMove = true;
+					isRecovering = true;
+					heroImage.play("walking");
+					recoverTime = Global.HERO_RECOVER_TIME;
 					
-					// damage enemies in range
 					var entities:Array = new Array();
 					var collision:Boolean;
 					world.getAll(entities);
@@ -127,7 +131,7 @@ package hero
 					{
 						if (enemy is Enemy)
 						{
-							if(distanceFrom(enemy) > Global.WARRIOR_LEAP_ATTACK_RANGE)
+							if(distanceFrom(enemy) < Global.WARRIOR_LEAP_ATTACK_RANGE)
 								(enemy as Enemy).takeDamage(attack, 0, "stunned?");
 						}
 					}
@@ -147,6 +151,7 @@ package hero
 					{
 						isLeaping = true;
 						canMove = false;
+						heroImage.play("dashing");
 						ability2CD = Global.WARRIOR_ABIL_2_CD;
 						leapX = world.mouseX;
 						leapY = world.mouseY;
