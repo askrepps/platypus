@@ -39,7 +39,8 @@ package levels
 			add(new HoverText(40, 40, "TEST"));
 			//add(new FastEnemy(0,8));
 			
-			add(new Warrior(Global.GAME_WIDTH / 2, Global.GAME_HEIGHT / 2));
+			Global.hero = new Warrior(Global.GAME_WIDTH / 2, Global.GAME_HEIGHT / 2);
+			add(Global.hero);
 			
 			add(new HUD());
 			

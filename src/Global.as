@@ -6,6 +6,7 @@ package
 	 */
 	
 	import flash.geom.Point;
+	import hero.Hero;
 	
 	public class Global 
 	{
@@ -128,6 +129,8 @@ package
 		public static const AIR_SPEED_UPGRADE2:Number = .5;	
 		
 		// Hero Attributes, see Hero.as for description of variables
+		public static var hero:Hero;
+		
 		public static const HERO_SPEED_SCALE:Number = 50;
 		public static const HERO_RECOVER_TIME:Number = 1;
 		public static const HERO_BLINK_RATE:Number = 0.05;

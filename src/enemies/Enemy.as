@@ -33,7 +33,7 @@ package enemies
 			this.armor = armor;
 			this.toNest = true;
 			curPoint = Global.genPoint(Global.paths[Global.curLevel][0]);
-			nextPoint // Generate first point to move to with some randomness
+			//nextPoint // Generate first point to move to with some randomness
 			pointIndex = 1;
 			isPoisoned = false;
 		}
@@ -60,7 +60,7 @@ package enemies
 		}
 		
 		// Check if enemy should be damaged by poison
-		public function takePoisonDamage(h:Hero):void {
+		public function takePoisonDamage():void {
 			if (poisonDuration > 0) {
 				poisonDuration -= FP.elapsed;
 				poisonCounter += FP.elapsed;
