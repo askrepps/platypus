@@ -4,6 +4,7 @@ package hero
 	import ui.XPBar;
 	
 	import levels.Egg;
+	import levels.Nest;
 	
 	import net.flashpunk.Entity;
 	import net.flashpunk.FP;
@@ -91,12 +92,13 @@ package hero
 			
 			healthBar = new HealthBar(centerX, y, 30, 4, 0);
 			xpBar = new XPBar(centerX, y-healthBar.height, 30, 4, 0);
-			
+
 		}
 		
 		override public function update():void
 		{		
 			var collidedEgg:Entity;
+			var collidedNest:Entity;
 			
 			if (canMove)
 			{
@@ -175,8 +177,23 @@ package hero
 					gainXP(1);
 					
 				collidedEgg = collideTypes("egg", x, y);
-				if (collidedEgg != null && !(collidedEgg as Egg).isCarried)
-					world.remove(collidedEgg);
+				if (collidedEgg != null && egg == null && !(collidedEgg as Egg).isCarried) {
+					(collidedEgg as Egg).isCarried = true;
+					egg = (collidedEgg as Egg);
+				}
+				
+				collidedNest = collideTypes("nest", x, y);
+				if (collidedNest != null) {
+					currentHealth += FP.elapsed * (maxHealth / 10);
+					if (egg != null) {
+						(collidedNest as Nest).returnEgg();
+						world.remove(egg);
+						egg = null;
+					}
+				}
+				
+				if (egg != null)
+					egg.updatePos(x + width/2, y + height/2);
 					
 				
 				// temp code to keep hero on screen
@@ -293,7 +310,7 @@ package hero
 				}
 			}
 						
-			// Prevents multiple health bars for being made
+			// Prevents multiple health bars from being made
 			if (healthBar.name == null)
 			{
 				healthBar.name = "done";

@@ -32,12 +32,20 @@
     </define>
     <verbose-stacktraces>true</verbose-stacktraces>
     <source-path append="true">
+<<<<<<< HEAD
       <path-element>C:\Users\Jonathan\Documents\platypus\src</path-element>
+=======
+      <path-element>C:\Users\Kevin\Documents\GitHub\platypus\src</path-element>
+>>>>>>> enemies
       <path-element>C:\Program Files (x86)\FlashDevelop\Library\AS3\classes</path-element>
     </source-path>
   </compiler>
   <file-specs>
+<<<<<<< HEAD
     <path-element>C:\Users\Jonathan\Documents\platypus\src\Main.as</path-element>
+=======
+    <path-element>C:\Users\Kevin\Documents\GitHub\platypus\src\Main.as</path-element>
+>>>>>>> enemies
   </file-specs>
   <default-background-color>#FFFFFF</default-background-color>
   <default-frame-rate>30</default-frame-rate>
