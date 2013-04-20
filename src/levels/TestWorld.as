@@ -1,5 +1,6 @@
 package levels 
 {
+	import enemies.Enemy;
 	import enemies.FastEnemy;
 	import enemies.FlyingEnemy;
 	import enemies.NormalEnemy;
@@ -36,6 +37,10 @@ package levels
 			var startPos:Point = Global.genPoint(Global.paths[Global.curLevel][0]);
 			
 			add(new TowerPlace(500, 300));
+			add(new NormalEnemy(startPos.x, startPos.y));			
+			add(new NormalEnemy(startPos.x, startPos.y));
+			add(new NormalEnemy(startPos.x, startPos.y));
+			add(new NormalEnemy(startPos.x, startPos.y));
 			add(new NormalEnemy(startPos.x,startPos.y));
 			//add(new NormalEnemy(100, 275));
 			add(new TowerPlace(300, 300));

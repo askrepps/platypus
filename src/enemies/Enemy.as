@@ -30,6 +30,12 @@ package enemies
 		public var poisonTimer:Number;
 		public var poisonDamage:Number;
 		public var poisonCounter:Number;
+		public var isSlowed:Boolean;
+		public var slowDuration:Number;
+		public var slowAmount:Number;
+		public var isStunned:Boolean;
+		public var stunDuration:Number;
+		public var elapsed:Number;
 		
 		private var healthBar:HealthBar; 	// Enemies health bar.
 		private var maxHealth:Number;	
@@ -48,6 +54,7 @@ package enemies
 			//nextPoint // Generate first point to move to with some randomness
 			pointIndex = 1;
 			isPoisoned = false;
+			elapsed = 0;
 			
 			maxHealth = health;
 			healthBar = new HealthBar(centerX, (this.y + 10), 20, 5, health);
@@ -71,7 +78,6 @@ package enemies
 			poisonDuration = duration;
 			poisonDamage = damage;
 			isPoisoned = true;
-			
 		}
 		
 		// Check if enemy should be damaged by poison
@@ -92,6 +98,17 @@ package enemies
 				isPoisoned = false;
 			}
 		}
+		
+		public function slow(duration:Number, amount:Number):void {
+			isSlowed = true;
+			slowDuration = duration;
+			slowAmount = amount;
+		}
+		
+		public function stun(duration:Number):void {
+			isStunned = true;
+			stunDuration = duration;
+		}
 		public function nextPoint():void {
 			var radius:Number;
 			var theta:Number;
@@ -105,7 +122,8 @@ package enemies
 			}
 			else if (pointIndex == 0 && !toNest) {
 				//captureEgg();
-				dead();
+				this.removed();
+				world.remove(this);
 				return;
 			}
 			if (toNest) {
@@ -113,7 +131,7 @@ package enemies
 				
 				// If we're not moving towards the final point in the path (nest), add a bit of randomness
 				if (pointIndex != Global.paths[Global.curLevel].length) {
-					radius = Math.random() * (Global.GAME_HEIGHT / 5);
+					radius = Math.random() * (Global.GAME_HEIGHT / 2);
 					theta = Math.random() * 2 * Math.PI;
 					x = Math.sqrt(radius) * Math.cos(theta);
 					y = Math.sqrt(radius) * Math.sin(theta);
@@ -147,7 +165,8 @@ package enemies
 		override public function update():void
 		{
 			var collidedNest:Entity;
-			
+			elapsed += FP.elapsed;
+			FP.log(elapsed);
 			if (healthBar.name == null)
 			{
 				healthBar.name = "done";
@@ -182,20 +201,35 @@ package enemies
 				egg.updatePos(x - width, y);
 			}
 			
-			
+			// Poison Damage
 			if (isPoisoned)
 				takePoisonDamage();
 				
-			// This is just for testing, remove for actual path stuff.
+			// Move along the path
 			if (distanceToPoint(curPoint.x, curPoint.y) < 5)
 				nextPoint();
-				
-			moveTowards(curPoint.x, curPoint.y, speed*FP.elapsed);
+			
+			// Check for impairments
+			if (!isStunned) {
+				if (isSlowed) {
+					slowDuration -= FP.elapsed;
+					if (slowDuration <= 0) isSlowed = false;
+					moveTowards(curPoint.x, curPoint.y, (1 - slowAmount) * speed * FP.elapsed);
+				}
+				else {
+					moveTowards(curPoint.x, curPoint.y, speed * FP.elapsed);
+				}
+			}
+			else {
+				stunDuration -= FP.elapsed;
+				if (stunDuration <= 0) isStunned = false;
+			}
 		}
 		
 		public function dead():void
 		{
 			world.remove(this);
+			// Award hero
 			Global.hero.gainXP(5);
 			Global.playerGold += 25;
 			
