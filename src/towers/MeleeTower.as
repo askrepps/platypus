@@ -16,7 +16,7 @@ package towers
 		
 		public function MeleeTower(x:Number, y:Number) 
 		{
-			super(x, y, Global.MELEE_RANGE, Global.MELEE_DAMAGE, Global.MELEE_SPEED, Global.MELEE_CANATTACK, Global.MELEE_ARMORPIERCING, "", Global.MELEE_TOWERDESCIPT, new TowerUI(x, y, this), Global.MELEE_COST, Global.MELEE_UPGRADE_COST);
+			super(x, y, Global.MELEE_RANGE, Global.MELEE_DAMAGE, Global.MELEE_SPEED, Global.MELEE_CANATTACK, Global.MELEE_ARMORPIERCING, "", Global.MELEE_TOWERDESCIPT, this,  Global.MELEE_COST, Global.MELEE_UPGRADE_COST);
 			type = "melee";
 			towerImage = new Image(Assets.MELEE_TOWER);
 			super.graphic = towerImage;

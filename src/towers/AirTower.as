@@ -18,7 +18,7 @@ package towers
 		
 		public function AirTower(x:Number, y:Number)
 		{
-			super(x, y, Global.AIR_RANGE, Global.AIR_DAMAGE, Global.AIR_SPEED, Global.AIR_CANATTACK, Global.AIR_ARMORPIERCING, "", Global.AIR_TOWERDESCIPT, new TowerUI(x, y, this), Global.AIR_COST, Global.AIR_UPGRADE_COST);
+			super(x, y, Global.AIR_RANGE, Global.AIR_DAMAGE, Global.AIR_SPEED, Global.AIR_CANATTACK, Global.AIR_ARMORPIERCING, "", Global.AIR_TOWERDESCIPT, this, Global.AIR_COST, Global.AIR_UPGRADE_COST);
 			type = "air";
 			towerImage = new Image(Assets.AIR_TOWER);
 			super.graphic = towerImage;
@@ -51,11 +51,15 @@ package towers
 		{
 			
 			var closestEnemy:Entity;
+			var secondClosest:Entity;
 			
 			// Attacks the same enemy until it is dead or out of range.
 			if (closestEnemy == null || (Math.sqrt((this.x - closestEnemy.x) * (this.x - closestEnemy.x) + (this.y - closestEnemy.y) * (this.y - closestEnemy.y)) > this.range))
 				closestEnemy = new Entity(FP.screen.width, FP.screen.height);
 			
+			if (secondClosest == null || (Math.sqrt((this.x - secondClosest.x) * (this.x - secondClosest.x) + (this.y - secondClosest.y) * (this.y - secondClosest.y)) > this.range))
+				secondClosest = new Entity(FP.screen.width, FP.screen.height);
+				
 			// Find closest enemy, check type, attack (keep attack until dead or out of range).
 			
 			// Finds the closest enemy of any type the tower can attack.
@@ -72,6 +76,7 @@ package towers
 					{
 						if (distToClosest > distToEnemy)
 						{
+							secondClosest = closestEnemy;
 							closestEnemy = enemy;
 						}
 					}
@@ -80,7 +85,11 @@ package towers
 			
 			// Do nothing if there aren't any enemies.
 			if (closestEnemy.type != null)
+			{
 				world.add(new Projectile(centerX, centerY, (Enemy)(closestEnemy), damage, armorPiercing, upgradeCur));
+				if ((this.upgradeCur == 2) && (secondClosest != closestEnemy))
+					world.add(new Projectile(centerX, centerY, (Enemy)(secondClosest), damage, armorPiercing, upgradeCur));
+			}
 		}
 	}
 

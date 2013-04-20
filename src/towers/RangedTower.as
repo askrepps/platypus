@@ -17,7 +17,7 @@ package towers
 
 		public function RangedTower(x:Number, y:Number)
 		{
-			super(x, y, Global.RANGED_RANGE, Global.RANGED_DAMAGE, Global.RANGED_SPEED, Global.RANGED_CANATTACK, Global.RANGED_ARMORPIERCING, "", Global.RANGED_TOWERDESCIPT, new TowerUI(x, y, this), Global.RANGED_COST, Global.RANGED_UPGRADE_COST);
+			super(x, y, Global.RANGED_RANGE, Global.RANGED_DAMAGE, Global.RANGED_SPEED, Global.RANGED_CANATTACK, Global.RANGED_ARMORPIERCING, "", Global.RANGED_TOWERDESCIPT, this, Global.RANGED_COST, Global.RANGED_UPGRADE_COST);
 			type = "ranged";
 			towerImage = new Image(Assets.RANGED_TOWER);
 			super.graphic = towerImage;

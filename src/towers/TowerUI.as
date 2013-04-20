@@ -4,6 +4,7 @@ package towers
 	import net.flashpunk.Entity;
 	import net.flashpunk.Graphic;
 	import net.flashpunk.graphics.Image;
+	import net.flashpunk.Tween;
 	import net.flashpunk.utils.Input;
 	import net.flashpunk.utils.Draw;
 	import net.flashpunk.FP;
@@ -30,8 +31,8 @@ package towers
 			this.tower = tower;
 			
 			
-			upgradeButton = new BuildButton(this.x + width / 3, this.y, "Upgrade", upgrade); 
-			deleteButton = new BuildButton(this.x + width / 3, this.y + (2 * (width / 3)), "Delete", deleteTower); 
+			upgradeButton = new BuildButton(this.x + width / 3, this.y, "Upgrade" + tower.upgradeCost.toString(), upgrade); 
+			deleteButton = new BuildButton(this.x + width / 3, this.y + (2 * (width / 3)), "Sell", deleteTower); 
 		}
 		
 		public function upgrade():void
@@ -44,6 +45,13 @@ package towers
 					this.tower.upgrade();
 				}
 			}
+			
+			if (tower.upgradeCur == 2)
+			{	
+				this.upgradeButton.callback = null;
+				upgradeButton.addGraphic(Image.createRect(upgradeButton.width, upgradeButton.height, 0x000000, 0.75));
+			}
+			
 		}
 		
 		public function deleteTower():void
@@ -77,6 +85,11 @@ package towers
 				world.add(deleteButton);
 			}
 			
+			if(Global.playerGold < tower.upgradeCost)
+			{
+				upgradeButton.addGraphic(Image.createRect(upgradeButton.width, upgradeButton.height, 0x000000, 0.75));
+			}
+			
 			// Remove the UI if the player clicks away from it.
 			if (collidePoint(x, y, world.mouseX, world.mouseY))
 			{
@@ -87,12 +100,25 @@ package towers
 					world.remove(this);
 		}
 		
+		/*
+		public function drawRange():void
+		{
+			if (collideWith(upgradeButton, world.mouseX, world.mouseY))
+			{
+				if(tower.upgradeCur == 0)
+					Draw.circlePlus(centerX, centerY, ,	0xbbd0fb , .08, true); 	
+				else (tower.upgradeCur == 1)
+					Draw.circlePlus(centerX, centerY, tower.,	0xbbd0fb , .08, true); 	
+			}
+			else
+				Draw.circlePlus(centerX, centerY, tower.range,	0xbbd0fb , .08, true); 	
+		}
+		*/
 		override public function render():void
 		{
 			super.render();
-			
-			// Draw a circle representing the range of the tower.
 			Draw.circlePlus(centerX, centerY, tower.range,	0xbbd0fb , .08, true); 	
+			// Draw a circle representing the range of the tower.
 		}
 	}
 

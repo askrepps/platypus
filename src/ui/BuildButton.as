@@ -1,5 +1,7 @@
 package ui 
 {
+	import adobe.utils.CustomActions;
+	import flash.display.Graphics;
 	import net.flashpunk.Entity;
 	import net.flashpunk.FP;
 	import net.flashpunk.Graphic;
@@ -7,6 +9,7 @@ package ui
 	import net.flashpunk.graphics.Image;
 	import net.flashpunk.graphics.Text;
 	import net.flashpunk.utils.Input;
+	import net.flashpunk.utils.Draw;
 	
 	public class BuildButton extends Entity
 	{
@@ -22,8 +25,9 @@ package ui
 		public function BuildButton(x:Number = 0, y:Number = 0, text:String = "", callback:Function = null, params:Object = null)
 		{
 			var normalImage:Image = new Image(Assets.BUILD_BUTTON);
-			label = new Text(text, 1, 20, {size: 8, color: 0xFFFFFF, width: normalImage.width, wordWrap: true, align: "center"});
-			//label.y = (normalImage.height - label.textHeight) * 0.5;
+			label = new Text(text, 1, normalImage.height/2, {size: 8, color: 0xFFFFFF, width: normalImage.width, wordWrap: true, align: "center"});
+			label.y = (normalImage.height - label.textHeight) * 0.5;
+			
 			
 			super(x, y);
 			this.callback = callback;
@@ -38,8 +42,7 @@ package ui
 		
 		//UPDATE FUNCTION WHICH CHANGES THE VISUAL VALUE OF BUTTONS
 		override public function update():void
-		{
-			//CHANGES CLICKED BOOLEAN, AND CHANGES GRAPHIC TO THE DOWN PRESS
+		{ 	
 			if (collidePoint(x, y, world.mouseX, world.mouseY))
 			{
 				if (Input.mousePressed)
@@ -60,6 +63,41 @@ package ui
 				if (params != null) callback(params);
 				else callback();
 			}
+		}
+		
+		public function drawRange():void
+		{
+			if (collidePoint(x, y, world.mouseX, world.mouseY))
+			{
+				if(params == "Ranged")
+				{
+					Draw.circlePlus(centerX, centerY + this.height, Global.RANGED_RANGE,	0xbbd0fb , .08, true); 	
+				}
+				else if(params == "Melee")
+				{
+					Draw.circlePlus(centerX - this.width, centerY, Global.MELEE_RANGE,	0xbbd0fb , .08, true); 	
+				}
+				else if(params == "Air")
+				{
+					Draw.circlePlus(centerX, centerY - this.height, Global.AIR_RANGE,	0xbbd0fb , .08, true); 	
+				}
+				else if(params == "AoE")
+				{
+					Draw.circlePlus(centerX + this.width, centerY, Global.AOE_RANGE,	0xbbd0fb , .08, true); 	
+				}
+				else
+				{
+					
+				}	
+			}
+		}
+		
+		override public function render():void
+		{
+			super.render();
+			
+			drawRange();
+
 		}
 	}
 

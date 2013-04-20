@@ -31,10 +31,10 @@ package towers
 			type = "buildUI";
 			this.towerPlace = towerPlace;
 			this.collidable = false;
-			buttonR = new BuildButton(this.x + this.width/3.0, this.y, "Ranged", build, "Ranged"); 
-			buttonM = new BuildButton(this.x + (2*(this.width/3.0)), this.y + height/3.0, "Melee", build, "Melee"); 
-			buttonA = new BuildButton(this.x + this.width/3.0, this.y + (2*(height/3.0)), "Air", build, "Air"); 
-			buttonAoE = new BuildButton(this.x, this.y + this.width/3.0, "AoE", build, "AoE"); 
+			buttonR = new BuildButton(this.x + this.width/3.0, this.y, "Ranged\n" + Global.RANGED_COST.toString(), build, "Ranged"); 
+			buttonM = new BuildButton(this.x + (2*(this.width/3.0)), this.y + height/3.0, "Melee\n" + Global.MELEE_COST.toString(), build, "Melee"); 
+			buttonA = new BuildButton(this.x + this.width/3.0, this.y + (2*(height/3.0)), "Air\n" + Global.AIR_COST.toString(), build, "Air"); 
+			buttonAoE = new BuildButton(this.x, this.y + this.width/3.0, "AoE\n" + Global.AOE_COST.toString(), build, "AoE"); 
 		}
 		
 		public function build(towerBuild:String):void

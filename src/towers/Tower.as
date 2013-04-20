@@ -24,7 +24,7 @@ package towers
 		private var towerUI:TowerUI;
 		private var timer:Number;
 		
-		public function Tower(x:Number, y:Number, range:Number, damage:Number, speed:Number, canAttack:Array, armorPiercing:Number, special:String, towerDescript:String, towerUI:TowerUI, cost:Number, upgradeCost:Number)
+		public function Tower(x:Number, y:Number, range:Number, damage:Number, speed:Number, canAttack:Array, armorPiercing:Number, special:String, towerDescript:String, tower:Tower, cost:Number, upgradeCost:Number)
 		{
 			this.x = x;
 			this.y = y;
@@ -36,9 +36,9 @@ package towers
 			this.armorPiercing = armorPiercing;
 			this.special = special;
 			this.towerDescipt = towerDescipt;
-			this.towerUI = towerUI;
 			this.cost = cost;
 			this.upgradeCost = upgradeCost;
+			this.towerUI = new TowerUI(x, y, tower);
 			timer = 0;
 		}
 		

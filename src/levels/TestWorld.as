@@ -1,6 +1,7 @@
 package levels 
 {
 	import enemies.FastEnemy;
+	import enemies.FlyingEnemy;
 	import enemies.NormalEnemy;
 	
 	import flash.geom.Point;
@@ -40,7 +41,6 @@ package levels
 			add(new TowerPlace(300, 300));
 			add(new HoverText(40, 40, "TEST"));
 			//add(new FastEnemy(0,8));
-			
 			add(new Nest(700, 200));
 			
 			Global.hero = new Warrior(Global.GAME_WIDTH / 2, Global.GAME_HEIGHT / 2);
@@ -48,7 +48,7 @@ package levels
 			
 			add(new HUD());
 			
-			Global.playerGold = 500;
+			Global.playerGold = 100000;
 			paused = false;
 		}
 	
