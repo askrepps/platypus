@@ -183,6 +183,7 @@ package hero
 				
 				collidedNest = collideTypes("nest", x, y);
 				if (collidedNest != null) {
+					currentHealth += FP.elapsed * (maxHealth / 10);
 					if (egg != null) {
 						(collidedNest as Nest).returnEgg();
 						world.remove(egg);
