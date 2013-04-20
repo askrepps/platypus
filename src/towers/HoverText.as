@@ -23,7 +23,8 @@ package towers
 			this.y = y;
 			
 			var normalImage:Image = new Image(Assets.HOVER_BACK);
-			label = new Text(text, 1, 20, {size: 8, color: 0xFFFFFF, width: normalImage.width, wordWrap: true, align: "center"});
+			label = new Text(text, 1, 20, {size: 12, color: 0xFFFFFF, width: normalImage.width, wordWrap: true, align: "center"});
+			label.y = (normalImage.height - label.textHeight) * 0.5;
 			hoverBack = new Graphiclist(normalImage, label);
 			
 			graphic = hoverBack;

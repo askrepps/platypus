@@ -8,6 +8,7 @@ package hero
 	import net.flashpunk.graphics.Spritemap;
 	import net.flashpunk.utils.Draw;
 	import net.flashpunk.utils.Input;
+	import ui.CooldownDisplay;
 	
 	public class Warrior extends Hero
 	{
@@ -50,6 +51,11 @@ package hero
 			attack = attackArray[0];
 			defense = defenseArray[0];
 			speed = speedArray[0];
+			
+			
+			super.cooldown1 = new CooldownDisplay(100, FP.screen.height - 120, ability1CD / Global.WARRIOR_ABIL_1_CD, ability1);
+			super.cooldown2 = new CooldownDisplay(150, FP.screen.height - 120, ability2CD / Global.WARRIOR_ABIL_2_CD, ability2);
+			super.cooldown3 = new CooldownDisplay(200, FP.screen.height - 120, ability3CD/Global.WARRIOR_ABIL_3_CD, ability3);
 			
 			heroImage.play("walking");
 		}
@@ -162,84 +168,93 @@ package hero
 		
 		public override function ability1():void
 		{
-			super.ability1();
-			ability1CD = Global.WARRIOR_ABIL_1_CD;
-			
-			var entities:Array = new Array();
-			var collision:Boolean;
-			world.getAll(entities);
-			
-			heroImage.setAnimFrame("attack", 0);
-			heroImage.play("attack");
-			
-			
-			for each(var enemy:Entity in entities)
+			if (ability1CD <= 0)
 			{
-				if (enemy is Enemy)
+				super.ability1();
+				ability1CD = Global.WARRIOR_ABIL_1_CD;
+				
+				var entities:Array = new Array();
+				var collision:Boolean;
+				world.getAll(entities);
+				
+				heroImage.setAnimFrame("attack", 0);
+				heroImage.play("attack");
+				
+				
+				for each(var enemy:Entity in entities)
 				{
-					switch (facing)
+					if (enemy is Enemy)
 					{
-						case UP:
-							collision = enemy.collideRect(enemy.x, enemy.y, x, y - height/4, width, height/2);
-							break;
-						case LEFT:
-							collision = enemy.collideRect(enemy.x, enemy.y, x - width/4, y, width/2, height);
-							break;
-						case RIGHT:
-							collision = enemy.collideRect(enemy.x, enemy.y, x + width - width/4, y, width/2, height);
-							break;
-						case DOWN:
-							collision = enemy.collideRect(enemy.x, enemy.y, x, y + height - height/4, width, height/2);
-							break;
-						case LEFT_UP:
-							collision = enemy.collideRect(enemy.x, enemy.y, x - width/4, y, width/2, height*0.6)         // left-up
-							         || enemy.collideRect(enemy.x, enemy.y, x, y - height/4, width*0.6, height/2)                // left
-									 || enemy.collideRect(enemy.x, enemy.y, x - width/4, y - height/4, width/4, height/4);                // up
-							break;
-						case LEFT_DOWN:
-							collision = enemy.collideRect(enemy.x, enemy.y, x - width/4, y + height*0.4, width/2, height*0.6)        // left-down
-							         || enemy.collideRect(enemy.x, enemy.y, x, y + height - height/4, width*0.6, height/2)                // left
-									 || enemy.collideRect(enemy.x, enemy.y, x - width/4, y + height, width/4, height/4);               // down
-							break;
-						case RIGHT_UP:
-							collision = enemy.collideRect(enemy.x, enemy.y, x + width - width/4, y, width/2, height*0.6)         // right-up
-							         || enemy.collideRect(enemy.x, enemy.y, x + width*0.4, y - height/4, width*0.6, height/2)                // right
-									 || enemy.collideRect(enemy.x, enemy.y, x + width, y - height/4, width/4, height/4);                // up
-							break;
-						case RIGHT_DOWN:
-							collision = enemy.collideRect(enemy.x, enemy.y, x + width - width/4, y + height*0.4, width/2, height*0.6)        // riht-down
-							         || enemy.collideRect(enemy.x, enemy.y, x + width*0.4, y + height - height/4, width*0.6, height/2)                // right
-									 || enemy.collideRect(enemy.x, enemy.y, x + width, y + height, width/4, height/4);               // down
-							break;
-						default:
-							collision = false;
+						switch (facing)
+						{
+							case UP:
+								collision = enemy.collideRect(enemy.x, enemy.y, x, y - height/4, width, height/2);
+								break;
+							case LEFT:
+								collision = enemy.collideRect(enemy.x, enemy.y, x - width/4, y, width/2, height);
+								break;
+							case RIGHT:
+								collision = enemy.collideRect(enemy.x, enemy.y, x + width - width/4, y, width/2, height);
+								break;
+							case DOWN:
+								collision = enemy.collideRect(enemy.x, enemy.y, x, y + height - height/4, width, height/2);
+								break;
+							case LEFT_UP:
+								collision = enemy.collideRect(enemy.x, enemy.y, x - width/4, y, width/2, height*0.6)         // left-up
+										 || enemy.collideRect(enemy.x, enemy.y, x, y - height/4, width*0.6, height/2)                // left
+										 || enemy.collideRect(enemy.x, enemy.y, x - width/4, y - height/4, width/4, height/4);                // up
+								break;
+							case LEFT_DOWN:
+								collision = enemy.collideRect(enemy.x, enemy.y, x - width/4, y + height*0.4, width/2, height*0.6)        // left-down
+										 || enemy.collideRect(enemy.x, enemy.y, x, y + height - height/4, width*0.6, height/2)                // left
+										 || enemy.collideRect(enemy.x, enemy.y, x - width/4, y + height, width/4, height/4);               // down
+								break;
+							case RIGHT_UP:
+								collision = enemy.collideRect(enemy.x, enemy.y, x + width - width/4, y, width/2, height*0.6)         // right-up
+										 || enemy.collideRect(enemy.x, enemy.y, x + width*0.4, y - height/4, width*0.6, height/2)                // right
+										 || enemy.collideRect(enemy.x, enemy.y, x + width, y - height/4, width/4, height/4);                // up
+								break;
+							case RIGHT_DOWN:
+								collision = enemy.collideRect(enemy.x, enemy.y, x + width - width/4, y + height*0.4, width/2, height*0.6)        // riht-down
+										 || enemy.collideRect(enemy.x, enemy.y, x + width*0.4, y + height - height/4, width*0.6, height/2)                // right
+										 || enemy.collideRect(enemy.x, enemy.y, x + width, y + height, width/4, height/4);               // down
+								break;
+							default:
+								collision = false;
+						}
+						
+						if (collision)
+							(enemy as Enemy).takeDamage(attack, 0, "wheee!");
 					}
-					
-					if (collision)
-						(enemy as Enemy).takeDamage(attack, 0, "wheee!");
 				}
 			}
 		}
 		
 		public override function ability2():void
 		{
-			super.ability2();
-			
-			isLeapTargeting = true;
+			if (ability2CD <= 0)
+			{
+				super.ability2();
+				
+				isLeapTargeting = true;
+			}
 		}
 		
 		public override function ability3():void
 		{
-			super.ability3();
-			ability3CD = Global.WARRIOR_ABIL_3_CD;
-			
-			collidedEnemies = new Array();
-			isDashing = true;
-			dashTime = Global.WARRIOR_DASH_TIME;
-			canMove = false;
-			collisionDamagesEnemies = true;
-			
-			heroImage.play("dashing");
+			if (ability3CD <= 0)
+			{
+				super.ability3();
+				ability3CD = Global.WARRIOR_ABIL_3_CD;
+				
+				collidedEnemies = new Array();
+				isDashing = true;
+				dashTime = Global.WARRIOR_DASH_TIME;
+				canMove = false;
+				collisionDamagesEnemies = true;
+				
+				heroImage.play("dashing");
+			}
 		}
 		
 		public override function render():void

@@ -10,6 +10,7 @@ package ui
 	import net.flashpunk.graphics.Text;
 	import net.flashpunk.utils.Input;
 	import net.flashpunk.utils.Draw;
+	import towers.HoverText;
 	
 	public class BuildButton extends Entity
 	{
@@ -71,7 +72,7 @@ package ui
 			{
 				if(params == "Ranged")
 				{
-					Draw.circlePlus(centerX, centerY + this.height, Global.RANGED_RANGE,	0xbbd0fb , .08, true); 	
+					Draw.circlePlus(centerX, centerY + this.height, Global.RANGED_RANGE,	0xbbd0fb , .08, true);
 				}
 				else if(params == "Melee")
 				{
@@ -95,9 +96,7 @@ package ui
 		override public function render():void
 		{
 			super.render();
-			
 			drawRange();
-
 		}
 	}
 

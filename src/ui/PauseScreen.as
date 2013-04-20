@@ -19,7 +19,8 @@ package ui
 			curWorld.active = false;
 			
 			var text:String = "Resume";
-			add(new Button(FP.screen.width / 2, FP.screen.height / 2, text, resume));
+			resumeButton = new Button(FP.screen.width / 2, FP.screen.height / 2, text, resume);
+			add(resumeButton);
 		}
 
 		public function resume():void
@@ -30,6 +31,7 @@ package ui
 		
 		override public function update():void
 		{
+			super.update();
 			if(Input.pressed(Key.P))
 			{
 				resume();

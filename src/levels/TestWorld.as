@@ -39,7 +39,6 @@ package levels
 			add(new NormalEnemy(startPos.x,startPos.y));
 			//add(new NormalEnemy(100, 275));
 			add(new TowerPlace(300, 300));
-			add(new HoverText(40, 40, "TEST"));
 			//add(new FastEnemy(0,8));
 			add(new Nest(700, 200));
 			

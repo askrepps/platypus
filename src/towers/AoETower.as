@@ -62,7 +62,10 @@ package towers
 					// Ignore the enemy if it is out of range.
 					if(distToEnemy <= this.range)
 					{
-						(Enemy)(enemy).takeDamage(this.damage, this.armorPiercing, this.special);
+						if (upgradeCur == 2)
+							(Enemy)(enemy).takePoisonDamage();
+						else
+							(Enemy)(enemy).takeDamage(this.damage, this.armorPiercing, this.special);
 					}
 				}
 			}

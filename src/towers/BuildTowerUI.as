@@ -15,11 +15,15 @@ package towers
 	{
 		private var uiImage:Image;
 		private var tower:Tower;
-		private var buttonR:BuildButton;
-		private var buttonM:BuildButton;
-		private var buttonA:BuildButton;
-		private var buttonAoE:BuildButton;
+		private var buttonR:BuildButton;		// Ranged tower build button
+		private var buttonM:BuildButton;		// Melee tower build button
+		private var buttonA:BuildButton;		// Air tower build button
+		private var buttonAoE:BuildButton;		// AoE tower build button
 		private var towerPlace:TowerPlace;
+		private var rHoverText:HoverText;		// Ranged button hover text
+		private var aHoverText:HoverText;		// Air button hover text
+		private var aoeHoverText:HoverText;		// AoE button hover text
+		private var mHoverText:HoverText;		// Melee button hover text
 		
 		public function BuildTowerUI(x:int, y:int, towerPlace:TowerPlace) 
 		{	
@@ -74,6 +78,18 @@ package towers
 		{
 			buttonR.name = null;
 			FP.world.removeList(buttonR, buttonM, buttonA, buttonAoE);
+			
+			for each(var hText:HoverText in new Array(mHoverText, aHoverText, rHoverText, aoeHoverText))
+			{
+				if (hText != null)
+				{
+					if (hText.name != null)
+					{	
+						hText.name = null;
+						world.remove(hText);
+					}
+				}
+			}
 		}
 		
 		override public function update():void
@@ -84,9 +100,85 @@ package towers
 				world.addList(buttonR, buttonM, buttonA, buttonAoE);
 			}
 			
+			for each(var hText:HoverText in new Array(mHoverText, aHoverText, rHoverText, aoeHoverText))
+			{
+				if (hText != null)
+				{
+					if (hText.name != null)
+					{	
+						hText.name = null;
+						world.remove(hText);
+					}
+				}
+			}
+			
+			if (collideWith(buttonR, world.mouseX, world.mouseY))
+			{
+				if(rHoverText == null)
+				{
+					rHoverText = new HoverText(buttonR.x + buttonR.width, buttonR.y, "Ranged Tower\n\n Damage: " + Global.RANGED_DAMAGE.toString() + "\n" + Global.RANGED_TOWERDESCIPT);
+					rHoverText.y -= rHoverText.height;
+					rHoverText.name = "done";
+					world.add(rHoverText);
+				}
+				else if(rHoverText.name == null)
+				{
+					rHoverText.name = "done";
+					world.add(rHoverText);
+				}
+					
+			}
+			else if (collideWith(buttonAoE, world.mouseX, world.mouseY))
+			{
+				if(aoeHoverText == null)
+				{
+					aoeHoverText = new HoverText(buttonAoE.x + buttonAoE.width, buttonAoE.y, "AoE Tower\n\n Damage: " + Global.AOE_DAMAGE.toString() + "\n" + Global.AOE_TOWERDESCIPT);
+					aoeHoverText.y -= aoeHoverText.height;
+					aoeHoverText.name = "done";
+					world.add(aoeHoverText);
+				}
+				else if(aoeHoverText.name == null)
+				{
+					aoeHoverText.name = "done";
+					world.add(aoeHoverText);
+				}
+					
+			}
+			else if (collideWith(buttonM, world.mouseX, world.mouseY))
+			{
+				if(mHoverText == null)
+				{
+					mHoverText = new HoverText(buttonM.x + buttonM.width, buttonM.y, "Melee Tower\n\n Damage: " + Global.MELEE_DAMAGE.toString() + "\n" + Global.MELEE_TOWERDESCIPT);
+					mHoverText.y -= mHoverText.height;
+					mHoverText.name = "done";
+					world.add(mHoverText);
+				}
+				else if(mHoverText.name == null)
+				{
+					mHoverText.name = "done";
+					world.add(mHoverText);
+				}		
+			}
+			else if (collideWith(buttonA, world.mouseX, world.mouseY))
+			{
+				if(aHoverText == null)
+				{
+					aHoverText = new HoverText(buttonA.x + buttonA.width, buttonA.y, "Air Tower\n\n Damage: " + Global.AIR_DAMAGE.toString() + "\n" + Global.AIR_TOWERDESCIPT);
+					aHoverText.y -= aHoverText.height;
+					aHoverText.name = "done";
+					world.add(aHoverText);
+				}
+				else if(aHoverText.name == null)
+				{
+					aHoverText.name = "done";
+					world.add(aHoverText);
+				}
+					
+			}
+			
 			if (collidePoint(x, y, world.mouseX, world.mouseY))
 			{
-				// Do stuff
+				
 			}
 			else
 				if(Input.mousePressed)

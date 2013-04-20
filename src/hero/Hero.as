@@ -1,6 +1,7 @@
 package hero
 {
 	import enemies.Enemy;
+	import ui.XPBar;
 	
 	import levels.Egg;
 	
@@ -60,9 +61,10 @@ package hero
 		public var egg:Egg;
 		
 		private var healthBar:HealthBar;			// The health bar (duh). 
-		private var cooldown1:CooldownDisplay;
-		private var cooldown2:CooldownDisplay;
-		private var cooldown3:CooldownDisplay;
+		private var xpBar:XPBar;					// The experience bar (also duh).
+		protected var cooldown1:CooldownDisplay;
+		protected var cooldown2:CooldownDisplay;
+		protected var cooldown3:CooldownDisplay;
 		
 		public function Hero(startX:Number, startY:Number) 
 		{
@@ -87,10 +89,9 @@ package hero
 			
 			facing = UP;
 			
-			healthBar = new HealthBar(centerX, y, 30, 8, 0);
-			cooldown1 = new CooldownDisplay(100, FP.screen.height - 120, ability1CD / Global.WARRIOR_ABIL_1_CD);
-			cooldown2 = new CooldownDisplay(150, FP.screen.height - 120, ability2CD / Global.WARRIOR_ABIL_2_CD);
-			cooldown3 = new CooldownDisplay(200, FP.screen.height - 120, ability3CD/Global.WARRIOR_ABIL_3_CD);
+			healthBar = new HealthBar(centerX, y, 30, 4, 0);
+			xpBar = new XPBar(centerX, y-healthBar.height, 30, 4, 0);
+			
 		}
 		
 		override public function update():void
@@ -184,16 +185,15 @@ package hero
 				if (y < 0) { y = 0; }
 				if (y > Global.GAME_HEIGHT - height) { y = Global.GAME_HEIGHT - height; }
 			}
-			if (!isRecovering)
-			{
-				// check attack input
-				if (unlockedAbilities >= 1 && ability1CD <=0 && Input.pressed(Key.DIGIT_1))
-					ability1();
-				if (unlockedAbilities >= 2 && ability2CD <=0 && Input.pressed(Key.DIGIT_2))
-					ability2();
-				if (unlockedAbilities >= 3 && ability3CD <=0 && Input.pressed(Key.DIGIT_3))
-					ability3();
-			}
+
+			// check attack input
+			if (unlockedAbilities >= 1 && ability1CD <=0 && Input.pressed(Key.DIGIT_1))
+				ability1();
+			if (unlockedAbilities >= 2 && ability2CD <=0 && Input.pressed(Key.DIGIT_2))
+				ability2();
+			if (unlockedAbilities >= 3 && ability3CD <=0 && Input.pressed(Key.DIGIT_3))
+				ability3();
+			
 			
 			ability1CD -= FP.elapsed;
 			if (ability1CD < 0)
@@ -220,7 +220,7 @@ package hero
 			if (recoverTime < 0)
 			{
 				isRecovering = false;
-				visible = true;
+				graphic = heroImage;
 				recoverTime = 0;
 			}
 			else
@@ -229,7 +229,10 @@ package hero
 				if (blinkCounter < 0)
 				{
 					blinkCounter = Global.HERO_BLINK_RATE;
-					visible = !visible;
+					if (graphic == null)
+						graphic = heroImage;
+					else
+						graphic = null;
 				}
 			}
 			
@@ -300,6 +303,19 @@ package hero
 			{
 				// Updates location of healtbar so it moves with the entity.
 				healthBar.updateVal(centerX, this.y, currentHealth/maxHealth);
+			}
+			
+			
+			// Prevents multiple xp bars for being made
+			if (xpBar.name == null)
+			{
+				xpBar.name = "done";
+				world.add(xpBar);
+			}
+			else
+			{
+				// Updates location of healtbar so it moves with the entity.
+				xpBar.updateVal(centerX, this.y + 4, xp/Global.XP_TO_LEVEL[level - 1]);
 			}
 			
 			if (cooldown1.name == null)

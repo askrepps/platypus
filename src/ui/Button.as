@@ -37,6 +37,7 @@ package ui
 			//Set hitbox to our graphic, so has same width and height of Stamp
 			graphic = normal;
 			setHitboxTo(normalImage);
+			centerOrigin();
 		}
 		
 		override public function update():void
@@ -84,11 +85,15 @@ package ui
 					break;
 			}
 		}
-		//Executed when button is clicked, changes BG color
+		
+		// Buttons is clicked, run the callback fucntion is there is one.
         protected function click():void
         {
-            //FP.screen.color = Math.random() * 0xFFFFFF;
-            trace("click!");
+            if (callback != null)
+			{
+				if (params != null) callback(params);
+				else callback();
+			}
         }
 	}
 
