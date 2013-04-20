@@ -31,6 +31,9 @@ package
 		
 		// Enemies
 		[Embed(source = "assets/normalEnemy.png")] public static const NORMAL_ENEMY:Class;
+		[Embed(source = "assets/fastEnemy.png")] public static const FAST_ENEMY:Class;
+		[Embed(source = "assets/flyingEnemy.png")] public static const FLYING_ENEMY:Class;
+		[Embed(source = "assets/armoredEnemy.png")] public static const ARMORED_ENEMY:Class;
 		
 		// Heroes
 		[Embed(source = "assets/warriorCleave.png")] public static const WARRIOR:Class;

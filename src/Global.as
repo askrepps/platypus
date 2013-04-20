@@ -37,6 +37,18 @@ package
 		paths[1][3] = new Point(.2, .8);
 		paths[1][4] = new Point(.8, .8);
 		
+		// Waves of enemies
+		public static var waveFrequency = 1;
+		public static var waveCounter = 0;
+		public static var wavePosition = 0;
+		public static const waves:Vector.<Vector.<Number>> = new Vector.<Vector.<Number>>(5);
+		waves[0] = new Vector.<Number>(5);
+		waves[0][0] = 0;
+		waves[0][1] = 0;
+		waves[0][2] = 0;
+		waves[0][3] = 0;
+		waves[0][4] = 3;
+		
 		public static function genPoint(a:Point):Point
 		{
 			return new Point(a.x * GAME_WIDTH, a.y * GAME_HEIGHT);
@@ -212,6 +224,20 @@ package
 		
 		// Enemy traits
 		public static const NORMAL_HEALTH = 50;
+		public static const NORMAL_SPEED = 100;
+		public static const NORMAL_ARMOR = 1;
+		
+		public static const FAST_HEALTH = 50;
+		public static const FAST_SPEED = 160;
+		public static const FAST_ARMOR = 0;
+		
+		public static const FLYING_HEALTH = 50;
+		public static const FLYING_SPEED = 100;
+		public static const FLYING_ARMOR = 1;
+		
+		public static const ARMORED_HEALTH = 100;
+		public static const ARMORED_SPEED = 75;
+		public static const ARMORED_ARMOR = 3;
 		
 		
 		

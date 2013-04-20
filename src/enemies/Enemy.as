@@ -127,11 +127,12 @@ package enemies
 				return;
 			}
 			if (toNest) {
+				// Get actual point on path from which we draw a random point close by
 				curPoint = Global.genPoint(Global.paths[Global.curLevel][++pointIndex]);
 				
 				// If we're not moving towards the final point in the path (nest), add a bit of randomness
 				if (pointIndex != Global.paths[Global.curLevel].length) {
-					radius = Math.random() * (Global.GAME_HEIGHT / 2);
+					radius = Math.random() * (Global.GAME_HEIGHT);
 					theta = Math.random() * 2 * Math.PI;
 					x = Math.sqrt(radius) * Math.cos(theta);
 					y = Math.sqrt(radius) * Math.sin(theta);
@@ -165,8 +166,8 @@ package enemies
 		override public function update():void
 		{
 			var collidedNest:Entity;
-			elapsed += FP.elapsed;
-			FP.log(elapsed);
+			
+			// Draw health bar
 			if (healthBar.name == null)
 			{
 				healthBar.name = "done";
@@ -186,14 +187,18 @@ package enemies
 				healthBar.visible = true;
 			}
 			
-			
+			// Handle the stealing of an egg, "carry" the egg along with the enemy
 			if (egg == null)
 			{
 				collidedNest = collideTypes("nest", x, y);
+				
 				if (collidedNest != null)
 				{
 					egg = (collidedNest as Nest).stealEgg();
-					world.add(egg);
+					
+					// Make sure that there is another egg left in the nest before trying to add it
+					if (egg != null)
+						world.add(egg);
 				}
 			}
 			else
@@ -201,12 +206,12 @@ package enemies
 				egg.updatePos(x - width, y);
 			}
 			
-			// Poison Damage
+			// Handle damage from poison
 			if (isPoisoned)
 				takePoisonDamage();
 				
-			// Move along the path
-			if (distanceToPoint(curPoint.x, curPoint.y) < 5)
+			// Iterate through points on the path
+			if (distanceToPoint(curPoint.x, curPoint.y) < 2)
 				nextPoint();
 			
 			// Check for impairments
@@ -214,6 +219,7 @@ package enemies
 				if (isSlowed) {
 					slowDuration -= FP.elapsed;
 					if (slowDuration <= 0) isSlowed = false;
+					// Decrease speed based on the slow amount
 					moveTowards(curPoint.x, curPoint.y, (1 - slowAmount) * speed * FP.elapsed);
 				}
 				else {
@@ -221,6 +227,7 @@ package enemies
 				}
 			}
 			else {
+				// Don't move if we are stunned
 				stunDuration -= FP.elapsed;
 				if (stunDuration <= 0) isStunned = false;
 			}
@@ -228,13 +235,15 @@ package enemies
 		
 		public function dead():void
 		{
-			world.remove(this);
-			// Award hero
+			// Award hero gold and xp
 			Global.hero.gainXP(5);
 			Global.playerGold += 25;
 			
+			// Drop egg
 			if (egg != null)
 				egg.isCarried = false;
+				
+			world.remove(this);
 		}
 		
 		
