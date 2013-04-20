@@ -49,6 +49,13 @@ package
 		waves[0][3] = 0;
 		waves[0][4] = 3;
 		
+		waves[1] = new Vector.<Number>(5);
+		waves[1][0] = 0;
+		waves[1][1] = 0;
+		waves[1][2] = 0;
+		waves[1][3] = 0;
+		waves[1][4] = 3;
+		
 		public static function genPoint(a:Point):Point
 		{
 			return new Point(a.x * GAME_WIDTH, a.y * GAME_HEIGHT);

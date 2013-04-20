@@ -38,7 +38,7 @@ package levels
 			waveCounter = 0;
 			
 			// Grab path info
-			Global.curLevel = 0;
+			Global.curLevel = 1;
 			startPos = Global.genPoint(Global.paths[Global.curLevel][0]);
 			
 			add(new TowerPlace(500, 300));
