@@ -1,9 +1,12 @@
-package ui 
+package levels
 {
 	import net.flashpunk.World;
 	import net.flashpunk.FP;
 	import net.flashpunk.utils.Input;
 	import net.flashpunk.utils.Key;
+	import ui.Button;
+	import net.flashpunk.utils.Draw;
+	
 	/**
 	 * ...
 	 * @author Jonathan Benkovic
@@ -20,6 +23,7 @@ package ui
 			
 			var text:String = "Resume";
 			resumeButton = new Button(FP.screen.width / 2, FP.screen.height / 2, text, resume);
+
 			add(resumeButton);
 		}
 
@@ -37,5 +41,12 @@ package ui
 				resume();
 			}
 		}	
+		
+		override public function render():void
+		{
+			Draw.text("Paused", 0, 100, { size: 32, color: 0xFFFFFF, width: FP.screen.width, align: "center" } );
+			super.render();
+		}
 	}
+	
 }

@@ -18,9 +18,7 @@ package levels
 	import towers.RangedTower;
 	import towers.Tower;
 	import towers.TowerPlace;
-	
 	import ui.HUD;
-	import ui.PauseScreen;
 	/**
 	 * ...
 	 * @author Jonathan Benkovic

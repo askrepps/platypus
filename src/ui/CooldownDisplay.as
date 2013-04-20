@@ -15,15 +15,20 @@ package ui
 		private var curVal:Number;
 		private var callback:Function;
 		private var clicked:Boolean;
+		private var label:Text;
+		private var text:String;
 		
-		public function CooldownDisplay(x:Number, y:Number, curVal:Number, callback:Function) 
+		public function CooldownDisplay(x:Number, y:Number, curVal:Number, text:String, callback:Function) 
 		{
 			this.x = x;
 			this.y = y;
 			this.curVal = curVal;
 			this.callback = callback;
 			clicked = false;
+			this.text = text;
 			
+			label = new Text(text, 1, 20, {size: 8, color: 0xFFFFFF, width: 40, wordWrap: true, align: "center"});
+
 			setHitbox(40, 60);
 		}
 		
@@ -63,7 +68,9 @@ package ui
 		{
 			Draw.rect(x, y, 40, 60, 0x000000);
 			Draw.rect(x, y, 40, 60*curVal, 0x838b8b);
-		
+			
+			
+			Draw.text(text, x, this.y + ((height - label.textHeight) * 0.5), {size:10, color: 0xFFFFFF, width: 40, wordWrap: true, align: "center"});
 			/*
 			if (curVal != 0)
 			{
