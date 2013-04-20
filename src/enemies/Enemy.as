@@ -1,11 +1,18 @@
 package enemies 
 {
 	import flash.geom.Point;
+	
+	import hero.Hero;
+	
+	import levels.Egg;
+	import levels.Nest;
+	
 	import net.flashpunk.Entity;
 	import net.flashpunk.FP;
-	import hero.Hero;
-	import Math;
+	
 	import ui.HealthBar;
+	
+
 	/**
 	 * ...
 	 * @author Jonathan Benkovic
@@ -26,6 +33,8 @@ package enemies
 		
 		private var healthBar:HealthBar; 	// Enemies health bar.
 		private var maxHealth:Number;	
+		
+		public var egg:Egg;
 		
 		public function Enemy(x:Number, y:Number, health:Number, speed:Number, armor:Number) 
 		{
@@ -137,6 +146,8 @@ package enemies
 		
 		override public function update():void
 		{
+			var collidedNest:Entity;
+			
 			if (healthBar.name == null)
 			{
 				healthBar.name = "done";
@@ -152,8 +163,24 @@ package enemies
 				healthBar.visible = false;
 			}
 			else
+			{
 				healthBar.visible = true;
+			}
 			
+			
+			if (egg == null)
+			{
+				collidedNest = collideTypes("nest", x, y);
+				if (collidedNest != null)
+				{
+					egg = (collidedNest as Nest).stealEgg();
+					world.add(egg);
+				}
+			}
+			else
+			{
+				egg.updatePos(x - width, y);
+			}
 			
 			
 			if (isPoisoned)
@@ -170,7 +197,10 @@ package enemies
 		{
 			world.remove(this);
 			Global.hero.gainXP(5);
-			// Give player gold or hero expierence
+			Global.playerGold += 25;
+			
+			if (egg != null)
+				egg.isCarried = false;
 		}
 		
 		

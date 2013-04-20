@@ -1,7 +1,8 @@
 package hero
 {
 	import enemies.Enemy;
-	import ui.CooldownDisplay;
+	
+	import levels.Egg;
 	
 	import net.flashpunk.Entity;
 	import net.flashpunk.FP;
@@ -10,6 +11,8 @@ package hero
 	import net.flashpunk.utils.Draw;
 	import net.flashpunk.utils.Input;
 	import net.flashpunk.utils.Key;
+	
+	import ui.CooldownDisplay;
 	import ui.HealthBar;
 	
 	public class Hero extends Entity
@@ -54,6 +57,8 @@ package hero
 		
 		public var heroImage:Spritemap;              // hero graphic
 		
+		public var egg:Egg;
+		
 		private var healthBar:HealthBar;			// The health bar (duh). 
 		private var cooldown1:CooldownDisplay;
 		private var cooldown2:CooldownDisplay;
@@ -90,6 +95,8 @@ package hero
 		
 		override public function update():void
 		{		
+			var collidedEgg:Entity;
+			
 			if (canMove)
 			{
 				/*
@@ -165,6 +172,10 @@ package hero
 				
 				if (Input.pressed(Key.L))
 					gainXP(1);
+					
+				collidedEgg = collideTypes("egg", x, y);
+				if (collidedEgg != null && !(collidedEgg as Egg).isCarried)
+					world.remove(collidedEgg);
 					
 				
 				// temp code to keep hero on screen

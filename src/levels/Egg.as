@@ -3,12 +3,29 @@ package levels
 	import net.flashpunk.Entity;
 	import net.flashpunk.Graphic;
 	import net.flashpunk.Mask;
+	import net.flashpunk.graphics.Image;
 	
 	public class Egg extends Entity
 	{
-		public function Egg(x:Number=0, y:Number=0, graphic:Graphic=null, mask:Mask=null)
+		public var isCarried:Boolean;
+		
+		public function Egg(startX:Number, startY:Number)
 		{
-			super(x, y, graphic, mask);
+			super();
+			
+			graphic = new Image(Assets.EGG);
+			setHitboxTo(graphic);
+			x = startX;
+			y = startY;
+			
+			isCarried = true;
+			type = "egg";
+		}
+		
+		public function updatePos(newX:Number, newY:Number):void
+		{
+			x = newX;
+			y = newY;
 		}
 	}
 }

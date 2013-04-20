@@ -2,21 +2,24 @@ package levels
 {
 	import enemies.FastEnemy;
 	import enemies.NormalEnemy;
-	import flash.geom.Point;
-	import towers.AoETower;
-	import towers.HoverText;
-	import towers.TowerPlace;
-	import hero.Warrior;
-	import ui.HUD;
 	
+	import flash.geom.Point;
+	
+	import hero.Warrior;
+	
+	import net.flashpunk.FP;
 	import net.flashpunk.World;
 	import net.flashpunk.utils.Input;
 	import net.flashpunk.utils.Key;
-	import net.flashpunk.FP;
-	import ui.PauseScreen;
 	
+	import towers.AoETower;
+	import towers.HoverText;
 	import towers.RangedTower;
 	import towers.Tower;
+	import towers.TowerPlace;
+	
+	import ui.HUD;
+	import ui.PauseScreen;
 	/**
 	 * ...
 	 * @author Jonathan Benkovic
@@ -37,6 +40,8 @@ package levels
 			add(new TowerPlace(300, 300));
 			add(new HoverText(40, 40, "TEST"));
 			//add(new FastEnemy(0,8));
+			
+			add(new Nest(700, 200));
 			
 			Global.hero = new Warrior(Global.GAME_WIDTH / 2, Global.GAME_HEIGHT / 2);
 			add(Global.hero);

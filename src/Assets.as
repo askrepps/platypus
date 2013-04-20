@@ -14,7 +14,10 @@ package
 		[Embed(source = "assets/button_down.png")] public static const BUTTON_DOWN:Class;
 		[Embed(source = "assets/button_hover.png")] public static const BUTTON_HOVER:Class;
 		[Embed(source = "assets/hoverBackground.png")] public static const HOVER_BACK:Class;
+		
 		// Levels
+		[Embed(source = "assets/nest.png")] public static const NEST:Class;
+		[Embed(source = "assets/egg.png")] public static const EGG:Class;
 		
 		// Towers
 		[Embed(source = "assets/rangedTower.png")] public static const RANGED_TOWER:Class;

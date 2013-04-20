@@ -41,6 +41,9 @@ package
 		{
 			return new Point(a.x * GAME_WIDTH, a.y * GAME_HEIGHT);
 		}
+		
+		// Other Level Stuff
+		public static const STARTING_EGG_COUNT:Number = 5;
 
 		
 		// Tower Attributes, see Tower.as for description of variables
