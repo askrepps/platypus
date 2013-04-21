@@ -26,7 +26,7 @@ package ui
 			this.callback = callback;
 			clicked = false;
 			this.text = text;
-			
+			layer = -42;
 			label = new Text(text, 1, 20, {size: 8, color: 0xFFFFFF, width: 40, wordWrap: true, align: "center"});
 
 			setHitbox(40, 60);

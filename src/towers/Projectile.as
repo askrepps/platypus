@@ -44,7 +44,7 @@ package towers
 			
 		override public function update():void
 		{
-			moveTowards(target.centerX, target.centerY, 4);
+			moveTowards(target.centerX, target.centerY, 6);
 			
 			if(target.health <= 0)
 				world.remove(this);

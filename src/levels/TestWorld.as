@@ -57,24 +57,28 @@ package levels
 		}
 		
 		// Send enemies along the path determined by global waves[][] vector
-		public function sendEnemies():void {
+		public function sendEnemies():void 
+		{
 			waveCounter += FP.elapsed;
-			if (waveCounter >= Global.waveFrequency) {
+			if (waveCounter >= Global.waveFrequency) 
+			{
 				waveCounter -= Global.waveFrequency;
 				
-				if (Global.wavePosition < Global.waves[Global.curLevel].length) {
+				if (Global.wavePosition < Global.waves[Global.curLevel].length) 
+				{
 					this.add(genEnemy(Global.waves[Global.curLevel][Global.wavePosition++]));
 				}
-				else {
+				else 
+				{
 					waveTimer += FP.elapsed;
-					if (waveTimer > 15) {
+					if (waveTimer > 15) 
+					{
 						FP.log(waveTimer);
 						waveTimer = 0;
 						Global.curLevel++;
 					}
 				}
 			}
-			
 		}
 		
 		// Generate an enemy type based on the type number passed in

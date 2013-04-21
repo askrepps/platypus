@@ -63,7 +63,7 @@ package towers
 					if(distToEnemy <= this.range)
 					{
 						if (upgradeCur == 2)
-							(Enemy)(enemy).takePoisonDamage();
+							(Enemy)(enemy).getPoisoned(Global.POISON_DURATION, Global.POISON_DAMAGE);
 						else
 							(Enemy)(enemy).takeDamage(this.damage, this.armorPiercing, this.special);
 					}

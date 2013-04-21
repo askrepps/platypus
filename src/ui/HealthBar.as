@@ -26,7 +26,11 @@ package ui
 		{
 			this.x = x;
 			this.y = y;
-			curVal = value;
+			
+			if(curVal > 1)
+				curVal = 1;
+			else
+				curVal = value;
 		}
 		
 		override public function render():void

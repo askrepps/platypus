@@ -95,6 +95,12 @@ package hero
 
 		}
 		
+		override public function removed():void
+		{
+			world.remove(xpBar);
+			world.remove(healthBar);
+		}
+		
 		override public function update():void
 		{		
 			var collidedEgg:Entity;
@@ -187,6 +193,8 @@ package hero
 				if (collidedNest != null) 
 				{
 					currentHealth += FP.elapsed * (maxHealth / 10);
+					if (currentHealth > maxHealth) 
+						currentHealth = maxHealth;
 					if (egg != null) 
 					{
 						(collidedNest as Nest).returnEgg();

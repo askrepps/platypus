@@ -110,7 +110,10 @@ package
 		public static const AOE_CANATTACK:Array = new Array("normal", "fast", "armored"); 		
 		public static const AOE_ARMORPIERCING:Number = 5;  
 		public static const AOE_SPECIAL:String = "Poison";		
-		public static const AOE_TOWERDESCIPT:String;
+		public static const POISON_DURATION:Number = 4;
+		public static const POISON_DAMAGE:Number = 2;
+		public static const AOE_TOWERDESCIPT:String = "Area damage tower.  Hits all ground enemies in the range."; 
+		
 		
 		// Air Tower starting attributes
 		public static const AIR_RANGE:Number = 150;
@@ -119,7 +122,7 @@ package
 		public static const AIR_CANATTACK:Array = new Array("flying"); 	
 		public static const AIR_ARMORPIERCING:Number = 5;  
 		public static const AIR_SPECIAL:String = "";		
-		public static const AIR_TOWERDESCIPT:String = "";
+		public static const AIR_TOWERDESCIPT:String = "Special designed to take out flying enemies.";
 		
 		
 		// Upgrade variables
