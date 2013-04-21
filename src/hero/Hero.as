@@ -58,6 +58,7 @@ package hero
 		public var canMove:Boolean;
 		public var isMoving:Boolean;
 		public var isAttacking:Boolean;
+		public var isVulnerable:Boolean;
 		
 		public var heroImage:Spritemap;              // hero graphic
 		
@@ -87,6 +88,7 @@ package hero
 			blinkCounter = 0;
 			isMoving = false;
 			isAttacking = false;
+			isVulnerable = true;
 			
 			canMove = true;
 			collisionDamagesEnemies = false;
@@ -300,7 +302,7 @@ package hero
 				if(!isRecovering)
 				{
 					var enemy:Entity = collide(type, x, y);
-					if (enemy != null && !collisionDamagesEnemies)
+					if (enemy != null && !collisionDamagesEnemies && isVulnerable)
 					{
 						isRecovering = true;
 						recoverTime = Global.HERO_RECOVER_TIME;

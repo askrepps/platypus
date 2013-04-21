@@ -236,6 +236,7 @@ package enemies
 			else
 			{
 				toNest = false;
+				enemyImage.flipped = true;
 				egg.updatePos(x + width/2, y);
 			}
 			
