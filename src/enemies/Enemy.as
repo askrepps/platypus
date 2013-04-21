@@ -169,6 +169,7 @@ package enemies
 		override public function update():void
 		{
 			var collidedNest:Entity;
+			var collidedEgg:Entity;
 			
 			// Draw health bar
 			if (healthBar.name == null)
@@ -202,6 +203,13 @@ package enemies
 					// Make sure that there is another egg left in the nest before trying to add it
 					if (egg != null)
 						world.add(egg);
+				}
+				
+				collidedEgg = collideTypes("egg", x, y);
+				if (collidedEgg != null && egg == null && !(collidedEgg as Egg).isCarried) 
+				{
+					(collidedEgg as Egg).isCarried = true;
+					egg = (collidedEgg as Egg);
 				}
 			}
 			else
