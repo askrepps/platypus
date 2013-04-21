@@ -19,7 +19,6 @@ package towers
 		public function AirTower(x:Number, y:Number)
 		{
 			super(x, y, Global.AIR_RANGE, Global.AIR_DAMAGE, Global.AIR_SPEED, Global.AIR_CANATTACK, Global.AIR_ARMORPIERCING, "", Global.AIR_TOWERDESCIPT, this, Global.AIR_COST, Global.AIR_UPGRADE_COST);
-			type = "air";
 			towerImage = new Image(Assets.AIR_TOWER);
 			super.graphic = towerImage;
 			timer = 0;

@@ -143,7 +143,9 @@ package hero
 						if (enemy is Enemy)
 						{
 							if(distanceFrom(enemy) < Global.WARRIOR_LEAP_ATTACK_RANGE)
+							{
 								(enemy as Enemy).takeDamage(attack, 0, "stunned?");
+							}
 							// stun enemy
 						}
 					}
@@ -231,6 +233,7 @@ package hero
 						
 						if (collision)
 						{
+							(enemy as Enemy).attackedByHero = true;
 							(enemy as Enemy).takeDamage(attack, 0, "wheee!");
 						}
 					}

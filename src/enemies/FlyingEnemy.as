@@ -14,7 +14,7 @@ package enemies
 		{
 			type = "flying";
 			enemyImage = new Image(Assets.FLYING_ENEMY);
-			super(x, y, Global.FLYING_HEALTH, Global.FLYING_SPEED, Global.FLYING_ARMOR);
+			super(x, y, Global.FLYING_HEALTH, Global.FLYING_SPEED, Global.FLYING_ARMOR, Global.FLYING_XP);
 			
 			graphic = enemyImage;
 			mask = new Pixelmask(Assets.FLYING_ENEMY);

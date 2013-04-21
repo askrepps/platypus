@@ -39,6 +39,7 @@ package towers
 			this.cost = cost;
 			this.upgradeCost = upgradeCost;
 			this.towerUI = new TowerUI(x, y, tower);
+			type = "tower";
 			timer = 0;
 		}
 		

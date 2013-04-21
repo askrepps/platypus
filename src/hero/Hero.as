@@ -102,61 +102,89 @@ package hero
 			
 			if (canMove)
 			{
-				/*
-				// check movement input
-				if (Input.check(Key.W))                                      // move up
-					y -= speed * FP.elapsed * Global.HERO_SPEED_SCALE;
-				if (Input.check(Key.S))                                      // move down
-					y += speed * FP.elapsed * Global.HERO_SPEED_SCALE;
-				if (Input.check(Key.A))                                      // move left
-					x -= speed * FP.elapsed * Global.HERO_SPEED_SCALE;
-				if (Input.check(Key.D))                                      // move right
-					x += speed * FP.elapsed * Global.HERO_SPEED_SCALE;
-				*/
 				
 				if (Input.check(Key.W) && Input.check(Key.A))
 				{
 					facing = LEFT_UP;
-					y -= speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2;
-					x -= speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2;
+					
+					if (collideTypes("tower",
+						             x - speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2,
+						             y - speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2) == null)
+					{
+						y -= speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2;
+						x -= speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2;
+					}
 				}
 				else if (Input.check(Key.W) && Input.check(Key.D))
 				{
 					facing = RIGHT_UP;
-					y -= speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2;
-					x += speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2;
+					
+					if (collideTypes("tower",
+						             x + speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2,
+						             y - speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2) == null)
+					{
+						y -= speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2;
+						x += speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2;
+					}
 				}
 				else if (Input.check(Key.S) && Input.check(Key.A))
 				{
 					facing = LEFT_DOWN;
-					y += speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2;
-					x -= speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2;
+					
+					if (collideTypes("tower",
+									 x - speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2,
+									 y + speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2) == null)
+					{
+						y += speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2;
+						x -= speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2;
+					}
 				}
 				else if (Input.check(Key.S) && Input.check(Key.D))
 				{
 					facing = RIGHT_DOWN;
-					y += speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2;
-					x += speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2;
+					
+					if (collideTypes("tower",
+									 x + speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2,
+									 y + speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2) == null)
+					{
+						y += speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2;
+						x += speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2;
+					}
 				}
 				else if (Input.check(Key.W))
 				{
 					facing = UP;
-					y -= speed * FP.elapsed * Global.HERO_SPEED_SCALE;
+					
+					if (collideTypes("tower", x, y - speed * FP.elapsed * Global.HERO_SPEED_SCALE) == null)
+					{
+						y -= speed * FP.elapsed * Global.HERO_SPEED_SCALE;
+					}
 				}
 				else if (Input.check(Key.A))
 				{
 					facing = LEFT;
-					x -= speed * FP.elapsed * Global.HERO_SPEED_SCALE;
+					
+					if (collideTypes("tower", x - speed * FP.elapsed * Global.HERO_SPEED_SCALE, y) == null)
+					{
+						x -= speed * FP.elapsed * Global.HERO_SPEED_SCALE;
+					}
 				}
 				else if (Input.check(Key.S))
 				{
 					facing = DOWN;
-					y += speed * FP.elapsed * Global.HERO_SPEED_SCALE;
+					
+					if (collideTypes("tower", x, y + speed * FP.elapsed * Global.HERO_SPEED_SCALE) == null)
+					{
+						y += speed * FP.elapsed * Global.HERO_SPEED_SCALE;
+					}
 				}
 				else if (Input.check(Key.D))
 				{
 					facing = RIGHT;
-					x += speed * FP.elapsed * Global.HERO_SPEED_SCALE;
+					if (collideTypes("tower", x + speed * FP.elapsed * Global.HERO_SPEED_SCALE, y) == null)
+					{
+						x += speed * FP.elapsed * Global.HERO_SPEED_SCALE;
+					}
 				}
 				
 				switch(facing)
@@ -306,6 +334,7 @@ package hero
 						}
 						if (shouldDamage)
 						{
+							(enemy as Enemy).attackedByHero = true;
 							(enemy as Enemy).takeDamage(attack, 0, "probably dashing!");
 							collidedEnemies.push(enemy);
 						}

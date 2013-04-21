@@ -37,13 +37,14 @@ package enemies
 		public var stunDuration:Number;
 		public var elapsed:Number;
 		public var attackedByHero:Boolean;
+		public var xp:Number;
 		
 		private var healthBar:HealthBar; 	// Enemies health bar.
 		private var maxHealth:Number;	
 		
 		public var egg:Egg;
 		
-		public function Enemy(x:Number, y:Number, health:Number, speed:Number, armor:Number) 
+		public function Enemy(x:Number, y:Number, health:Number, speed:Number, armor:Number, xp:Number) 
 		{
 			this.x = x;
 			this.y = y;
@@ -51,8 +52,8 @@ package enemies
 			this.speed = speed;
 			this.armor = armor;
 			this.toNest = true;
+			this.xp = xp;
 			curPoint = Global.genPoint(Global.paths[Global.curLevel][0]);
-			//nextPoint // Generate first point to move to with some randomness
 			pointIndex = 1;
 			isPoisoned = false;
 			elapsed = 0;
@@ -248,7 +249,7 @@ package enemies
 		{
 			// Award hero gold and xp
 			if (attackedByHero)
-				Global.hero.gainXP(5);
+				Global.hero.gainXP(xp);
 			
 			Global.playerGold += 25;
 			

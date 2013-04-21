@@ -238,18 +238,22 @@ package
 		public static const NORMAL_HEALTH = 50;
 		public static const NORMAL_SPEED = 100;
 		public static const NORMAL_ARMOR = 1;
+		public static const NORMAL_XP = 1;
 		
 		public static const FAST_HEALTH = 50;
 		public static const FAST_SPEED = 160;
 		public static const FAST_ARMOR = 0;
+		public static const FAST_XP = 1;
 		
 		public static const FLYING_HEALTH = 50;
 		public static const FLYING_SPEED = 100;
 		public static const FLYING_ARMOR = 1;
+		public static const FLYING_XP = 1;
 		
 		public static const ARMORED_HEALTH = 100;
 		public static const ARMORED_SPEED = 75;
 		public static const ARMORED_ARMOR = 3;
+		public static const ARMORED_XP = 1;
 		
 		
 		
