@@ -122,10 +122,10 @@ package levels
 			if(Global.curLevel < Global.NUM_WAVES)
 				sendEnemies();
 			else
-				FP.world = new EndScreen("You Win!");
+				FP.world = new EndScreen("You Win!", true);
 				
 			if (Global.eggsLeft == 0)
-				FP.world = new EndScreen("Game Over");
+				FP.world = new EndScreen("Game Over", false);
 				
 			if (Input.pressed(Key.P))
 			{

@@ -7,6 +7,10 @@ package
 	 */
 	public class Assets 
 	{
+		// Menus / Screens
+		[Embed(source = "assets/gameOver.png")] public static const GAME_OVER:Class;
+		[Embed(source = "assets/youWin.png")] public static const YOU_WIN:Class;
+		
 		// UI Elements
 		[Embed(source = "assets/upgradeUI.png")] public static const UPGRADE_UI:Class;
 		[Embed(source = "assets/buildButton.png")] public static const BUILD_BUTTON:Class; 
