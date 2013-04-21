@@ -67,7 +67,7 @@ package
 		}
 		
 		// Other Level Stuff
-		public static const STARTING_EGG_COUNT:Number = 5;
+		public static const STARTING_EGG_COUNT:Number = 1;
 
 		
 		// Tower Attributes, see Tower.as for description of variables

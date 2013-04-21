@@ -43,7 +43,7 @@ package levels
 			add(new TowerPlace(500, 300));
 			add(new TowerPlace(300, 300));
 
-			add(new Nest(700, 200));
+			add(new Nest(750, 200));
 			
 			Global.hero = new Warrior(Global.GAME_WIDTH / 2, Global.GAME_HEIGHT / 2);
 			add(Global.hero);
