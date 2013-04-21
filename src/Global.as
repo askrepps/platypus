@@ -109,7 +109,7 @@ package
 		public static const AOE_UPGRADE_COST:Number = 200;
 		
 		// Melee Tower starting attributes
-		public static const MELEE_RANGE:Number = 50;
+		public static const MELEE_RANGE:Number = 80;
 		public static const MELEE_DAMAGE:Number = 10;		
 		public static const MELEE_SPEED:Number = 1;			
 		public static const MELEE_CANATTACK:Array = new Array("normal", "fast", "armored"); 		
@@ -149,11 +149,11 @@ package
 		
 		
 		// Upgrade variables
-		public static const MELEE_RANGE_UPGRADE1:Number = 52;
+		public static const MELEE_RANGE_UPGRADE1:Number = 80;
 		public static const MELEE_DAMAGE_UPGRADE1:Number = 12;		
 		public static const MELEE_SPEED_UPGRADE1:Number = .9;		
 		
-		public static const MELEE_RANGE_UPGRADE2:Number = 55;
+		public static const MELEE_RANGE_UPGRADE2:Number = 85;
 		public static const MELEE_DAMAGE_UPGRADE2:Number = 15;		
 		public static const MELEE_SPEED_UPGRADE2:Number = .75;		
 		

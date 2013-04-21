@@ -29,7 +29,7 @@ package ui
 			this.text = text;
 			layer = -42;
 			label = new Text(text, 1, 20, {size: 8, color: 0xFFFFFF, width: 40, wordWrap: true, align: "center"});
-			
+			isEnabled = false;
 			setHitbox(40, 60);
 		}
 	
@@ -71,10 +71,11 @@ package ui
 			Draw.rect(x, y, 40, 60, 0x000000);
 			Draw.rect(x, y, 40, 60*curVal, 0x838b8b);
 			
+			
+			Draw.text(text, x, this.y + ((height - label.textHeight) * 0.5), { size:10, color: 0xFFFFFF, width: 40, wordWrap: true, align: "center" } );
+			
 			if (!isEnabled)
 				Draw.rect(x, y, 40, 60, 0x000000, .8);
-			
-			Draw.text(text, x, this.y + ((height - label.textHeight) * 0.5), {size:10, color: 0xFFFFFF, width: 40, wordWrap: true, align: "center"});
 			/*
 			if (curVal != 0)
 			{

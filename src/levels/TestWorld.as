@@ -5,6 +5,8 @@ package levels
 	import enemies.FastEnemy;
 	import enemies.FlyingEnemy;
 	import enemies.NormalEnemy;
+	import ui.BuildButton;
+	import ui.Button;
 	
 	import flash.geom.Point;
 	
@@ -63,13 +65,16 @@ package levels
 			
 			Global.playerGold = 100000;
 			paused = false;
+			
+			add(new BuildButton(700, 700, "Next Wave", advanceWave));
 		}
 		
 		public function advanceWave():void
 		{
-			if (waveCounter == 0)
+			if (waveTimer > 0)
 			{
 				waveTimer = 15;
+				waveCounter = Global.waveFrequency;
 				sendEnemies();
 			}
 			
@@ -95,7 +100,6 @@ package levels
 					if (waveTimer > 15) 
 					{
 						enemiesSent = 0;
-						FP.log(waveTimer);
 						waveTimer = 0;
 						Global.curLevel++;
 					}
@@ -122,7 +126,21 @@ package levels
 			if(Global.curLevel < Global.NUM_WAVES)
 				sendEnemies();
 			else
-				FP.world = new EndScreen("You Win!");
+			{
+				var enemyCheck:Array = new Array;
+				var win:Boolean = false;
+				
+				for each(var enemyType:String in Global.RANGED_CANATTACK)
+				{
+					this.getType(enemyType, enemyCheck);
+					if (enemyCheck.length == 0)
+						win = true;
+					else
+						win = false;
+				}
+				if(win)
+					FP.world = new EndScreen("You Win!");
+			}
 				
 			if (Global.eggsLeft == 0)
 				FP.world = new EndScreen("Game Over");

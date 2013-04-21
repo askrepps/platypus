@@ -78,6 +78,7 @@ package hero
 			level = 1;
 			xp = 0;
 			unlockedAbilities = 1;       // all abilities unlocked for testing
+
 			ability1CD = 0;
 			ability2CD = 0;
 			ability3CD = 0;
@@ -288,11 +289,20 @@ package hero
 				
 				// set appropriate unlocked abilities
 				if (level == Global.ABILITY_1_LEVEL)
+				{
 					unlockedAbilities = 1;
+					cooldown1.isEnabled = true;
+				}
 				if (level == Global.ABILITY_2_LEVEL)
+				{
 					unlockedAbilities = 2;
+					cooldown2.isEnabled = true;
+				}
 				if (level == Global.ABILITY_3_LEVEL)
+				{
 					unlockedAbilities = 3;
+					cooldown3.isEnabled = true;
+				}
 			}
 			
 			for each(var type:String in Global.RANGED_CANATTACK)
@@ -362,6 +372,7 @@ package hero
 				world.add(cooldown1);
 				world.add(cooldown2);
 				world.add(cooldown3);
+				cooldown1.isEnabled = true;
 			}
 			else
 			{
@@ -370,11 +381,6 @@ package hero
 				cooldown2.updateVal(this.ability2CD / Global.WARRIOR_ABIL_2_CD);
 				cooldown3.updateVal(this.ability3CD/Global.WARRIOR_ABIL_3_CD);
 			}
-		}
-		
-		public override function render():void
-		{
-			super.render();
 		}
 		
 		public function ability1():void
