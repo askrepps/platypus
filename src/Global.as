@@ -7,6 +7,7 @@ package
 	
 	import flash.geom.Point;
 	import hero.Hero;
+	import net.flashpunk.Sfx;
 	
 	public class Global 
 	{
@@ -18,6 +19,7 @@ package
 		public static var playerGold:int;	
 		// Path data
 		public static var curLevel:Number;
+		public static var music:Sfx;
 		public static const paths:Vector.<Vector.<Point>> = new Vector.<Vector.<Point>>(5);
 		paths[0] = new Vector.<Point>(11);
 		paths[1] = new Vector.<Point>(5);
@@ -167,8 +169,8 @@ package
 		
 		// Level to unlock each ability
 		public static const ABILITY_1_LEVEL:Number = 1;
-		public static const ABILITY_2_LEVEL:Number = 1;
-		public static const ABILITY_3_LEVEL:Number = 1;
+		public static const ABILITY_2_LEVEL:Number = 2;
+		public static const ABILITY_3_LEVEL:Number = 3;
 		
 		// Warrior attributes
 		public static const WARRIOR_HEALTH_ARRAY:Array =  new Array(10, 10, 10, 10, 10, 10, 10, 10, 10, 10);

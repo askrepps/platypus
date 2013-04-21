@@ -29,6 +29,7 @@ package levels
 
 		public function resume():void
 		{
+			Global.music.resume();
 			curWorld.active = true;
 			FP.world = curWorld;
 		}

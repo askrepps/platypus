@@ -41,5 +41,8 @@ package
 		[Embed(source = "assets/warriorCleave.png")] public static const WARRIOR_ATTACK:Class;
 		[Embed(source = "assets/rangerWalk.png")] public static const RANGER_WALK:Class;
 		[Embed(source = "assets/mageHero.png")] public static const MAGE:Class;
+		
+		// Audio
+		[Embed(source = "assets/platypusLoop.mp3")] public static const MUSIC_LOOP:Class;
 	}
 }
