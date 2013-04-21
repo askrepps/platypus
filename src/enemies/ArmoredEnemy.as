@@ -10,12 +10,12 @@ package enemies
 	 */
 	public class ArmoredEnemy extends Enemy 
 	{
-		public function ArmoredEnemy(x:Number, y:Number) 
+		public function ArmoredEnemy(x:Number, y:Number, wave:Number) 
 		{
 			type = "armored";
 			enemyImage = new Spritemap(Assets.ARMORED_ENEMY, 50, 50);
 			enemyImage.add("walking", [0, 1, 2, 3], 5, true);
-			super(x, y, Global.ARMORED_HEALTH, Global.ARMORED_SPEED, Global.ARMORED_ARMOR, Global.ARMORED_XP);
+			super(x, y, Global.ARMORED_HEALTH, Global.ARMORED_SPEED, Global.ARMORED_ARMOR, Global.ARMORED_XP, wave);
 			
 			graphic = enemyImage;
 			enemyImage.play("walking");

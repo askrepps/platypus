@@ -35,11 +35,16 @@ package levels
 		private var waveCounter:Number;
 		private var waveTimer:Number;
 		private var music:Sfx;
+		private var enemiesSent:Number;
+		public var nest:Nest;
 		
 		public function TestWorld() 
 		{
 			waveCounter = 0;
 			waveTimer = 0;
+			enemiesSent = 0;
+			Global.eggsLeft = Global.STARTING_EGG_COUNT;
+			
 			// Grab path info
 			Global.curLevel = 0;
 			startPos = Global.genPoint(Global.paths[Global.curLevel][0]);
@@ -48,7 +53,8 @@ package levels
 			add(new TowerPlace(500, 300));
 			add(new TowerPlace(300, 300));
 
-			add(new Nest(915, 25));
+			nest = new Nest(915, 25);
+			add(nest);
 			
 			Global.hero = new Warrior(Global.GAME_WIDTH / 2, Global.GAME_HEIGHT / 2);
 			add(Global.hero);
@@ -59,24 +65,36 @@ package levels
 			paused = false;
 		}
 		
+		public function advanceWave():void
+		{
+			if (waveCounter == 0)
+			{
+				waveTimer = 15;
+				sendEnemies();
+			}
+			
+		}
+		
 		// Send enemies along the path determined by global waves[][] vector
 		public function sendEnemies():void 
 		{
 			waveCounter += FP.elapsed;
-			//waveTimer += FP.elapsed;
+			waveTimer += FP.elapsed;
+
 			if (waveCounter >= Global.waveFrequency) 
 			{
 				waveCounter -= Global.waveFrequency;
 				
-				if (Global.wavePosition < Global.waves[Global.curLevel].length) 
+				if (enemiesSent < Global.waves[Global.curLevel].length) 
 				{
-					this.add(genEnemy(Global.waves[Global.curLevel][Global.wavePosition++]));
+					this.add(genEnemy(Global.waves[Global.curLevel][enemiesSent++]));
 					waveTimer = 0;
 				}
 				else 
 				{
-					if (waveTimer > 10) 
+					if (waveTimer > 15) 
 					{
+						enemiesSent = 0;
 						FP.log(waveTimer);
 						waveTimer = 0;
 						Global.curLevel++;
@@ -89,20 +107,26 @@ package levels
 		public function genEnemy(type:Number):Enemy {
 			switch (type) {
 				case 0: 
-					return new NormalEnemy(startPos.x, startPos.y);
+					return new NormalEnemy(startPos.x, startPos.y, Global.curLevel);
 				case 1:
-					return new FastEnemy(startPos.x, startPos.y);
+					return new FastEnemy(startPos.x, startPos.y, Global.curLevel);
 				case 2:
-					return new FlyingEnemy(startPos.x, startPos.y);
+					return new FlyingEnemy(startPos.x, startPos.y, Global.curLevel);
 				default:
-					return new ArmoredEnemy(startPos.x, startPos.y);
+					return new ArmoredEnemy(startPos.x, startPos.y, Global.curLevel);
 			}
 		}
 	
 		override public function update():void
 		{
-			sendEnemies();
-			
+			if(Global.curLevel < Global.NUM_WAVES)
+				sendEnemies();
+			else
+				FP.world = new EndScreen("You Win!");
+				
+			if (Global.eggsLeft == 0)
+				FP.world = new EndScreen("Game Over");
+				
 			if (Input.pressed(Key.P))
 			{
 				// Add new world that is the pause screen.
