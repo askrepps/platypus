@@ -75,7 +75,7 @@ package hero
 			
 			level = 1;
 			xp = 0;
-			unlockedAbilities = 3;       // all abilities unlocked for testing
+			unlockedAbilities = 1;       // all abilities unlocked for testing
 			ability1CD = 0;
 			ability2CD = 0;
 			ability3CD = 0;
@@ -89,10 +89,6 @@ package hero
 			collidedEnemies = new Array();
 			
 			facing = UP;
-			
-			//healthBar = new HealthBar(centerX, y, 30, 4, 0);
-			//xpBar = new XPBar(centerX, y-healthBar.height, 30, 4, 0);
-
 		}
 		
 		override public function removed():void
@@ -108,61 +104,62 @@ package hero
 			
 			if (canMove)
 			{
-				/*
-				// check movement input
-				if (Input.check(Key.W))                                      // move up
-					y -= speed * FP.elapsed * Global.HERO_SPEED_SCALE;
-				if (Input.check(Key.S))                                      // move down
-					y += speed * FP.elapsed * Global.HERO_SPEED_SCALE;
-				if (Input.check(Key.A))                                      // move left
-					x -= speed * FP.elapsed * Global.HERO_SPEED_SCALE;
-				if (Input.check(Key.D))                                      // move right
-					x += speed * FP.elapsed * Global.HERO_SPEED_SCALE;
-				*/
-				
 				if (Input.check(Key.W) && Input.check(Key.A))
 				{
 					facing = LEFT_UP;
-					y -= speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2;
-					x -= speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2;
+					if (collideTypes("tower", x, y - speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2) == null)
+						y -= speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2;
+					if (collideTypes("tower", x - speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2, y) == null)
+						x -= speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2;
 				}
 				else if (Input.check(Key.W) && Input.check(Key.D))
 				{
 					facing = RIGHT_UP;
-					y -= speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2;
-					x += speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2;
+					if (collideTypes("tower", x, y - speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2) == null)
+						y -= speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2;
+					if (collideTypes("tower", x + speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2, y) == null)
+						x += speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2;
 				}
 				else if (Input.check(Key.S) && Input.check(Key.A))
 				{
 					facing = LEFT_DOWN;
-					y += speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2;
-					x -= speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2;
+					if (collideTypes("tower", x, y + speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2) == null)
+						y += speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2;
+					if (collideTypes("tower", x - speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2, y) == null)
+						x -= speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2;
 				}
 				else if (Input.check(Key.S) && Input.check(Key.D))
 				{
 					facing = RIGHT_DOWN;
-					y += speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2;
-					x += speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2;
+					if (collideTypes("tower", x, y + speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2) == null)
+						y += speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2;
+					if (collideTypes("tower", x + speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2, y) == null)
+						x += speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2;
 				}
 				else if (Input.check(Key.W))
 				{
 					facing = UP;
-					y -= speed * FP.elapsed * Global.HERO_SPEED_SCALE;
+					if (collideTypes("tower", x, y - speed * FP.elapsed * Global.HERO_SPEED_SCALE) == null)
+						y -= speed * FP.elapsed * Global.HERO_SPEED_SCALE;
 				}
 				else if (Input.check(Key.A))
 				{
 					facing = LEFT;
-					x -= speed * FP.elapsed * Global.HERO_SPEED_SCALE;
+					if (collideTypes("tower", x - speed * FP.elapsed * Global.HERO_SPEED_SCALE, y) == null)
+						x -= speed * FP.elapsed * Global.HERO_SPEED_SCALE;
 				}
 				else if (Input.check(Key.S))
 				{
 					facing = DOWN;
-					y += speed * FP.elapsed * Global.HERO_SPEED_SCALE;
+					
+					if (collideTypes("tower", x, y + speed * FP.elapsed * Global.HERO_SPEED_SCALE) == null)
+						y += speed * FP.elapsed * Global.HERO_SPEED_SCALE;
 				}
 				else if (Input.check(Key.D))
 				{
 					facing = RIGHT;
-					x += speed * FP.elapsed * Global.HERO_SPEED_SCALE;
+					if (collideTypes("tower", x + speed * FP.elapsed * Global.HERO_SPEED_SCALE, y) == null)
+						x += speed * FP.elapsed * Global.HERO_SPEED_SCALE;
 				}
 				
 				switch(facing)
@@ -222,27 +219,17 @@ package hero
 			if (unlockedAbilities >= 3 && ability3CD <=0 && Input.pressed(Key.DIGIT_3))
 				ability3();
 			
-			
 			ability1CD -= FP.elapsed;
 			if (ability1CD < 0)
 				ability1CD = 0;
-			
-			if (ability1CD > 0)
-				trace("ability 1 cd: " + ability1CD);
 			
 			ability2CD -= FP.elapsed;
 			if (ability2CD < 0)
 				ability2CD = 0;
 			
-			if (ability2CD > 0)
-				trace("ability 2 cd: " + ability2CD);
-			
 			ability3CD -= FP.elapsed;
 			if (ability3CD < 0)
 				ability3CD = 0;
-			
-			if (ability3CD > 0)
-				trace("ability 3 cd: " + ability3CD);
 			
 			recoverTime -= FP.elapsed;
 			if (recoverTime < 0)
@@ -267,7 +254,7 @@ package hero
 			// check if hero should level up
 			if (level < Global.MAX_LEVELS && xp >= Global.XP_TO_LEVEL[level - 1])
 			{
-				xp -= Global.XP_TO_LEVEL[level];
+				xp -= Global.XP_TO_LEVEL[level - 1];
 				level++;
 				FP.log("Hero reached level " + level + "!");
 				
@@ -314,6 +301,7 @@ package hero
 						}
 						if (shouldDamage)
 						{
+							(enemy as Enemy).attackedByHero = true;
 							(enemy as Enemy).takeDamage(attack, 0, "probably dashing!");
 							collidedEnemies.push(enemy);
 						}

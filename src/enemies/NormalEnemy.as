@@ -14,7 +14,7 @@ package enemies
 		public function NormalEnemy(x:Number, y:Number) {
 			type = "normal";
 			enemyImage = new Image(Assets.NORMAL_ENEMY);
-			super(x, y, Global.NORMAL_HEALTH, Global.NORMAL_SPEED, Global.NORMAL_ARMOR);
+			super(x, y, Global.NORMAL_HEALTH, Global.NORMAL_SPEED, Global.NORMAL_ARMOR, Global.NORMAL_XP);
 			
 			graphic = enemyImage;
 			mask = new Pixelmask(Assets.NORMAL_ENEMY);

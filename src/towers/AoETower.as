@@ -19,7 +19,6 @@ package towers
 		public function AoETower(x:Number, y:Number) 
 		{
 			super(x, y, Global.AOE_RANGE, Global.AOE_DAMAGE, Global.AOE_SPEED, Global.AOE_CANATTACK, Global.AOE_ARMORPIERCING, "", Global.AOE_TOWERDESCIPT, this, Global.AOE_COST, Global.AOE_UPGRADE_COST);
-			type = "aoe";
 			towerImage = new Image(Assets.AOE_TOWER);
 			super.graphic = towerImage;
 			timer = 0;

@@ -13,7 +13,7 @@ package enemies
 		public function FastEnemy(x:Number, y:Number) {
 			type = "fast";
 			enemyImage = new Image(Assets.FAST_ENEMY);
-			super(x, y, Global.FAST_HEALTH, Global.FAST_SPEED, Global.FAST_ARMOR);
+			super(x, y, Global.FAST_HEALTH, Global.FAST_SPEED, Global.FAST_ARMOR, Global.FAST_XP);
 			
 			graphic = enemyImage;
 			mask = new Pixelmask(Assets.FAST_ENEMY);
