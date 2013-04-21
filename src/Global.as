@@ -19,16 +19,21 @@ package
 		// Path data
 		public static var curLevel:Number;
 		public static const paths:Vector.<Vector.<Point>> = new Vector.<Vector.<Point>>(5);
-		paths[0] = new Vector.<Point>(6);
+		paths[0] = new Vector.<Point>(11);
 		paths[1] = new Vector.<Point>(5);
 		
 		// First path
-		paths[0][0] = new Point(.1, .1);
-		paths[0][1] = new Point(.2, .1);
-		paths[0][2] = new Point(.3, .2);
-		paths[0][3] = new Point(.5, .5);
-		paths[0][4] = new Point(.7, .0);
-		paths[0][5] = new Point(.0, .8);
+		paths[0][0] = new Point(.141, .997);
+		paths[0][1] = new Point(.145, .755);
+		paths[0][2] = new Point(.171, .612);
+		paths[0][3] = new Point(.252, .560);
+		paths[0][4] = new Point(.338, .542);
+		paths[0][5] = new Point(.475, .527);
+		paths[0][6] = new Point(.599, .521);
+		paths[0][7] = new Point(.715, .479);
+		paths[0][8] = new Point(.763, .384);
+		paths[0][9] = new Point(.845, .260);
+		paths[0][10] = new Point(.968, .049);
 		
 		// Second path
 		paths[1][0] = new Point(.2, .2);

@@ -30,13 +30,14 @@ package levels
 		private var paused:Boolean;
 		private var startPos:Point;
 		private var waveCounter:Number;
+		private var waveTimer:Number;
 		
 		public function TestWorld() 
 		{
 			waveCounter = 0;
-			
+			waveTimer = 0;
 			// Grab path info
-			Global.curLevel = 1;
+			Global.curLevel = 0;
 			startPos = Global.genPoint(Global.paths[Global.curLevel][0]);
 			
 			add(new TowerPlace(500, 300));
@@ -61,6 +62,14 @@ package levels
 				
 				if (Global.wavePosition < Global.waves[Global.curLevel].length) {
 					this.add(genEnemy(Global.waves[Global.curLevel][Global.wavePosition++]));
+				}
+				else {
+					waveTimer += FP.elapsed;
+					if (waveTimer > 15) {
+						FP.log(waveTimer);
+						waveTimer = 0;
+						Global.curLevel++;
+					}
 				}
 			}
 			
