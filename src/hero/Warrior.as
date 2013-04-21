@@ -176,7 +176,7 @@ package hero
 		
 		public override function ability1():void
 		{
-			if (ability1CD <= 0)
+			if (unlockedAbilities >= 1 && ability1CD <= 0)
 			{
 				super.ability1();
 				ability1CD = Global.WARRIOR_ABIL_1_CD;
@@ -243,7 +243,7 @@ package hero
 		
 		public override function ability2():void
 		{
-			if (ability2CD <= 0)
+			if (unlockedAbilities >= 2 && ability2CD <= 0)
 			{
 				super.ability2();
 				
@@ -253,7 +253,7 @@ package hero
 		
 		public override function ability3():void
 		{
-			if (ability3CD <= 0)
+			if (unlockedAbilities >= 3 && ability3CD <= 0)
 			{
 				super.ability3();
 				ability3CD = Global.WARRIOR_ABIL_3_CD;
