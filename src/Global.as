@@ -146,7 +146,7 @@ package
 		public static const AOE_RANGE_UPGRADE1:Number = 80;
 		public static const AOE_DAMAGE_UPGRADE1:Number = 2.5;		
 		public static const AOE_SPEED_UPGRADE1:Number = .8;	
-		public static const AOE_RANGE_UPGRADE2:Number = 85;
+		public static const AOE_RANGE_UPGRADE2:Number = 150;
 		public static const AOE_DAMAGE_UPGRADE2:Number = 3;		
 		public static const AOE_SPEED_UPGRADE2:Number = 1;	
 		

@@ -29,15 +29,15 @@ package ui
 			label = new Text(text, 1, 20, {size: 20, color: 0xFFFFFF, width: normalImage.width, wordWrap: true, align: "center"});
 			
 			this.callback = callback;
-			this.params = params;
-			
+			this.params = params;	
 			normal = new Graphiclist(normalImage, label);
 			hover = new Graphiclist(new Image(Assets.BUTTON_HOVER), label);
 			down = new Graphiclist(new Image(Assets.BUTTON_DOWN), label);
 			//Set hitbox to our graphic, so has same width and height of Stamp
 			graphic = normal;
 			setHitboxTo(normalImage);
-			centerOrigin();
+			this.y -= this.halfHeight;
+			this.x -= this.halfWidth;
 		}
 		
 		override public function update():void

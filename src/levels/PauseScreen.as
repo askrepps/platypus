@@ -23,7 +23,7 @@ package levels
 			
 			var text:String = "Resume";
 			resumeButton = new Button(FP.screen.width / 2, FP.screen.height / 2, text, resume);
-
+			
 			add(resumeButton);
 		}
 

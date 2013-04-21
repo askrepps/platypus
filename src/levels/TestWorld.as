@@ -60,6 +60,7 @@ package levels
 		public function sendEnemies():void 
 		{
 			waveCounter += FP.elapsed;
+			//waveTimer += FP.elapsed;
 			if (waveCounter >= Global.waveFrequency) 
 			{
 				waveCounter -= Global.waveFrequency;
@@ -67,11 +68,11 @@ package levels
 				if (Global.wavePosition < Global.waves[Global.curLevel].length) 
 				{
 					this.add(genEnemy(Global.waves[Global.curLevel][Global.wavePosition++]));
+					waveTimer = 0;
 				}
 				else 
 				{
-					waveTimer += FP.elapsed;
-					if (waveTimer > 15) 
+					if (waveTimer > 10) 
 					{
 						FP.log(waveTimer);
 						waveTimer = 0;
