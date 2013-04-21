@@ -14,6 +14,7 @@ package levels
 	import net.flashpunk.World;
 	import net.flashpunk.utils.Input;
 	import net.flashpunk.utils.Key;
+	import net.flashpunk.graphics.Image;
 	
 	import towers.AoETower;
 	import towers.HoverText;
@@ -39,11 +40,12 @@ package levels
 			// Grab path info
 			Global.curLevel = 0;
 			startPos = Global.genPoint(Global.paths[Global.curLevel][0]);
+			addGraphic(new Image(Assets.LEVEL_1_MAP), 10, 0, 0);
 			
 			add(new TowerPlace(500, 300));
 			add(new TowerPlace(300, 300));
 
-			add(new Nest(700, 200));
+			add(new Nest(915, 25));
 			
 			Global.hero = new Warrior(Global.GAME_WIDTH / 2, Global.GAME_HEIGHT / 2);
 			add(Global.hero);

@@ -18,6 +18,7 @@ package
 		// Levels
 		[Embed(source = "assets/nest.png")] public static const NEST:Class;
 		[Embed(source = "assets/egg.png")] public static const EGG:Class;
+		[Embed(source = "assets/map1.png")] public static const LEVEL_1_MAP:Class;
 		
 		// Towers
 		[Embed(source = "assets/rangedTower.png")] public static const RANGED_TOWER:Class;
@@ -36,8 +37,9 @@ package
 		[Embed(source = "assets/armoredEnemy.png")] public static const ARMORED_ENEMY:Class;
 		
 		// Heroes
-		[Embed(source = "assets/warriorCleave.png")] public static const WARRIOR:Class;
-		[Embed(source = "assets/rangerHero.png")] public static const RANGER:Class;
+		[Embed(source = "assets/warriorWalk.png")] public static const WARRIOR_WALK:Class;
+		[Embed(source = "assets/warriorCleave.png")] public static const WARRIOR_ATTACK:Class;
+		[Embed(source = "assets/rangerWalk.png")] public static const RANGER_WALK:Class;
 		[Embed(source = "assets/mageHero.png")] public static const MAGE:Class;
 	}
 }

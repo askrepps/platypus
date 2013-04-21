@@ -8,7 +8,10 @@ package hero
 	import net.flashpunk.graphics.Spritemap;
 	import net.flashpunk.utils.Draw;
 	import net.flashpunk.utils.Input;
+	
 	import ui.CooldownDisplay;
+	import ui.HealthBar;
+	import ui.XPBar;
 	
 	public class Warrior extends Hero
 	{
@@ -28,10 +31,13 @@ package hero
 		{
 			super(startX, startY);
 			
-			heroImage = new Spritemap(Assets.WARRIOR, 100, 100);
-			setupSprites(heroImage);
+			heroImage = new Spritemap(Assets.WARRIOR_ATTACK, 100, 100);
+			setupSprites();
 			graphic = heroImage;
-			setHitboxTo(heroImage);
+			setHitbox(50, 60, -25, -25);
+			
+			healthBar = new HealthBar(centerX, y, 30, 4, 0);
+			xpBar = new XPBar(centerX, y-healthBar.height, 30, 4, 0);
 			
 			healthArray = Global.WARRIOR_HEALTH_ARRAY;
 			attackArray = Global.WARRIOR_ATTACK_ARRAY;
@@ -55,7 +61,7 @@ package hero
 			
 			super.cooldown1 = new CooldownDisplay(100, FP.screen.height - 120, ability1CD / Global.WARRIOR_ABIL_1_CD, "Cleave",ability1);
 			super.cooldown2 = new CooldownDisplay(150, FP.screen.height - 120, ability2CD / Global.WARRIOR_ABIL_2_CD, "Jump",ability2);
-			super.cooldown3 = new CooldownDisplay(200, FP.screen.height - 120, ability3CD/Global.WARRIOR_ABIL_3_CD, "Dash", ability3);
+			super.cooldown3 = new CooldownDisplay(200, FP.screen.height - 120, ability3CD / Global.WARRIOR_ABIL_3_CD, "Dash", ability3);
 			
 			heroImage.play("walking");
 		}
@@ -63,7 +69,6 @@ package hero
 		public override function update():void
 		{
 			super.update();
-			
 			
 			if (dashTime > 0)
 				dashTime -= FP.elapsed;
@@ -115,14 +120,14 @@ package hero
 			
 			if (isLeaping)
 			{
-				if (distanceToPoint(leapX - width/2, leapY - height/2) > Global.WARRIOR_LEAP_SPEED)
+				if (distance(leapX - width/2, leapY - height/2, x + 25, y + 25) > Global.WARRIOR_LEAP_SPEED)
 				{
-					moveTowards(leapX - width/2, leapY - height/2, Global.WARRIOR_LEAP_SPEED);
+					moveTowards(leapX - width/2 - 25, leapY - height/2 - 25, Global.WARRIOR_LEAP_SPEED);
 				}
 				else
 				{
-					x = leapX - width/2;
-					y = leapY - height/2;
+					x = leapX - width/2 - 25;
+					y = leapY - height/2 - 25;
 					isLeaping = false;
 					canMove = true;
 					isRecovering = true;
@@ -139,6 +144,7 @@ package hero
 						{
 							if(distanceFrom(enemy) < Global.WARRIOR_LEAP_ATTACK_RANGE)
 								(enemy as Enemy).takeDamage(attack, 0, "stunned?");
+							// stun enemy
 						}
 					}
 				}
@@ -153,7 +159,7 @@ package hero
 					clicked = false;
 					isLeapTargeting = false;
 					
-					if (distanceToPoint(world.mouseX - width/2, world. mouseY - height/2) < leapRange)
+					if (distance(world.mouseX - width/2, world. mouseY - height/2, x + 25, y + 25) < leapRange)
 					{
 						isLeaping = true;
 						canMove = false;
@@ -188,43 +194,45 @@ package hero
 						switch (facing)
 						{
 							case UP:
-								collision = enemy.collideRect(enemy.x, enemy.y, x, y - height/4, width, height/2);
+								collision = enemy.collideRect(enemy.x, enemy.y, x, y - 25, 100, 50);
 								break;
 							case LEFT:
-								collision = enemy.collideRect(enemy.x, enemy.y, x - width/4, y, width/2, height);
+								collision = enemy.collideRect(enemy.x, enemy.y, x - 25, y, 50, 100);
 								break;
 							case RIGHT:
-								collision = enemy.collideRect(enemy.x, enemy.y, x + width - width/4, y, width/2, height);
+								collision = enemy.collideRect(enemy.x, enemy.y, x + 75, y, 50, 100);
 								break;
 							case DOWN:
-								collision = enemy.collideRect(enemy.x, enemy.y, x, y + height - height/4, width, height/2);
+								collision = enemy.collideRect(enemy.x, enemy.y, x, y + 75, 100, 50);
 								break;
 							case LEFT_UP:
-								collision = enemy.collideRect(enemy.x, enemy.y, x - width/4, y, width/2, height*0.6)         // left-up
-										 || enemy.collideRect(enemy.x, enemy.y, x, y - height/4, width*0.6, height/2)                // left
-										 || enemy.collideRect(enemy.x, enemy.y, x - width/4, y - height/4, width/4, height/4);                // up
+								collision = enemy.collideRect(enemy.x, enemy.y, x - 25, y, 50, 60)         // left-up
+										 || enemy.collideRect(enemy.x, enemy.y, x, y - 25, 60, 50)         // left
+										 || enemy.collideRect(enemy.x, enemy.y, x - 25, y - 25, 25, 25);   // up
 								break;
 							case LEFT_DOWN:
-								collision = enemy.collideRect(enemy.x, enemy.y, x - width/4, y + height*0.4, width/2, height*0.6)        // left-down
-										 || enemy.collideRect(enemy.x, enemy.y, x, y + height - height/4, width*0.6, height/2)                // left
-										 || enemy.collideRect(enemy.x, enemy.y, x - width/4, y + height, width/4, height/4);               // down
+								collision = enemy.collideRect(enemy.x, enemy.y, x - 25, y + 40, 50, 60)    // left-down
+										 || enemy.collideRect(enemy.x, enemy.y, x, y + 75, 60, 50)         // left
+										 || enemy.collideRect(enemy.x, enemy.y, x - 25, y + 100, 25, 25);  // down
 								break;
 							case RIGHT_UP:
-								collision = enemy.collideRect(enemy.x, enemy.y, x + width - width/4, y, width/2, height*0.6)         // right-up
-										 || enemy.collideRect(enemy.x, enemy.y, x + width*0.4, y - height/4, width*0.6, height/2)                // right
-										 || enemy.collideRect(enemy.x, enemy.y, x + width, y - height/4, width/4, height/4);                // up
+								collision = enemy.collideRect(enemy.x, enemy.y, x + 75, y, 50, 60)         // right-up
+										 || enemy.collideRect(enemy.x, enemy.y, x + 40, y - 25, 60, 50)    // right
+										 || enemy.collideRect(enemy.x, enemy.y, x + 100, y - 25, 25, 25);  // up
 								break;
 							case RIGHT_DOWN:
-								collision = enemy.collideRect(enemy.x, enemy.y, x + width - width/4, y + height*0.4, width/2, height*0.6)        // riht-down
-										 || enemy.collideRect(enemy.x, enemy.y, x + width*0.4, y + height - height/4, width*0.6, height/2)                // right
-										 || enemy.collideRect(enemy.x, enemy.y, x + width, y + height, width/4, height/4);               // down
+								collision = enemy.collideRect(enemy.x, enemy.y, x + 75, y + 40, 50, 60)    // right-down
+										 || enemy.collideRect(enemy.x, enemy.y, x + 40, y + 75, 60, 50)    // right
+										 || enemy.collideRect(enemy.x, enemy.y, x + 100, y + 100, 25, 25); // down
 								break;
 							default:
 								collision = false;
 						}
 						
 						if (collision)
+						{
 							(enemy as Enemy).takeDamage(attack, 0, "wheee!");
+						}
 					}
 				}
 			}
@@ -266,58 +274,66 @@ package hero
 				switch (facing)
 				{
 					case UP:
-						Draw.rectPlus(x, y - height/4, width, height/2, 0xFFFFFF, 0.25, true);
+						Draw.rectPlus(x, y - 25, 100, 50, 0xFF0000, 0.25, true);
 						break;
 					case LEFT:
-						Draw.rectPlus(x - width/4, y, width/2, height, 0xFFFFFF, 0.25, true);
+						Draw.rectPlus(x - 25, y, 50, 100, 0xFF0000, 0.25, true);
 						break;
 					case RIGHT:
-						Draw.rectPlus(x + width - width/4, y, width/2, height, 0xFFFFFF, 0.25, true);
+						Draw.rectPlus(x + 75, y, 50, 100, 0xFF0000, 0.25, true);
 						break;
 					case DOWN:
-						Draw.rectPlus(x, y + height - height/4, width, height/2, 0xFFFFFF, 0.25, true);
+						Draw.rectPlus(x, y + 75, 100, 50, 0xFF0000, 0.25, true);
 						break;
 					case LEFT_UP:
-						Draw.rectPlus(x - width/4, y, width/2, height*0.6, 0xFFFFFF, 0.25, true);                          // some left
-						Draw.rectPlus(x, y - height/4, width*0.6, height/2, 0xFFFFFF, 0.25, true);                         // some up
+						Draw.rectPlus(x - 25, y, 50, 60, 0xFF0000, 0.25, true);                          // some left
+						Draw.rectPlus(x, y - 25, 60, 50, 0xFF0000, 0.25, true);                         // some up
 						
-						Draw.rectPlus(x - width/4, y - height/4, width/4, height/4, 0xFFFFFF, 0.25, true);                 // filler
+						Draw.rectPlus(x - 25, y - 25, 25, 25, 0xFF0000, 0.25, true);                 // filler
 						break;
 					case LEFT_DOWN:
-						Draw.rectPlus(x - width/4, y + height*0.4, width/2, height*0.6, 0xFFFFFF, 0.25, true);             // some left
-						Draw.rectPlus(x, y + height - height/4, width*0.6, height/2, 0xFFFFFF, 0.25, true);                // some down
+						Draw.rectPlus(x - 25, y + 40, 50, 60, 0xFF0000, 0.25, true);             // some left
+						Draw.rectPlus(x, y + 75, 60, 50, 0xFF0000, 0.25, true);                // some down
 						
-						Draw.rectPlus(x - width/4, y + height, width/4, height/4, 0xFFFFFF, 0.25, true);                   // filler
+						Draw.rectPlus(x - 25, y + 100, 25, 25, 0xFF0000, 0.25, true);                   // filler
 						break;
 					case RIGHT_UP:
-						Draw.rectPlus(x + width - width/4, y, width/2, height*0.6, 0xFFFFFF, 0.25, true);                  // some right
-						Draw.rectPlus(x + width*0.4, y - height/4, width*0.6, height/2, 0xFFFFFF, 0.25, true);             // some up
+						Draw.rectPlus(x + 75, y, 50, 60, 0xFF0000, 0.25, true);                  // some right
+						Draw.rectPlus(x + 40, y - 25, 60, 50, 0xFF0000, 0.25, true);             // some up
 						
-						Draw.rectPlus(x + width, y - height/4, width/4, height/4, 0xFFFFFF, 0.25, true);                   // filler
+						Draw.rectPlus(x + 100, y - 25, 25, 25, 0xFF0000, 0.25, true);                   // filler
 						break;
 					case RIGHT_DOWN:
-						Draw.rectPlus(x + width - width/4, y + height*0.4, width/2, height*0.6, 0xFFFFFF, 0.25, true);     // some right
-						Draw.rectPlus(x + width*0.4, y + height - height/4, width*0.6, height/2, 0xFFFFFF, 0.25, true);    // some down
+						Draw.rectPlus(x + 75, y + 40, 50, 60, 0xFF0000, 0.25, true);     // some right
+						Draw.rectPlus(x + 40, y + 75, 60, 50, 0xFF0000, 0.25, true);    // some down
 						
-						Draw.rectPlus(x + width, y + height, width/4, height/4, 0xFFFFFF, 0.25, true);                     // filler
+						Draw.rectPlus(x + 100, y + 100, 25, 25, 0xFF0000, 0.25, true);                     // filler
 						break;
 					default:
 				}
 			}
 			
+			//Draw.rectPlus(x + width*0.25, y + height/4, width/2, height*0.6, 0xFF0000, 0.25, true);
+			Draw.hitbox(this, true, 0xFF0000, 1);
+			
 			if (isLeapTargeting)
 			{
-				Draw.circlePlus(x + width/2, y + height/2, leapRange, 0xFFFFFF, 0.25, true);
+				Draw.circlePlus(x + width/2 + 25, y + height/2 + 25, leapRange, 0xFFFFFF, 0.25, true);
 			}
 			
 			
 		}
 		
-		public function setupSprites(spriteMap:Spritemap):void
+		public function setupSprites():void
 		{
-			spriteMap.add("walking", [0], 0, false);
-			spriteMap.add("attack", [0, 1, 2, 1, 0], 10, false);
-			spriteMap.add("dashing", [2], 0, false);
+			heroImage.add("walking", [0], 0, false);
+			heroImage.add("attack", [0, 1, 2, 1, 0], 10, false);
+			heroImage.add("dashing", [2], 0, false);
+		}
+		
+		private function distance(x1:Number, y1:Number, x2:Number, y2:Number):Number
+		{
+			return Math.sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2));
 		}
 	}
 }

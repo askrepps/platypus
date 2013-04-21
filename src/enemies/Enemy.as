@@ -36,6 +36,7 @@ package enemies
 		public var isStunned:Boolean;
 		public var stunDuration:Number;
 		public var elapsed:Number;
+		public var attackedByHero:Boolean;
 		
 		private var healthBar:HealthBar; 	// Enemies health bar.
 		private var maxHealth:Number;	
@@ -55,6 +56,8 @@ package enemies
 			pointIndex = 1;
 			isPoisoned = false;
 			elapsed = 0;
+			
+			attackedByHero = false;
 			
 			maxHealth = health;
 			healthBar = new HealthBar(centerX, (this.y + 10), 20, 5, health);
@@ -236,7 +239,9 @@ package enemies
 		public function dead():void
 		{
 			// Award hero gold and xp
-			Global.hero.gainXP(5);
+			if (attackedByHero)
+				Global.hero.gainXP(5);
+			
 			Global.playerGold += 25;
 			
 			// Drop egg

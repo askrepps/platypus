@@ -61,8 +61,8 @@ package hero
 		
 		public var egg:Egg;
 		
-		private var healthBar:HealthBar;			// The health bar (duh). 
-		private var xpBar:XPBar;					// The experience bar (also duh).
+		protected var healthBar:HealthBar;			// The health bar (duh). 
+		protected var xpBar:XPBar;					// The experience bar (also duh).
 		protected var cooldown1:CooldownDisplay;
 		protected var cooldown2:CooldownDisplay;
 		protected var cooldown3:CooldownDisplay;
@@ -90,8 +90,8 @@ package hero
 			
 			facing = UP;
 			
-			healthBar = new HealthBar(centerX, y, 30, 4, 0);
-			xpBar = new XPBar(centerX, y-healthBar.height, 30, 4, 0);
+			//healthBar = new HealthBar(centerX, y, 30, 4, 0);
+			//xpBar = new XPBar(centerX, y-healthBar.height, 30, 4, 0);
 
 		}
 		
@@ -177,15 +177,18 @@ package hero
 					gainXP(1);
 					
 				collidedEgg = collideTypes("egg", x, y);
-				if (collidedEgg != null && egg == null && !(collidedEgg as Egg).isCarried) {
+				if (collidedEgg != null && egg == null && !(collidedEgg as Egg).isCarried) 
+				{
 					(collidedEgg as Egg).isCarried = true;
 					egg = (collidedEgg as Egg);
 				}
 				
 				collidedNest = collideTypes("nest", x, y);
-				if (collidedNest != null) {
+				if (collidedNest != null) 
+				{
 					currentHealth += FP.elapsed * (maxHealth / 10);
-					if (egg != null) {
+					if (egg != null) 
+					{
 						(collidedNest as Nest).returnEgg();
 						world.remove(egg);
 						egg = null;
@@ -373,7 +376,8 @@ package hero
 		
 		public function gainXP(toGain:Number):void
 		{
-			xp += toGain;
+			if (level < Global.MAX_LEVELS)
+				xp += toGain;
 		}
 	}
 }
