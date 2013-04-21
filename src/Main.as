@@ -16,8 +16,8 @@ package
 			FP.world = new TestWorld();
 			FP.console.enable();
 			Global.music = new Sfx(Assets.MUSIC_LOOP);
-			Global.music.volume = 0;
 			Global.music.loop();
+			Global.music.volume = 0;
 		}
 		
 		override public function init():void
