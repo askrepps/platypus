@@ -31,7 +31,7 @@ package hero
 		{
 			super(startX, startY);
 			
-			heroImage = new Spritemap(Assets.WARRIOR_ATTACK, 100, 100);
+			heroImage = new Spritemap(Assets.WARRIOR, 100, 100);
 			setupSprites();
 			graphic = heroImage;
 			setHitbox(50, 60, -25, -25);
@@ -63,7 +63,7 @@ package hero
 			super.cooldown2 = new CooldownDisplay(150, FP.screen.height - 120, ability2CD / Global.WARRIOR_ABIL_2_CD, "Jump",ability2);
 			super.cooldown3 = new CooldownDisplay(200, FP.screen.height - 120, ability3CD / Global.WARRIOR_ABIL_3_CD, "Dash", ability3);
 			
-			heroImage.play("walking");
+			heroImage.setAnimFrame("walking", 0);
 		}
 		
 		public override function update():void
@@ -77,10 +77,10 @@ package hero
 				dashTime = 0;
 				isDashing = false;
 				canMove = true;
+				isAttacking = false;
 				collisionDamagesEnemies = false;
 				isRecovering = true;
 				recoverTime = Global.HERO_RECOVER_TIME;
-				heroImage.play("walking");
 			}
 			else if (isDashing)
 			{
@@ -131,7 +131,8 @@ package hero
 					isLeaping = false;
 					canMove = true;
 					isRecovering = true;
-					heroImage.play("walking");
+					isAttacking = false;
+					//heroImage.play("walking");
 					recoverTime = Global.HERO_RECOVER_TIME;
 					
 					var entities:Array = new Array();
@@ -165,12 +166,21 @@ package hero
 					{
 						isLeaping = true;
 						canMove = false;
+						isAttacking = true;
 						heroImage.play("dashing");
 						ability2CD = Global.WARRIOR_ABIL_2_CD;
 						leapX = world.mouseX;
 						leapY = world.mouseY;
 					}
 				}
+			}
+			
+			if (!isAttacking)
+			{
+				if (isMoving)
+					heroImage.play("walking");
+				else
+					heroImage.setAnimFrame("walking", 0);
 			}
 		}
 		
@@ -185,6 +195,7 @@ package hero
 				var collision:Boolean;
 				world.getAll(entities);
 				
+				isAttacking = true;
 				heroImage.setAnimFrame("attack", 0);
 				heroImage.play("attack");
 				
@@ -260,6 +271,7 @@ package hero
 				
 				collidedEnemies = new Array();
 				isDashing = true;
+				isAttacking = true;
 				dashTime = Global.WARRIOR_DASH_TIME;
 				canMove = false;
 				collisionDamagesEnemies = true;
@@ -316,22 +328,17 @@ package hero
 				}
 			}
 			
-			//Draw.rectPlus(x + width*0.25, y + height/4, width/2, height*0.6, 0xFF0000, 0.25, true);
-			Draw.hitbox(this, true, 0xFF0000, 1);
-			
 			if (isLeapTargeting)
 			{
 				Draw.circlePlus(x + width/2 + 25, y + height/2 + 25, leapRange, 0xFFFFFF, 0.25, true);
 			}
-			
-			
 		}
 		
 		public function setupSprites():void
 		{
-			heroImage.add("walking", [0], 0, false);
-			heroImage.add("attack", [0, 1, 2, 1, 0], 10, false);
-			heroImage.add("dashing", [2], 0, false);
+			heroImage.add("walking", [0, 1, 2, 3], 5, true);
+			heroImage.add("attack", [4, 5, 6, 5, 4], 10, false);
+			heroImage.add("dashing", [6], 0, false);
 		}
 		
 		private function distance(x1:Number, y1:Number, x2:Number, y2:Number):Number

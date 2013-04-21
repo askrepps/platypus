@@ -39,6 +39,7 @@ package
 		// Heroes
 		[Embed(source = "assets/warriorWalk.png")] public static const WARRIOR_WALK:Class;
 		[Embed(source = "assets/warriorCleave.png")] public static const WARRIOR_ATTACK:Class;
+		[Embed(source = "assets/warriorHero.png")] public static const WARRIOR:Class;
 		[Embed(source = "assets/rangerWalk.png")] public static const RANGER_WALK:Class;
 		[Embed(source = "assets/mageHero.png")] public static const MAGE:Class;
 		

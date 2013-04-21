@@ -1,7 +1,6 @@
 package hero
 {
 	import enemies.Enemy;
-	import ui.XPBar;
 	
 	import levels.Egg;
 	import levels.Nest;
@@ -16,6 +15,7 @@ package hero
 	
 	import ui.CooldownDisplay;
 	import ui.HealthBar;
+	import ui.XPBar;
 	
 	public class Hero extends Entity
 	{
@@ -56,6 +56,8 @@ package hero
 		
 		public var facing:Number;
 		public var canMove:Boolean;
+		public var isMoving:Boolean;
+		public var isAttacking:Boolean;
 		
 		public var heroImage:Spritemap;              // hero graphic
 		
@@ -80,9 +82,11 @@ package hero
 			ability2CD = 0;
 			ability3CD = 0;
 			
-			recoverTime = Global.HERO_RECOVER_TIME;
+			recoverTime = 0;
 			isRecovering = true;
 			blinkCounter = 0;
+			isMoving = false;
+			isAttacking = false;
 			
 			canMove = true;
 			collisionDamagesEnemies = false;
@@ -102,8 +106,10 @@ package hero
 			var collidedEgg:Entity;
 			var collidedNest:Entity;
 			
+			isMoving = true;
+			
 			if (canMove)
-			{
+			{	
 				if (Input.check(Key.W) && Input.check(Key.A))
 				{
 					facing = LEFT_UP;
@@ -160,6 +166,10 @@ package hero
 					facing = RIGHT;
 					if (collideTypes("tower", x + speed * FP.elapsed * Global.HERO_SPEED_SCALE, y) == null)
 						x += speed * FP.elapsed * Global.HERO_SPEED_SCALE;
+				}
+				else
+				{
+					isMoving = false;
 				}
 				
 				switch(facing)
@@ -219,17 +229,29 @@ package hero
 			if (unlockedAbilities >= 3 && ability3CD <=0 && Input.pressed(Key.DIGIT_3))
 				ability3();
 			
-			ability1CD -= FP.elapsed;
-			if (ability1CD < 0)
-				ability1CD = 0;
+			if (ability1CD > 0)
+			{
+				ability1CD -= FP.elapsed;
+				if (ability1CD < 0)
+				{
+					ability1CD = 0;
+					isAttacking = false;
+				}
+			}
 			
-			ability2CD -= FP.elapsed;
-			if (ability2CD < 0)
-				ability2CD = 0;
+			if (ability2CD > 0)
+			{
+				ability2CD -= FP.elapsed;
+				if (ability2CD < 0)
+					ability2CD = 0;
+			}
 			
-			ability3CD -= FP.elapsed;
-			if (ability3CD < 0)
-				ability3CD = 0;
+			if (ability3CD > 0)
+			{
+				ability3CD -= FP.elapsed;
+				if (ability3CD < 0)
+					ability3CD = 0;
+			}
 			
 			recoverTime -= FP.elapsed;
 			if (recoverTime < 0)
