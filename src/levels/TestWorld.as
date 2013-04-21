@@ -1,26 +1,28 @@
 package levels 
 {
+	import enemies.ArmoredEnemy;
 	import enemies.Enemy;
 	import enemies.FastEnemy;
 	import enemies.FlyingEnemy;
 	import enemies.NormalEnemy;
-	import enemies.ArmoredEnemy;
 	
 	import flash.geom.Point;
 	
 	import hero.Warrior;
 	
 	import net.flashpunk.FP;
+	import net.flashpunk.Sfx;
 	import net.flashpunk.World;
+	import net.flashpunk.graphics.Image;
 	import net.flashpunk.utils.Input;
 	import net.flashpunk.utils.Key;
-	import net.flashpunk.graphics.Image;
 	
 	import towers.AoETower;
 	import towers.HoverText;
 	import towers.RangedTower;
 	import towers.Tower;
 	import towers.TowerPlace;
+	
 	import ui.HUD;
 	/**
 	 * ...
@@ -32,6 +34,7 @@ package levels
 		private var startPos:Point;
 		private var waveCounter:Number;
 		private var waveTimer:Number;
+		private var music:Sfx;
 		
 		public function TestWorld() 
 		{
@@ -103,6 +106,8 @@ package levels
 			{
 				// Add new world that is the pause screen.
 				FP.world = new PauseScreen(this);
+				Global.music.stop();
+				
 			}
 			
 			super.update();

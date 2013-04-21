@@ -145,8 +145,8 @@ package hero
 							if(distanceFrom(enemy) < Global.WARRIOR_LEAP_ATTACK_RANGE)
 							{
 								(enemy as Enemy).takeDamage(attack, 0, "stunned?");
+								(enemy as Enemy).slow(5, 0.5);
 							}
-							// stun enemy
 						}
 					}
 				}

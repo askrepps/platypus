@@ -3,6 +3,7 @@ package
 	import levels.TestWorld;
 	import net.flashpunk.Engine;	
 	import net.flashpunk.FP;
+	import net.flashpunk.Sfx;
 	
 	[SWF(width="1024", height="768")]     // Note: change constants in Global.as to match
 	
@@ -14,6 +15,9 @@ package
 			super(Global.GAME_WIDTH, Global.GAME_HEIGHT, 60, false);
 			FP.world = new TestWorld();
 			FP.console.enable();
+			Global.music = new Sfx(Assets.MUSIC_LOOP);
+			Global.music.volume = 0;
+			Global.music.loop();
 		}
 		
 		override public function init():void
