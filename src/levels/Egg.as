@@ -24,6 +24,9 @@ package levels
 		
 		public function updatePos(newX:Number, newY:Number):void
 		{
+			if (!visible)
+				visible = true;
+			
 			x = newX;
 			y = newY;
 		}

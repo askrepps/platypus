@@ -1,10 +1,10 @@
 package levels
 {
 	import net.flashpunk.Entity;
+	import net.flashpunk.FP;
 	import net.flashpunk.Graphic;
 	import net.flashpunk.Mask;
 	import net.flashpunk.graphics.Image;
-	import net.flashpunk.FP;
 	
 	public class Nest extends Entity
 	{
@@ -24,13 +24,16 @@ package levels
 		
 		public function stealEgg():Egg
 		{
+			var egg:Egg = null;
+			
 			if (eggCount > 0)
 			{
 				eggCount--;
-				return new Egg(x, y);
+				egg = new Egg(x, y);
+				egg.visible = false;
 			}
 			
-			return null;
+			return egg;
 		}
 		
 		public function returnEgg():void
