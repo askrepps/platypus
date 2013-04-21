@@ -61,6 +61,8 @@ package enemies
 			pointIndex = 1;
 			isPoisoned = false;
 			elapsed = 0;
+			poisonDuration = 0;
+			poisonDamage = 0;
 			
 			attackedByHero = false;
 			

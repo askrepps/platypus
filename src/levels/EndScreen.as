@@ -16,7 +16,7 @@ package levels
 			if (won)
 				addGraphic(new Image(Assets.YOU_WIN), -10, 0, 0);
 			else
-				addGraphic(new Image(Assets.GAME_OVER), -10, Global.GAME_WIDTH/2 - 100, Global.GAME_HEIGHT/2 - 100);
+				addGraphic(new Image(Assets.GAME_OVER), -10, Global.GAME_WIDTH/2 - 400, Global.GAME_HEIGHT/2 - 400);
 		}
 		
 		
