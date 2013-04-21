@@ -9,6 +9,7 @@ package enemies
 	
 	import net.flashpunk.Entity;
 	import net.flashpunk.FP;
+	import net.flashpunk.graphics.Spritemap;
 	
 	import ui.HealthBar;
 	
@@ -38,6 +39,7 @@ package enemies
 		public var elapsed:Number;
 		public var attackedByHero:Boolean;
 		public var xp:Number;
+		public var enemyImage:Spritemap;
 		
 		private var healthBar:HealthBar; 	// Enemies health bar.
 		private var maxHealth:Number;	
@@ -78,15 +80,18 @@ package enemies
 		}
 		
 		// Set poison DoT variables
-		public function getPoisoned(duration:Number, damage:Number):void {
+		public function getPoisoned(duration:Number, damage:Number):void 
+		{
 			poisonDuration = duration;
 			poisonDamage = damage;
 			isPoisoned = true;
 		}
 		
 		// Check if enemy should be damaged by poison
-		public function takePoisonDamage():void {
-			if (poisonDuration > 0) {
+		public function takePoisonDamage():void 
+		{
+			if (poisonDuration > 0) 
+			{
 				poisonDuration -= FP.elapsed;
 				poisonCounter += FP.elapsed;
 				
@@ -96,46 +101,55 @@ package enemies
 					poisonCounter -= .5
 				}
 			}
-			else {
+			else 
+			{
 				poisonDuration = 0;
 				poisonCounter = 0;
 				isPoisoned = false;
 			}
 		}
 		
-		public function slow(duration:Number, amount:Number):void {
+		public function slow(duration:Number, amount:Number):void 
+		{
 			isSlowed = true;
 			slowDuration = duration;
 			slowAmount = amount;
 		}
 		
-		public function stun(duration:Number):void {
+		public function stun(duration:Number):void 
+		{
 			isStunned = true;
 			stunDuration = duration;
 		}
-		public function nextPoint():void {
+		public function nextPoint():void 
+		{
 			var radius:Number;
 			var theta:Number;
 			var x:Number;
 			var y:Number;
 				
-			if ((pointIndex + 1) == Global.paths[Global.curLevel].length) {
+			if ((pointIndex + 1) == Global.paths[Global.curLevel].length) 
+			{
 				// If we've reached the end of the path, grab egg, switch directions and go back
 				//getEgg();
 				toNest = false;
+				enemyImage.flipped = true;
 			}
-			else if (pointIndex == 0 && !toNest) {
+			else if (pointIndex == 0 && !toNest) 
+			{
 				//captureEgg();
 				this.removed();
 				world.remove(this);
 				return;
 			}
-			if (toNest) {
+			if (toNest) 
+			{
 				// Get actual point on path from which we draw a random point close by
 				curPoint = Global.genPoint(Global.paths[Global.curLevel][++pointIndex]);
 				
 				// If we're not moving towards the final point in the path (nest), add a bit of randomness
-				if (pointIndex != Global.paths[Global.curLevel].length) {
+				if (pointIndex != Global.paths[Global.curLevel].length) 
+				{
 					radius = Math.random() * (Global.GAME_HEIGHT);
 					theta = Math.random() * 2 * Math.PI;
 					x = Math.sqrt(radius) * Math.cos(theta);
@@ -146,11 +160,13 @@ package enemies
 					
 				}
 			}
-			else {
+			else 
+			{
 				curPoint = Global.genPoint(Global.paths[Global.curLevel][--pointIndex]);
 				
 				// If we're not moving towards the first point in the path (starting point), add a bit of randomness
-				if (pointIndex != 0) {
+				if (pointIndex != 0) 
+				{
 					radius = Math.random() * (Global.GAME_HEIGHT / 5);
 					theta = Math.random() * 2 * Math.PI;
 					x = Math.sqrt(radius) * Math.cos(theta);
@@ -215,7 +231,7 @@ package enemies
 			}
 			else
 			{
-				egg.updatePos(x - width, y);
+				egg.updatePos(x + width/2, y);
 			}
 			
 			// Handle damage from poison
@@ -227,18 +243,22 @@ package enemies
 				nextPoint();
 			
 			// Check for impairments
-			if (!isStunned) {
-				if (isSlowed) {
+			if (!isStunned) 
+			{
+				if (isSlowed) 
+				{
 					slowDuration -= FP.elapsed;
 					if (slowDuration <= 0) isSlowed = false;
 					// Decrease speed based on the slow amount
 					moveTowards(curPoint.x, curPoint.y, (1 - slowAmount) * speed * FP.elapsed);
 				}
-				else {
+				else 
+				{
 					moveTowards(curPoint.x, curPoint.y, speed * FP.elapsed);
 				}
 			}
-			else {
+			else 
+			{
 				// Don't move if we are stunned
 				stunDuration -= FP.elapsed;
 				if (stunDuration <= 0) isStunned = false;

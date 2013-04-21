@@ -2,6 +2,7 @@ package enemies
 {
 	import net.flashpunk.Entity;
 	import net.flashpunk.graphics.Image;
+	import net.flashpunk.graphics.Spritemap;
 	import net.flashpunk.masks.Pixelmask;
 	/**
 	 * ...
@@ -9,17 +10,16 @@ package enemies
 	 */
 	public class ArmoredEnemy extends Enemy 
 	{
-		private var enemyImage:Image;
-		
-		public function ArmoredEnemy(x:Number, y:Number) {
+		public function ArmoredEnemy(x:Number, y:Number) 
+		{
 			type = "armored";
-			enemyImage = new Image(Assets.ARMORED_ENEMY);
+			enemyImage = new Spritemap(Assets.ARMORED_ENEMY, 50, 50);
+			enemyImage.add("walking", [0, 1, 2, 3], 5, true);
 			super(x, y, Global.ARMORED_HEALTH, Global.ARMORED_SPEED, Global.ARMORED_ARMOR, Global.ARMORED_XP);
 			
 			graphic = enemyImage;
-			mask = new Pixelmask(Assets.ARMORED_ENEMY);
+			enemyImage.play("walking");
+			setHitbox(50, 50);
 		}
-		
 	}
-
 }

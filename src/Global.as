@@ -51,10 +51,10 @@ package
 		public static const waves:Vector.<Vector.<Number>> = new Vector.<Vector.<Number>>(5);
 		waves[0] = new Vector.<Number>(5);
 		waves[0][0] = 0;
-		waves[0][1] = 0;
-		waves[0][2] = 0;
-		waves[0][3] = 0;
-		waves[0][4] = 3;
+		waves[0][1] = 1;
+		waves[0][2] = 2;
+		waves[0][3] = 3;
+		waves[0][4] = 0;
 		
 		waves[1] = new Vector.<Number>(5);
 		waves[1][0] = 0;
@@ -69,7 +69,7 @@ package
 		}
 		
 		// Other Level Stuff
-		public static const STARTING_EGG_COUNT:Number = 1;
+		public static const STARTING_EGG_COUNT:Number = 5;
 
 		
 		// Tower Attributes, see Tower.as for description of variables
@@ -259,8 +259,5 @@ package
 		public static const ARMORED_SPEED = 75;
 		public static const ARMORED_ARMOR = 3;
 		public static const ARMORED_XP = 1;
-		
-		
-		
 	}
 }
