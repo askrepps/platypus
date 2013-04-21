@@ -38,13 +38,13 @@ package enemies
 		public var elapsed:Number;
 		public var attackedByHero:Boolean;
 		public var xp:Number;
-		
+		public var wave:Number;				// Wave number the enemy is in.
 		private var healthBar:HealthBar; 	// Enemies health bar.
 		private var maxHealth:Number;	
 		
 		public var egg:Egg;
 		
-		public function Enemy(x:Number, y:Number, health:Number, speed:Number, armor:Number, xp:Number) 
+		public function Enemy(x:Number, y:Number, health:Number, speed:Number, armor:Number, xp:Number, wave:Number) 
 		{
 			this.x = x;
 			this.y = y;
@@ -53,7 +53,8 @@ package enemies
 			this.armor = armor;
 			this.toNest = true;
 			this.xp = xp;
-			curPoint = Global.genPoint(Global.paths[Global.curLevel][0]);
+			this.wave = wave;
+			curPoint = Global.genPoint(Global.paths[0][0]);
 			pointIndex = 1;
 			isPoisoned = false;
 			elapsed = 0;
@@ -119,23 +120,24 @@ package enemies
 			var x:Number;
 			var y:Number;
 				
-			if ((pointIndex + 1) == Global.paths[Global.curLevel].length) {
+			if ((pointIndex + 1) == Global.paths[0].length) {
 				// If we've reached the end of the path, grab egg, switch directions and go back
 				//getEgg();
 				toNest = false;
 			}
 			else if (pointIndex == 0 && !toNest) {
 				//captureEgg();
-				this.removed();
+				if(egg != null)
+					Global.eggsLeft--;
 				world.remove(this);
 				return;
 			}
 			if (toNest) {
 				// Get actual point on path from which we draw a random point close by
-				curPoint = Global.genPoint(Global.paths[Global.curLevel][++pointIndex]);
+				curPoint = Global.genPoint(Global.paths[0][++pointIndex]);
 				
 				// If we're not moving towards the final point in the path (nest), add a bit of randomness
-				if (pointIndex != Global.paths[Global.curLevel].length) {
+				if (pointIndex != Global.paths[0].length) {
 					radius = Math.random() * (Global.GAME_HEIGHT);
 					theta = Math.random() * 2 * Math.PI;
 					x = Math.sqrt(radius) * Math.cos(theta);
@@ -147,7 +149,7 @@ package enemies
 				}
 			}
 			else {
-				curPoint = Global.genPoint(Global.paths[Global.curLevel][--pointIndex]);
+				curPoint = Global.genPoint(Global.paths[0][--pointIndex]);
 				
 				// If we're not moving towards the first point in the path (starting point), add a bit of randomness
 				if (pointIndex != 0) {
@@ -215,6 +217,7 @@ package enemies
 			}
 			else
 			{
+				toNest = false;
 				egg.updatePos(x - width, y);
 			}
 			

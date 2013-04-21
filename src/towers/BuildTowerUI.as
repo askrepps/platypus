@@ -74,9 +74,13 @@ package towers
 			
 		}
 		
+		override public function added():void
+		{
+			world.addList(buttonR, buttonM, buttonA, buttonAoE);
+		}
+		
 		override public function removed():void
 		{
-			buttonR.name = null;
 			FP.world.removeList(buttonR, buttonM, buttonA, buttonAoE);
 			
 			for each(var hText:HoverText in new Array(mHoverText, aHoverText, rHoverText, aoeHoverText))

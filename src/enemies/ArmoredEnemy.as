@@ -11,10 +11,10 @@ package enemies
 	{
 		private var enemyImage:Image;
 		
-		public function ArmoredEnemy(x:Number, y:Number) {
+		public function ArmoredEnemy(x:Number, y:Number, wave:Number) {
 			type = "armored";
 			enemyImage = new Image(Assets.ARMORED_ENEMY);
-			super(x, y, Global.ARMORED_HEALTH, Global.ARMORED_SPEED, Global.ARMORED_ARMOR, Global.ARMORED_XP);
+			super(x, y, Global.ARMORED_HEALTH, Global.ARMORED_SPEED, Global.ARMORED_ARMOR, Global.ARMORED_XP, wave);
 			
 			graphic = enemyImage;
 			mask = new Pixelmask(Assets.ARMORED_ENEMY);

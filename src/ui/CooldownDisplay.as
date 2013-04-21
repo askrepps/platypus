@@ -17,6 +17,7 @@ package ui
 		private var clicked:Boolean;
 		private var label:Text;
 		private var text:String;
+		public var isEnabled:Boolean;
 		
 		public function CooldownDisplay(x:Number, y:Number, curVal:Number, text:String, callback:Function) 
 		{
@@ -28,9 +29,10 @@ package ui
 			this.text = text;
 			layer = -42;
 			label = new Text(text, 1, 20, {size: 8, color: 0xFFFFFF, width: 40, wordWrap: true, align: "center"});
-
+			
 			setHitbox(40, 60);
 		}
+	
 		
 		public function updateVal(value:Number):void
 		{
@@ -69,6 +71,8 @@ package ui
 			Draw.rect(x, y, 40, 60, 0x000000);
 			Draw.rect(x, y, 40, 60*curVal, 0x838b8b);
 			
+			if (!isEnabled)
+				Draw.rect(x, y, 40, 60, 0x000000, .8);
 			
 			Draw.text(text, x, this.y + ((height - label.textHeight) * 0.5), {size:10, color: 0xFFFFFF, width: 40, wordWrap: true, align: "center"});
 			/*

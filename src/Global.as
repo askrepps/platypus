@@ -17,6 +17,8 @@ package
 		
 		// Player variables
 		public static var playerGold:int;	
+		public static var eggsLeft:int;
+		
 		// Path data
 		public static var curLevel:Number;
 		public static var music:Sfx;
@@ -48,20 +50,39 @@ package
 		public static var waveFrequency = 1;
 		public static var waveCounter = 0;
 		public static var wavePosition = 0;
+		
+		public static const NUM_WAVES = 4;
+		
+		// Waves
+		// 0 - Normal 1 - Fast 3 - Armored 4 - Flying
 		public static const waves:Vector.<Vector.<Number>> = new Vector.<Vector.<Number>>(5);
 		waves[0] = new Vector.<Number>(5);
 		waves[0][0] = 0;
 		waves[0][1] = 0;
 		waves[0][2] = 0;
 		waves[0][3] = 0;
-		waves[0][4] = 3;
+		waves[0][4] = 0;
 		
 		waves[1] = new Vector.<Number>(5);
 		waves[1][0] = 0;
 		waves[1][1] = 0;
 		waves[1][2] = 0;
-		waves[1][3] = 0;
+		waves[1][3] = 3;
 		waves[1][4] = 3;
+		
+		waves[2] = new Vector.<Number>(5);
+		waves[2][0] = 4;
+		waves[2][1] = 4;
+		waves[2][2] = 4;
+		waves[2][3] = 4;
+		waves[2][4] = 4;
+		
+		waves[3] = new Vector.<Number>(5);
+		waves[3][0] = 1;
+		waves[3][1] = 1;
+		waves[3][2] = 1;
+		waves[3][3] = 1;
+		waves[3][4] = 1;
 		
 		public static function genPoint(a:Point):Point
 		{
@@ -69,7 +90,7 @@ package
 		}
 		
 		// Other Level Stuff
-		public static const STARTING_EGG_COUNT:Number = 1;
+		public static const STARTING_EGG_COUNT:Number = 100;
 
 		
 		// Tower Attributes, see Tower.as for description of variables

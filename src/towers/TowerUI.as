@@ -63,8 +63,8 @@ package towers
 			else 
 				Global.playerGold += (tower.cost + tower.upgradeCost + tower.upgradeCost) * .30;
 				
-			world.add(new TowerPlace(tower.x, tower.y));
-			world.remove(tower);
+			FP.world.add(new TowerPlace(tower.x, tower.y));
+			FP.world.remove(tower);
 		}
 		
 		// Remove the buttons when the UI is removed.
@@ -85,10 +85,12 @@ package towers
 				world.add(deleteButton);
 			}
 			
+		/*	
 			if(Global.playerGold < tower.upgradeCost)
 			{
 				upgradeButton.addGraphic(Image.createRect(upgradeButton.width, upgradeButton.height, 0x000000, 0.75));
 			}
+		*/
 			
 			// Remove the UI if the player clicks away from it.
 			if (collidePoint(x, y, world.mouseX, world.mouseY))
