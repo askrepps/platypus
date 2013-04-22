@@ -93,7 +93,7 @@ package
 		waves[3][7] = 1;
 		
 		
-		waves[4] = new Vector.<Number>(8);
+		waves[4] = new Vector.<Number>(20);
 		waves[3][0] = 0;
 		waves[3][1] = 0;
 		waves[3][2] = 0;
