@@ -30,7 +30,6 @@ package towers
 			type = "upgradeUI";
 			this.tower = tower;
 			
-			
 			upgradeButton = new BuildButton(this.x + width / 3, this.y, "Upgrade" + tower.upgradeCost.toString(), upgrade); 
 			deleteButton = new BuildButton(this.x + width / 3, this.y + (2 * (width / 3)), "Sell", deleteTower); 
 		}
@@ -49,7 +48,7 @@ package towers
 			if (tower.upgradeCur == 2)
 			{	
 				this.upgradeButton.callback = null;
-				upgradeButton.addGraphic(Image.createRect(upgradeButton.width, upgradeButton.height, 0x000000, 0.75));
+				upgradeButton.enabled = false;
 			}
 			
 		}
@@ -85,12 +84,12 @@ package towers
 				world.add(deleteButton);
 			}
 			
-		/*	
+		
 			if(Global.playerGold < tower.upgradeCost)
 			{
-				upgradeButton.addGraphic(Image.createRect(upgradeButton.width, upgradeButton.height, 0x000000, 0.75));
+				upgradeButton.enabled = false;
 			}
-		*/
+		
 			
 			// Remove the UI if the player clicks away from it.
 			if (collidePoint(x, y, world.mouseX, world.mouseY))
@@ -120,7 +119,6 @@ package towers
 		{
 			super.render();
 			Draw.circlePlus(centerX, centerY, tower.range,	0xbbd0fb , .08, true); 	
-			// Draw a circle representing the range of the tower.
 		}
 	}
 

@@ -40,6 +40,7 @@ package towers
 					damage = Global.MELEE_DAMAGE_UPGRADE2;
 					speed = Global.MELEE_SPEED_UPGRADE2;
 					special = Global.MELEE_SPECIAL;
+					armorPiercing = Global.MELEE_ARMORPIERCING_UPGRADE2;
 			}
 		}
 		

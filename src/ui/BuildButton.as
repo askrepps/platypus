@@ -20,7 +20,7 @@ package ui
 		protected var label:Text;
 		public var callback:Function;
 		public var params:Object;
-		
+		public var enabled:Boolean;
 		
 		//DEFAULT CONSTRUCTOR FOR BUTTONS
 		public function BuildButton(x:Number = 0, y:Number = 0, text:String = "", callback:Function = null, params:Object = null)
@@ -29,16 +29,17 @@ package ui
 			label = new Text(text, 1, normalImage.height/2, {size: 8, color: 0xFFFFFF, width: normalImage.width, wordWrap: true, align: "center"});
 			label.y = (normalImage.height - label.textHeight) * 0.5;
 			
+			this.x = x;
+			this.y = y;
 			
-			super(x, y);
 			this.callback = callback;
 			this.params = params;
+			enabled = true;
 			
 			normal = new Graphiclist(normalImage, label);
-			
 			graphic = normal;
-			
 			setHitboxTo(normalImage);
+			
 		}
 		
 		//UPDATE FUNCTION WHICH CHANGES THE VISUAL VALUE OF BUTTONS
@@ -97,6 +98,9 @@ package ui
 		{
 			super.render();
 			drawRange();
+			
+			if (!enabled)
+				Draw.rect(x,y, width, height, 0x000000, 0.75);
 		}
 	}
 

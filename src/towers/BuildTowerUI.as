@@ -63,7 +63,7 @@ package towers
 			}
 			else if(towerBuild == "AoE" && (Global.playerGold >= Global.AOE_COST))
 			{
-				Global.playerGold >= Global.AOE_COST;
+				Global.playerGold -= Global.AOE_COST;
 				FP.world.add(new AoETower(x + width / 3.0, y + height / 3.0));
 				FP.world.remove(this.towerPlace);
 			}
@@ -103,7 +103,26 @@ package towers
 				buttonR.name = "done";
 				world.addList(buttonR, buttonM, buttonA, buttonAoE);
 			}
-			
+			else
+			{
+				// Dim the buttons if the player cannot buy the tower.
+				if (Global.playerGold < Global.RANGED_COST)
+				{
+					buttonR.enabled = false;
+				}
+				if (Global.playerGold < Global.MELEE_COST)
+				{
+					buttonM.enabled = false;
+				}
+				if (Global.playerGold < Global.AIR_COST)
+				{
+					buttonA.enabled = false;
+				}
+				if (Global.playerGold < Global.AOE_COST)
+				{
+					buttonAoE.enabled = false;
+				}
+			}
 			for each(var hText:HoverText in new Array(mHoverText, aHoverText, rHoverText, aoeHoverText))
 			{
 				if (hText != null)

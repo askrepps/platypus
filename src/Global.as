@@ -51,7 +51,7 @@ package
 		public static var waveCounter = 0;
 		public static var wavePosition = 0;
 		
-		public static const NUM_WAVES = 4;
+		public static const NUM_WAVES = 5;
 		
 		// Waves
 		// 0 - Normal 1 - Fast 2 - Flying 3- Armored
@@ -60,29 +60,60 @@ package
 		waves[0][0] = 0;
 		waves[0][1] = 0;
 		waves[0][2] = 0;
-		waves[0][3] = 2;
-		waves[0][4] = 2;
+		waves[0][3] = 0;
+		waves[0][4] = 0;
 		
-		waves[1] = new Vector.<Number>(5);
-		waves[1][0] = 2;
-		waves[1][1] = 2;
-		waves[1][2] = 2;
-		waves[1][3] = 2;
-		waves[1][4] = 2;
+		waves[1] = new Vector.<Number>(10);
+		waves[1][0] = 0;
+		waves[1][1] = 0;
+		waves[1][2] = 3;
+		waves[1][3] = 0;
+		waves[1][4] = 0;
+		waves[1][5] = 3;
+		waves[1][6] = 0;
+		waves[1][7] = 0;
+		waves[1][8] = 3;
+		waves[1][9] = 0;
 		
 		waves[2] = new Vector.<Number>(5);
-		waves[2][0] = 3;
-		waves[2][1] = 3;
-		waves[2][2] = 4;
-		waves[2][3] = 4;
-		waves[2][4] = 4;
+		waves[2][0] = 2;
+		waves[2][1] = 2;
+		waves[2][2] = 2;
+		waves[2][3] = 2;
+		waves[2][4] = 2;
 		
-		waves[3] = new Vector.<Number>(5);
+		waves[3] = new Vector.<Number>(8);
 		waves[3][0] = 1;
 		waves[3][1] = 1;
 		waves[3][2] = 1;
 		waves[3][3] = 1;
 		waves[3][4] = 1;
+		waves[3][5] = 1;
+		waves[3][6] = 1;
+		waves[3][7] = 1;
+		
+		
+		waves[4] = new Vector.<Number>(8);
+		waves[3][0] = 0;
+		waves[3][1] = 0;
+		waves[3][2] = 0;
+		waves[3][3] = 0;
+		waves[3][4] = 0;
+		waves[3][5] = 3;
+		waves[3][6] = 3;
+		waves[3][7] = 3;
+		waves[3][8] = 3;
+		waves[3][9] = 2;
+		waves[3][10] = 2;
+		waves[3][11] = 2;
+		waves[3][12] = 2;
+		waves[3][13] = 2;
+		waves[3][14] = 1;
+		waves[3][15] = 1;
+		waves[3][16] = 1;
+		waves[3][17] = 1;
+		waves[3][18] = 0;
+		waves[3][19] = 0;
 		
 		public static function genPoint(a:Point):Point
 		{
@@ -113,7 +144,7 @@ package
 		public static const MELEE_DAMAGE:Number = 10;		
 		public static const MELEE_SPEED:Number = 1;			
 		public static const MELEE_CANATTACK:Array = new Array("normal", "fast", "armored"); 		
-		public static const MELEE_ARMORPIERCING:Number = 10;  
+		public static const MELEE_ARMORPIERCING:Number = .1;  
 		public static const MELEE_SPECIAL:String = "Ignore Armor";		
 		public static const MELEE_TOWERDESCIPT:String = "Basic melee tower.  Can only hit ground units.";
 		
@@ -122,7 +153,7 @@ package
 		public static const RANGED_DAMAGE:Number = 4;		
 		public static const RANGED_SPEED:Number = .8;			
 		public static const RANGED_CANATTACK:Array = new Array("normal", "fast", "armored", "flying"); 		
-		public static const RANGED_ARMORPIERCING:Number = 1;  
+		public static const RANGED_ARMORPIERCING:Number = .01;  
 		public static const RANGED_SPECIAL:String = "None";		
 		public static const RANGED_TOWERDESCIPT:String = "Basic ranged tower. Can hit any unit.";
 		
@@ -131,7 +162,7 @@ package
 		public static const AOE_DAMAGE:Number = 2;		
 		public static const AOE_SPEED:Number = 1;			
 		public static const AOE_CANATTACK:Array = new Array("normal", "fast", "armored"); 		
-		public static const AOE_ARMORPIERCING:Number = 5;  
+		public static const AOE_ARMORPIERCING:Number = .05;  
 		public static const AOE_SPECIAL:String = "Poison";		
 		public static const POISON_DURATION:Number = 4;
 		public static const POISON_DAMAGE:Number = 2;
@@ -143,7 +174,7 @@ package
 		public static const AIR_DAMAGE:Number = 5;		
 		public static const AIR_SPEED:Number = .5;			
 		public static const AIR_CANATTACK:Array = new Array("flying"); 	
-		public static const AIR_ARMORPIERCING:Number = 5;  
+		public static const AIR_ARMORPIERCING:Number = .05;  
 		public static const AIR_SPECIAL:String = "";		
 		public static const AIR_TOWERDESCIPT:String = "Special designed to take out flying enemies.";
 		
@@ -156,14 +187,14 @@ package
 		public static const MELEE_RANGE_UPGRADE2:Number = 90;
 		public static const MELEE_DAMAGE_UPGRADE2:Number = 20;		
 		public static const MELEE_SPEED_UPGRADE2:Number = .75;		
-		public static const MELEE_ARMORPIERCING_UPGRADE2:Number = 100;
+		public static const MELEE_ARMORPIERCING_UPGRADE2:Number = 1;
 		
 		public static const RANGED_RANGE_UPGRADE1:Number = 120;
 		public static const RANGED_DAMAGE_UPGRADE1:Number = 6;		
 		public static const RANGED_SPEED_UPGRADE1:Number = .6;	
 		
 		public static const RANGED_RANGE_UPGRADE2:Number = 140;
-		public static const RANGED_DAMAGE_UPGRADE2:Number = 8;		
+		public static const RANGED_DAMAGE_UPGRADE2:Number = 4;		
 		public static const RANGED_SPEED_UPGRADE2:Number = .15;	
 		
 		
