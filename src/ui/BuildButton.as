@@ -73,19 +73,19 @@ package ui
 			{
 				if(params == "Ranged")
 				{
-					Draw.circlePlus(centerX, centerY + this.height, Global.RANGED_RANGE,	0xbbd0fb , .08, true);
+					Draw.circlePlus(centerX, centerY + this.height, Global.RANGED_RANGE,	0xbbd0fb , .2, true);
 				}
 				else if(params == "Melee")
 				{
-					Draw.circlePlus(centerX - this.width, centerY, Global.MELEE_RANGE,	0xbbd0fb , .08, true); 	
+					Draw.circlePlus(centerX - this.width, centerY, Global.MELEE_RANGE,	0xbbd0fb , .2, true); 	
 				}
 				else if(params == "Air")
 				{
-					Draw.circlePlus(centerX, centerY - this.height, Global.AIR_RANGE,	0xbbd0fb , .08, true); 	
+					Draw.circlePlus(centerX, centerY - this.height, Global.AIR_RANGE,	0xbbd0fb , .2, true); 	
 				}
 				else if(params == "AoE")
 				{
-					Draw.circlePlus(centerX + this.width, centerY, Global.AOE_RANGE,	0xbbd0fb , .08, true); 	
+					Draw.circlePlus(centerX + this.width, centerY, Global.AOE_RANGE,	0xbbd0fb , .2, true); 	
 				}
 				else
 				{

@@ -118,7 +118,7 @@ package towers
 		override public function render():void
 		{
 			super.render();
-			Draw.circlePlus(centerX, centerY, tower.range,	0xbbd0fb , .08, true); 	
+			Draw.circlePlus(centerX, centerY, tower.range,	0xbbd0fb , .2, true); 	
 		}
 	}
 

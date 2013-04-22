@@ -26,6 +26,8 @@ package ui
 			Draw.text("Gold: " + Global.playerGold.toString(), 40, 10, { size: 20, color: 0xFFFFFF, align: "center" } )
 			Draw.text("Eggs: " + Global.eggsLeft.toString(), 200, 10, { size: 20, color: 0xFFFFFF, align: "center" } )
 			Draw.text("Hero Level: " + Global.hero.level.toString(), 320, 10, { size: 20, color: 0xFFFFFF, align: "center" } );
+			Draw.text("Wave: " + String(Global.curLevel + 1) + "/" + String(Global.NUM_WAVES + 1), 480, 10, { size: 20, color: 0xFFFFFF, align: "center" } );
+			
 		}
 	}
 
