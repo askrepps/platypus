@@ -67,7 +67,7 @@ package levels
 			
 			add(new HUD());
 			
-			Global.playerGold = 500;
+			Global.playerGold = 200;
 			paused = false;
 			
 			var button:BuildButton = new BuildButton(680, 0, "Next Wave", advanceWave);
