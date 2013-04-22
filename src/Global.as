@@ -58,11 +58,11 @@ package
 		// 0 - Normal 1 - Fast 2 - Flying 3- Armored
 		public static const waves:Vector.<Vector.<Number>> = new Vector.<Vector.<Number>>(5);
 		waves[0] = new Vector.<Number>(5);
-		waves[0][0] = 0;
-		waves[0][1] = 0;
-		waves[0][2] = 0;
-		waves[0][3] = 0;
-		waves[0][4] = 0;
+		waves[0][0] = 2;
+		waves[0][1] = 2;
+		waves[0][2] = 2;
+		waves[0][3] = 2;
+		waves[0][4] = 2;
 		
 		waves[1] = new Vector.<Number>(10);
 		waves[1][0] = 0;

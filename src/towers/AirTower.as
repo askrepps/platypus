@@ -60,39 +60,53 @@ package towers
 			
 			// Attacks the same enemy until it is dead or out of range.
 			if (closestEnemy == null || (Math.sqrt((this.x - closestEnemy.x) * (this.x - closestEnemy.x) + (this.y - closestEnemy.y) * (this.y - closestEnemy.y)) > this.range))
-				closestEnemy = new Entity(FP.screen.width, FP.screen.height);
+				closestEnemy = null;
 			
 			if (secondClosest == null || (Math.sqrt((this.x - secondClosest.x) * (this.x - secondClosest.x) + (this.y - secondClosest.y) * (this.y - secondClosest.y)) > this.range))
-				secondClosest = new Entity(FP.screen.width, FP.screen.height);
+				secondClosest = null;
 				
 			// Find closest enemy, check type, attack (keep attack until dead or out of range).
 			
 			// Finds the closest enemy of any type the tower can attack.
 			for each (var enemyType:String in canAttack)
 			{
-				var enemy:Entity = world.nearestToEntity(enemyType, this);
-				if (enemy != null)
+				var enemies:Array = new Array;
+				world.getType("flying", enemies);
+				
+				for each (var enemy:Enemy in enemies)
 				{
-					var distToEnemy:Number = Math.sqrt((this.centerX - enemy.centerX) * (this.centerX - enemy.centerX) + ((this.centerY - enemy.centerY) * (this.centerY - enemy.centerY)));
-					var distToClosest:Number = Math.sqrt((this.centerX - closestEnemy.centerX) * (this.centerX - closestEnemy.centerX) + (this.centerY - closestEnemy.centerY) * (this.centerY - closestEnemy.centerY));
-					
-					// Ignore the enemy if it is out of range.
-					if (distToEnemy <= this.range)
+					if (enemy != null)
 					{
-						if (distToClosest > distToEnemy)
+						var distToEnemy:Number = Math.sqrt((this.centerX - enemy.centerX) * (this.centerX - enemy.centerX) + ((this.centerY - enemy.centerY) * (this.centerY - enemy.centerY)));
+						var distToClosest:Number;
+						if (closestEnemy != null)
 						{
-							secondClosest = closestEnemy;
-							closestEnemy = enemy;
+							distToClosest = Math.sqrt((this.centerX - closestEnemy.centerX) * (this.centerX - closestEnemy.centerX) + (this.centerY - closestEnemy.centerY) * (this.centerY - closestEnemy.centerY));
+						}
+						else
+							distToClosest = Number.MAX_VALUE;
+							
+						// Ignore the enemy if it is out of range.
+						if (distToEnemy <= this.range)
+						{
+							if (distToClosest > distToEnemy)
+							{
+								closestEnemy = enemy;
+							}
+							if (secondClosest == null)
+							{
+								secondClosest = enemy;
+							}
 						}
 					}
 				}
 			}
 			
 			// Do nothing if there aren't any enemies.
-			if (closestEnemy.type != null)
+			if (closestEnemy != null)
 			{
 				world.add(new Projectile(centerX, centerY, (Enemy)(closestEnemy), damage, armorPiercing, upgradeCur, Assets.WAVE));
-				if ((this.upgradeCur == 2) && (secondClosest != closestEnemy) && (secondClosest.type != null))
+				if ((this.upgradeCur == 2) && (secondClosest != closestEnemy) && (secondClosest != null))
 					world.add(new Projectile(centerX, centerY, (Enemy)(secondClosest), damage, armorPiercing, upgradeCur, Assets.WAVE));
 			}
 		}
