@@ -102,7 +102,10 @@ package hero
 		{
 			world.remove(xpBar);
 			world.remove(healthBar);
-			egg.isCarried = false;
+			
+			if (egg != null)	
+				egg.isCarried = false;
+			
 			cooldown1.isEnabled = false;
 			cooldown2.isEnabled = false;
 			cooldown3.isEnabled = false;
@@ -307,10 +310,10 @@ package hero
 						isRecovering = true;
 						recoverTime = Global.HERO_RECOVER_TIME;
 						blinkCounter = Global.HERO_BLINK_RATE;
-						currentHealth -= 1;
+						currentHealth -= 2;
 						FP.log("Hero hit! Remaining Health: " + currentHealth);
 						
-						if (currentHealth == 0)
+						if (currentHealth < 0)
 						{
 							world.remove(this);
 						}
