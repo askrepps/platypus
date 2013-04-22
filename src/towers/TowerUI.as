@@ -89,6 +89,8 @@ package towers
 			{
 				upgradeButton.enabled = false;
 			}
+			else
+				upgradeButton.enabled = true;
 		
 			
 			// Remove the UI if the player clicks away from it.

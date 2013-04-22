@@ -100,7 +100,7 @@ package ui
 			drawRange();
 			
 			if (!enabled)
-				Draw.rect(x,y, width, height, 0x000000, 0.75);
+				Draw.rect(x, y, width, height, 0x000000, 0.75);
 		}
 	}
 

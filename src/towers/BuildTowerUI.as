@@ -110,18 +110,26 @@ package towers
 				{
 					buttonR.enabled = false;
 				}
+				else
+					buttonR.enabled = true;
 				if (Global.playerGold < Global.MELEE_COST)
 				{
 					buttonM.enabled = false;
 				}
+				else
+					buttonM.enabled = true;
 				if (Global.playerGold < Global.AIR_COST)
 				{
 					buttonA.enabled = false;
 				}
+				else
+					buttonA.enabled = true;
 				if (Global.playerGold < Global.AOE_COST)
 				{
 					buttonAoE.enabled = false;
 				}
+				else
+					buttonAoE.enabled = true;
 			}
 			for each(var hText:HoverText in new Array(mHoverText, aHoverText, rHoverText, aoeHoverText))
 			{
