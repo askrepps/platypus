@@ -1,9 +1,11 @@
 package towers 
 {
-	import net.flashpunk.Entity;
-	import net.flashpunk.graphics.Image;
-	import net.flashpunk.FP;
 	import enemies.Enemy;
+	
+	import net.flashpunk.Entity;
+	import net.flashpunk.FP;
+	import net.flashpunk.graphics.Image;
+	
 	import ui.BuildButton;
 	/**
 	 * ...
@@ -77,7 +79,7 @@ package towers
 			
 			// Do nothing if there aren't any enemies.
 			if(closestEnemy.type != null)
-				world.add(new Projectile(centerX, centerY, (Enemy)(closestEnemy), damage, armorPiercing, upgradeCur));
+				world.add(new Projectile(centerX, centerY, (Enemy)(closestEnemy), damage, armorPiercing, upgradeCur, Assets.ARROW));
 			//(Enemy)(closestEnemy).takeDamage(this.damage, this.armorPiercing, this.special); 
 		}
 		

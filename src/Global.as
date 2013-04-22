@@ -60,8 +60,8 @@ package
 		waves[0][0] = 0;
 		waves[0][1] = 0;
 		waves[0][2] = 0;
-		waves[0][3] = 0;
-		waves[0][4] = 0;
+		waves[0][3] = 2;
+		waves[0][4] = 2;
 		
 		waves[1] = new Vector.<Number>(5);
 		waves[1][0] = 2;
@@ -212,12 +212,12 @@ package
 		public static const WARRIOR_ABIL_1_DESC:String = "Attack enemies in a wide arc in front of you. Cooldown: 0.5 seconds";
 		public static const WARRIOR_ABIL_1_CD:Number = 0.5;
 		
-		public static const WARRIOR_ABIL_2_NAME:String = "blah";
-		public static const WARRIOR_ABIL_2_DESC:String = "blah blah";
+		public static const WARRIOR_ABIL_2_NAME:String = "Leap";
+		public static const WARRIOR_ABIL_2_DESC:String = "Leaps to a nearby area, damaging and slowing nearby enemies for 5 seconds. Cooldown: 5 seconds";
 		public static const WARRIOR_ABIL_2_CD:Number = 5;
 		
-		public static const WARRIOR_ABIL_3_NAME:String = "blah";
-		public static const WARRIOR_ABIL_3_DESC:String = "blah blah";
+		public static const WARRIOR_ABIL_3_NAME:String = "Dash";
+		public static const WARRIOR_ABIL_3_DESC:String = "Dash forward in a straight line, damaging all enemies in your path. Cooldown: 10 seconds";
 		public static const WARRIOR_ABIL_3_CD:Number = 10;
 		
 		// Ranger attributes

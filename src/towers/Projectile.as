@@ -1,6 +1,7 @@
 package towers 
 {
 	import enemies.Enemy;
+	
 	import net.flashpunk.Entity;
 	import net.flashpunk.graphics.Image;
 	import net.flashpunk.masks.Pixelmask;
@@ -16,30 +17,17 @@ package towers
 		private var armorPiercing:Number;
 		private var projImage:Image;
 		
-		public function Projectile(x:Number, y:Number, target:Enemy, damage:Number, armorPiercing:Number, upgradeLevel:Number) 
+		public function Projectile(x:Number, y:Number, target:Enemy, damage:Number, armorPiercing:Number, upgradeLevel:Number, image:Class)
 		{
 			this.x = x;
 			this.y = y;
 			this.damage = damage;
 			this.armorPiercing = armorPiercing;
 			this.target = target;
-			
-			if(upgradeLevel == 0)
-			{
-				projImage = new Image(Assets.SPEAR_PROJ);
-				mask = new Pixelmask(Assets.SPEAR_PROJ);
-			}
-			else if (upgradeLevel == 1)
-			{
-				projImage = new Image(Assets.ARROW_PROJ);
-				mask = new Pixelmask(Assets.ARROW_PROJ);
-			}
-			else
-			{
-				projImage = new Image(Assets.BULLET_PROJ);
-				mask = new Pixelmask(Assets.BULLET_PROJ);
-			}
+			this.projImage = new Image(image);
+			projImage.angle = (180/Math.PI) * findAngle() + 90;
 			graphic = projImage;
+			mask = new Pixelmask(image);
 		}
 			
 		override public function update():void
@@ -54,6 +42,14 @@ package towers
 				target.takeDamage(damage, armorPiercing, "");
 				world.remove(this);
 			}
+		}
+		
+		private function findAngle():Number
+		{
+			var horizontal:Number = target.x - x;
+			var vertical:Number = target.y - y;
+			
+			return Math.atan2(horizontal, vertical);
 		}
 	}
 }
