@@ -34,6 +34,10 @@ package
 		[Embed(source = "assets/meleeTower.png")] public static const MELEE_TOWER:Class;
 		[Embed(source = "assets/towerPlace.png")] public static const PLACE_TOWER:Class;
 		
+		// Projectiles
+		[Embed(source = "assets/arrow.png")] public static const ARROW:Class;
+		[Embed(source = "assets/wave.png")] public static const WAVE:Class;
+		
 		// Enemies
 		[Embed(source = "assets/normalEnemy.png")] public static const NORMAL_ENEMY:Class;
 		[Embed(source = "assets/fastEnemy.png")] public static const FAST_ENEMY:Class;
