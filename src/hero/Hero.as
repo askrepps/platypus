@@ -186,8 +186,8 @@ package hero
 				collidedEgg = collideTypes("egg", x, y);
 				if (collidedEgg != null && egg == null && !(collidedEgg as Egg).isCarried) 
 				{
-					(collidedEgg as Egg).isCarried = true;
-					egg = (collidedEgg as Egg);
+					world.remove(collidedEgg);
+					Global.nest.eggCount++;
 				}
 				
 				collidedNest = collideTypes("nest", x, y);
