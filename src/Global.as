@@ -30,15 +30,15 @@ package
 		// First path
 		paths[0][0] = new Point(.141, .997);
 		paths[0][1] = new Point(.145, .755);
-		paths[0][2] = new Point(.171, .612);
+		paths[0][2] = new Point(.145, .612);
 		paths[0][3] = new Point(.252, .560);
 		paths[0][4] = new Point(.338, .542);
 		paths[0][5] = new Point(.475, .527);
 		paths[0][6] = new Point(.599, .521);
 		paths[0][7] = new Point(.715, .479);
-		paths[0][8] = new Point(.763, .384);
-		paths[0][9] = new Point(.845, .260);
-		paths[0][10] = new Point(.968, .049);
+		paths[0][8] = new Point(.723, .384);
+		paths[0][9] = new Point(.785, .260);
+		paths[0][10] = new Point(.908, .049);
 		
 		// Second path
 		paths[1][0] = new Point(.2, .2);
@@ -94,7 +94,7 @@ package
 		waves[3][7] = 1;
 		
 		
-		waves[4] = new Vector.<Number>(20);
+		waves[4] = new Vector.<Number>(8);
 		waves[3][0] = 0;
 		waves[3][1] = 0;
 		waves[3][2] = 0;
@@ -142,7 +142,7 @@ package
 		public static const AOE_UPGRADE_COST:Number = 200;
 		
 		// Melee Tower starting attributes
-		public static const MELEE_RANGE:Number = 80;
+		public static const MELEE_RANGE:Number = 100;
 		public static const MELEE_DAMAGE:Number = 10;		
 		public static const MELEE_SPEED:Number = 1;			
 		public static const MELEE_CANATTACK:Array = new Array("normal", "fast", "armored"); 		
@@ -151,7 +151,7 @@ package
 		public static const MELEE_TOWERDESCIPT:String = "Basic melee tower.  Can only hit ground units.";
 		
 		// Ranged Tower starting attributes
-		public static const RANGED_RANGE:Number = 100;
+		public static const RANGED_RANGE:Number = 150;
 		public static const RANGED_DAMAGE:Number = 4;		
 		public static const RANGED_SPEED:Number = .8;			
 		public static const RANGED_CANATTACK:Array = new Array("normal", "fast", "armored", "flying"); 		
@@ -160,7 +160,7 @@ package
 		public static const RANGED_TOWERDESCIPT:String = "Basic ranged tower. Can hit any unit.";
 		
 		// AoE Tower starting attributes
-		public static const AOE_RANGE:Number = 75;
+		public static const AOE_RANGE:Number = 125;
 		public static const AOE_DAMAGE:Number = 2;		
 		public static const AOE_SPEED:Number = 1;			
 		public static const AOE_CANATTACK:Array = new Array("normal", "fast", "armored"); 		
@@ -182,36 +182,37 @@ package
 		
 		
 		// Upgrade variables
-		public static const MELEE_RANGE_UPGRADE1:Number = 80;
+		public static const MELEE_RANGE_UPGRADE1:Number = 125;
 		public static const MELEE_DAMAGE_UPGRADE1:Number = 14;		
 		public static const MELEE_SPEED_UPGRADE1:Number = .9;		
 		
-		public static const MELEE_RANGE_UPGRADE2:Number = 90;
+		public static const MELEE_RANGE_UPGRADE2:Number = 125;
 		public static const MELEE_DAMAGE_UPGRADE2:Number = 20;		
 		public static const MELEE_SPEED_UPGRADE2:Number = .75;		
 		public static const MELEE_ARMORPIERCING_UPGRADE2:Number = 1;
 		
-		public static const RANGED_RANGE_UPGRADE1:Number = 120;
+		public static const RANGED_RANGE_UPGRADE1:Number = 175;
 		public static const RANGED_DAMAGE_UPGRADE1:Number = 6;		
 		public static const RANGED_SPEED_UPGRADE1:Number = .6;	
 		
-		public static const RANGED_RANGE_UPGRADE2:Number = 140;
+		public static const RANGED_RANGE_UPGRADE2:Number = 175;
 		public static const RANGED_DAMAGE_UPGRADE2:Number = 4;		
 		public static const RANGED_SPEED_UPGRADE2:Number = .15;	
 		
 		
-		public static const AOE_RANGE_UPGRADE1:Number = 80;
+		public static const AOE_RANGE_UPGRADE1:Number = 150;
 		public static const AOE_DAMAGE_UPGRADE1:Number = 2.5;		
 		public static const AOE_SPEED_UPGRADE1:Number = .8;	
+		
 		public static const AOE_RANGE_UPGRADE2:Number = 150;
 		public static const AOE_DAMAGE_UPGRADE2:Number = 3;		
 		public static const AOE_SPEED_UPGRADE2:Number = 1;	
 		
-		public static const AIR_RANGE_UPGRADE1:Number = 155;
+		public static const AIR_RANGE_UPGRADE1:Number = 150;
 		public static const AIR_DAMAGE_UPGRADE1:Number = 5.5;		
 		public static const AIR_SPEED_UPGRADE1:Number = .4;	
 		
-		public static const AIR_RANGE_UPGRADE2:Number = 160;
+		public static const AIR_RANGE_UPGRADE2:Number = 150;
 		public static const AIR_DAMAGE_UPGRADE2:Number = 6;		
 		public static const AIR_SPEED_UPGRADE2:Number = .5;	
 		
@@ -224,14 +225,14 @@ package
 		
 		// Level to unlock each ability
 		public static const ABILITY_1_LEVEL:Number = 1;
-		public static const ABILITY_2_LEVEL:Number = 2;
-		public static const ABILITY_3_LEVEL:Number = 3;
+		public static const ABILITY_2_LEVEL:Number = 3;
+		public static const ABILITY_3_LEVEL:Number = 5;
 		
 		// Warrior attributes
-		public static const WARRIOR_HEALTH_ARRAY:Array =  new Array(10, 10, 10, 10, 10, 10, 10, 10, 10, 10);
-		public static const WARRIOR_ATTACK_ARRAY:Array =  new Array(10, 10, 10, 10, 10, 10, 10, 10, 10, 10);
+		public static const WARRIOR_HEALTH_ARRAY:Array =  new Array(10, 11, 12, 13, 14, 15, 16, 17, 18, 20);
+		public static const WARRIOR_ATTACK_ARRAY:Array =  new Array(10, 12, 14, 16, 18, 20, 22, 24, 26, 28);
 		public static const WARRIOR_DEFENSE_ARRAY:Array = new Array(10, 10, 10, 10, 10, 10, 10, 10, 10, 10);
-		public static const WARRIOR_SPEED_ARRAY:Array =   new Array( 1,  2,  3,  4,  5,  6,  7,  8,  9, 10);
+		public static const WARRIOR_SPEED_ARRAY:Array =   new Array( 3,  3,  3,  3,  3,  3,  3,  3,  3,  3);
 		
 		public static const WARRIOR_DASH_SPEED:Number = 8;
 		public static const WARRIOR_DASH_TIME:Number = 0.5;
@@ -291,7 +292,7 @@ package
 
 		// Experience stuff
 		public static const MAX_LEVELS:Number = 10;
-		public static const XP_TO_LEVEL:Array = new Array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+		public static const XP_TO_LEVEL:Array = new Array(1, 3, 5, 7, 9, 11, 13, 15, 17, 20);
 		
 		
 		// Enemy traits
@@ -300,7 +301,7 @@ package
 		public static const NORMAL_ARMOR = 1;
 		public static const NORMAL_XP = 1;
 		
-		public static const FAST_HEALTH = 50;
+		public static const FAST_HEALTH = 35;
 		public static const FAST_SPEED = 160;
 		public static const FAST_ARMOR = 0;
 		public static const FAST_XP = 1;
@@ -310,9 +311,9 @@ package
 		public static const FLYING_ARMOR = 1;
 		public static const FLYING_XP = 1;
 		
-		public static const ARMORED_HEALTH = 100;
+		public static const ARMORED_HEALTH = 75;
 		public static const ARMORED_SPEED = 75;
-		public static const ARMORED_ARMOR = 3;
-		public static const ARMORED_XP = 1;
+		public static const ARMORED_ARMOR = 25;
+		public static const ARMORED_XP = 2;
 	}
 }
