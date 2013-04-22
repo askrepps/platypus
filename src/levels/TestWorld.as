@@ -54,7 +54,12 @@ package levels
 			
 			add(new TowerPlace(500, 300));
 			add(new TowerPlace(300, 300));
-
+			add(new TowerPlace(660, 280));
+			add(new TowerPlace(200, 600));
+			add(new TowerPlace(40, 560));
+			add(new TowerPlace(930, 165));
+			add(new TowerPlace(750, 80));
+			add(new TowerPlace(410, 460));
 			nest = new Nest(915, 25);
 			add(nest);
 			

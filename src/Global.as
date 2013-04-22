@@ -150,12 +150,13 @@ package
 		
 		// Upgrade variables
 		public static const MELEE_RANGE_UPGRADE1:Number = 80;
-		public static const MELEE_DAMAGE_UPGRADE1:Number = 12;		
+		public static const MELEE_DAMAGE_UPGRADE1:Number = 14;		
 		public static const MELEE_SPEED_UPGRADE1:Number = .9;		
 		
-		public static const MELEE_RANGE_UPGRADE2:Number = 85;
-		public static const MELEE_DAMAGE_UPGRADE2:Number = 15;		
+		public static const MELEE_RANGE_UPGRADE2:Number = 90;
+		public static const MELEE_DAMAGE_UPGRADE2:Number = 20;		
 		public static const MELEE_SPEED_UPGRADE2:Number = .75;		
+		public static const MELEE_ARMORPIERCING_UPGRADE2:Number = 100;
 		
 		public static const RANGED_RANGE_UPGRADE1:Number = 120;
 		public static const RANGED_DAMAGE_UPGRADE1:Number = 6;		

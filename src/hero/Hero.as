@@ -390,17 +390,17 @@ package hero
 		
 		public function ability1():void
 		{
-			trace("Ability 1 used!");
+		//	trace("Ability 1 used!");
 		}
 		
 		public function ability2():void
 		{
-			trace("Ability 2 used!");
+		//	trace("Ability 2 used!");
 		}
 		
 		public function ability3():void
 		{
-			trace("Ability 3 used!");
+		//	trace("Ability 3 used!");
 		}
 		
 		public function gainXP(toGain:Number):void
