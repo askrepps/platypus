@@ -26,7 +26,7 @@ package ui
 			super(x, y);			
 			var normalImage:Image = new Image(Assets.BUTTON);
 			
-			label = new Text(text, 1, 20, {size: 20, color: 0xFFFFFF, width: normalImage.width, wordWrap: true, align: "center"});
+			label = new Text(text, 1, 20, {size: 24, color: 0xFFFFFF, width: normalImage.width, wordWrap: true, align: "center"});
 			
 			this.callback = callback;
 			this.params = params;	
