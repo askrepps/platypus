@@ -61,6 +61,8 @@ package enemies
 			pointIndex = 1;
 			isPoisoned = false;
 			elapsed = 0;
+			poisonDuration = 0;
+			poisonDamage = 0;
 			
 			attackedByHero = false;
 			poisonCounter = 0;
@@ -237,6 +239,7 @@ package enemies
 			else
 			{
 				toNest = false;
+				enemyImage.flipped = true;
 				egg.updatePos(x + width/2, y);
 			}
 			

@@ -24,6 +24,7 @@ package hero
 		public var leapRange:Number;
 		public var leapX:Number;
 		public var leapY:Number;
+		public var drawLanding:Boolean;
 		
 		public var clicked:Boolean;
 		
@@ -80,6 +81,7 @@ package hero
 				isAttacking = false;
 				collisionDamagesEnemies = false;
 				isRecovering = true;
+				isVulnerable = true;
 				recoverTime = Global.HERO_RECOVER_TIME;
 			}
 			else if (isDashing)
@@ -132,7 +134,8 @@ package hero
 					canMove = true;
 					isRecovering = true;
 					isAttacking = false;
-					//heroImage.play("walking");
+					isVulnerable = true;
+					drawLanding = true;
 					recoverTime = Global.HERO_RECOVER_TIME;
 					
 					var entities:Array = new Array();
@@ -167,6 +170,8 @@ package hero
 						isLeaping = true;
 						canMove = false;
 						isAttacking = true;
+						isVulnerable = false;
+						drawLanding = false;
 						heroImage.play("dashing");
 						ability2CD = Global.WARRIOR_ABIL_2_CD;
 						leapX = world.mouseX;
@@ -274,6 +279,7 @@ package hero
 				isAttacking = true;
 				dashTime = Global.WARRIOR_DASH_TIME;
 				canMove = false;
+				isVulnerable = false;
 				collisionDamagesEnemies = true;
 				
 				heroImage.play("dashing");
@@ -301,28 +307,20 @@ package hero
 						Draw.rectPlus(x, y + 75, 100, 50, 0xFF0000, 0.25, true);
 						break;
 					case LEFT_UP:
-						Draw.rectPlus(x - 25, y, 50, 60, 0xFF0000, 0.25, true);                          // some left
-						Draw.rectPlus(x, y - 25, 60, 50, 0xFF0000, 0.25, true);                         // some up
-						
-						Draw.rectPlus(x - 25, y - 25, 25, 25, 0xFF0000, 0.25, true);                 // filler
+						Draw.rectPlus(x - 25, y + 25, 50, 35, 0xFF0000, 0.25, true);       // some left
+						Draw.rectPlus(x - 25, y - 25, 85, 50, 0xFF0000, 0.25, true);       // some up
 						break;
 					case LEFT_DOWN:
-						Draw.rectPlus(x - 25, y + 40, 50, 60, 0xFF0000, 0.25, true);             // some left
-						Draw.rectPlus(x, y + 75, 60, 50, 0xFF0000, 0.25, true);                // some down
-						
-						Draw.rectPlus(x - 25, y + 100, 25, 25, 0xFF0000, 0.25, true);                   // filler
+						Draw.rectPlus(x - 25, y + 40, 50, 35, 0xFF0000, 0.25, true);       // some left
+						Draw.rectPlus(x - 25, y + 75, 85, 50, 0xFF0000, 0.25, true);       // some down
 						break;
 					case RIGHT_UP:
-						Draw.rectPlus(x + 75, y, 50, 60, 0xFF0000, 0.25, true);                  // some right
-						Draw.rectPlus(x + 40, y - 25, 60, 50, 0xFF0000, 0.25, true);             // some up
-						
-						Draw.rectPlus(x + 100, y - 25, 25, 25, 0xFF0000, 0.25, true);                   // filler
+						Draw.rectPlus(x + 75, y + 25, 50, 35, 0xFF0000, 0.25, true);       // some right
+						Draw.rectPlus(x + 40, y - 25, 85, 50, 0xFF0000, 0.25, true);       // some up
 						break;
 					case RIGHT_DOWN:
-						Draw.rectPlus(x + 75, y + 40, 50, 60, 0xFF0000, 0.25, true);     // some right
-						Draw.rectPlus(x + 40, y + 75, 60, 50, 0xFF0000, 0.25, true);    // some down
-						
-						Draw.rectPlus(x + 100, y + 100, 25, 25, 0xFF0000, 0.25, true);                     // filler
+						Draw.rectPlus(x + 75, y + 40, 50, 35, 0xFF0000, 0.25, true);       // some right
+						Draw.rectPlus(x + 40, y + 75, 85, 50, 0xFF0000, 0.25, true);       // some down
 						break;
 					default:
 				}
@@ -331,6 +329,11 @@ package hero
 			if (isLeapTargeting)
 			{
 				Draw.circlePlus(x + width/2 + 25, y + height/2 + 25, leapRange, 0xFFFFFF, 0.25, true);
+			}
+			
+			if (drawLanding && ability2CD > (Global.WARRIOR_ABIL_2_CD - 0.5))
+			{
+				Draw.circlePlus(leapX, leapY, Global.WARRIOR_LEAP_ATTACK_RANGE, 0xFF0000, 0.25);
 			}
 		}
 		

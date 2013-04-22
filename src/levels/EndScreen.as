@@ -1,26 +1,29 @@
 package levels 
 {
-	import net.flashpunk.World;
-	import net.flashpunk.utils.Draw;
 	import net.flashpunk.FP;
-	/**
-	 * ...
-	 * @author ...
-	 */
+	import net.flashpunk.World;
+	import net.flashpunk.graphics.Image;
+	import net.flashpunk.utils.Draw;
+
 	public class EndScreen extends World 
 	{
 		private var text:String;
 		
-		public function EndScreen(text:String) 
+		public function EndScreen(text:String, won:Boolean) 
 		{
 			this.text = text;
+			
+			if (won)
+				addGraphic(new Image(Assets.YOU_WIN), -10, 0, 0);
+			else
+				addGraphic(new Image(Assets.GAME_OVER), -10, Global.GAME_WIDTH/2 - 400, Global.GAME_HEIGHT/2 - 400);
 		}
 		
 		
 		override public function render():void
 		{
-			Draw.text(text, 0, 100, { size: 48, color: 0xFFFFFF, width: FP.screen.width, align: "center" } );
 			super.render();
+			Draw.text(text, 0, 100, { size: 48, color: 0xFFFFFF, width: FP.screen.width, align: "center" } );
 		}
 	}
 

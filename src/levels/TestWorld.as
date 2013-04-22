@@ -141,11 +141,11 @@ package levels
 						win = false;
 				}
 				if(win)
-					FP.world = new EndScreen("You Win!");
+					FP.world = new EndScreen("You Win!", true);
 			}
 				
 			if (Global.eggsLeft == 0)
-				FP.world = new EndScreen("Game Over");
+				FP.world = new EndScreen("Game Over", false);
 				
 			if (Input.pressed(Key.P))
 			{
