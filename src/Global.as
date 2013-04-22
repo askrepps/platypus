@@ -8,6 +8,7 @@ package
 	import flash.geom.Point;
 	import hero.Hero;
 	import net.flashpunk.Sfx;
+	import levels.Nest;
 	
 	public class Global 
 	{
@@ -121,6 +122,7 @@ package
 		}
 		
 		// Other Level Stuff
+		public static var nest:Nest;
 		public static const STARTING_EGG_COUNT:Number = 5;
 
 		

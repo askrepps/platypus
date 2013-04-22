@@ -38,7 +38,6 @@ package levels
 		private var waveTimer:Number;
 		private var music:Sfx;
 		private var enemiesSent:Number;
-		public var nest:Nest;
 		
 		public function TestWorld() 
 		{
@@ -60,8 +59,8 @@ package levels
 			add(new TowerPlace(930, 165));
 			add(new TowerPlace(750, 80));
 			add(new TowerPlace(410, 460));
-			nest = new Nest(915, 25);
-			add(nest);
+			Global.nest = new Nest(915, 25);
+			add(Global.nest);
 			
 			Global.hero = new Warrior(Global.GAME_WIDTH / 2, Global.GAME_HEIGHT / 2);
 			add(Global.hero);

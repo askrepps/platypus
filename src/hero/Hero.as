@@ -121,59 +121,46 @@ package hero
 				if (Input.check(Key.W) && Input.check(Key.A))
 				{
 					facing = LEFT_UP;
-					if (collideTypes("tower", x, y - speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2) == null)
-						y -= speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2;
-					if (collideTypes("tower", x - speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2, y) == null)
-						x -= speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2;
+					y -= speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2;
+					x -= speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2;
 				}
 				else if (Input.check(Key.W) && Input.check(Key.D))
 				{
 					facing = RIGHT_UP;
-					if (collideTypes("tower", x, y - speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2) == null)
-						y -= speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2;
-					if (collideTypes("tower", x + speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2, y) == null)
-						x += speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2;
+					y -= speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2;
+					x += speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2;
 				}
 				else if (Input.check(Key.S) && Input.check(Key.A))
 				{
 					facing = LEFT_DOWN;
-					if (collideTypes("tower", x, y + speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2) == null)
-						y += speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2;
-					if (collideTypes("tower", x - speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2, y) == null)
-						x -= speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2;
+					y += speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2;
+					x -= speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2;
 				}
 				else if (Input.check(Key.S) && Input.check(Key.D))
 				{
 					facing = RIGHT_DOWN;
-					if (collideTypes("tower", x, y + speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2) == null)
-						y += speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2;
-					if (collideTypes("tower", x + speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2, y) == null)
-						x += speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2;
+					y += speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2;
+					x += speed * FP.elapsed * Global.HERO_SPEED_SCALE / Math.SQRT2;
 				}
 				else if (Input.check(Key.W))
 				{
 					facing = UP;
-					if (collideTypes("tower", x, y - speed * FP.elapsed * Global.HERO_SPEED_SCALE) == null)
-						y -= speed * FP.elapsed * Global.HERO_SPEED_SCALE;
+					y -= speed * FP.elapsed * Global.HERO_SPEED_SCALE;
 				}
 				else if (Input.check(Key.A))
 				{
 					facing = LEFT;
-					if (collideTypes("tower", x - speed * FP.elapsed * Global.HERO_SPEED_SCALE, y) == null)
-						x -= speed * FP.elapsed * Global.HERO_SPEED_SCALE;
+					x -= speed * FP.elapsed * Global.HERO_SPEED_SCALE;
 				}
 				else if (Input.check(Key.S))
 				{
 					facing = DOWN;
-					
-					if (collideTypes("tower", x, y + speed * FP.elapsed * Global.HERO_SPEED_SCALE) == null)
-						y += speed * FP.elapsed * Global.HERO_SPEED_SCALE;
+					y += speed * FP.elapsed * Global.HERO_SPEED_SCALE;
 				}
 				else if (Input.check(Key.D))
 				{
 					facing = RIGHT;
-					if (collideTypes("tower", x + speed * FP.elapsed * Global.HERO_SPEED_SCALE, y) == null)
-						x += speed * FP.elapsed * Global.HERO_SPEED_SCALE;
+					x += speed * FP.elapsed * Global.HERO_SPEED_SCALE;
 				}
 				else
 				{
@@ -200,8 +187,8 @@ package hero
 				collidedEgg = collideTypes("egg", x, y);
 				if (collidedEgg != null && egg == null && !(collidedEgg as Egg).isCarried) 
 				{
-					(collidedEgg as Egg).isCarried = true;
-					egg = (collidedEgg as Egg);
+					world.remove(collidedEgg);
+					Global.nest.eggCount++;
 				}
 				
 				collidedNest = collideTypes("nest", x, y);
@@ -216,11 +203,7 @@ package hero
 						world.remove(egg);
 						egg = null;
 					}
-				}
-				
-				if (egg != null)
-					egg.updatePos(x + width/2, y + height/2);
-					
+				}	
 				
 				// temp code to keep hero on screen
 				if (x < 0) { x = 0; }
@@ -228,6 +211,9 @@ package hero
 				if (y < 0) { y = 0; }
 				if (y > Global.GAME_HEIGHT - height) { y = Global.GAME_HEIGHT - height; }
 			}
+			
+			if (egg != null)
+				egg.updatePos(x + width/2, y + height/2);
 
 			// check attack input
 			if (unlockedAbilities >= 1 && ability1CD <=0 && Input.pressed(Key.DIGIT_1))
