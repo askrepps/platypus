@@ -26,18 +26,29 @@ package
 		[Embed(source = "assets/map1.png")] public static const LEVEL_1_MAP:Class;
 		
 		// Towers
-		[Embed(source = "assets/rangedTower.png")] public static const RANGED_TOWER:Class;
-		[Embed(source = "assets/arrowProjectile.png")] public static const ARROW_PROJ:Class;
-		[Embed(source = "assets/spearProjectile.png")] public static const SPEAR_PROJ:Class;
-		[Embed(source="assets/bulletProjectile.png") ] public static const BULLET_PROJ:Class;
-		[Embed(source = "assets/aoeTower.png")] public static const AOE_TOWER:Class;
-		[Embed(source = "assets/airTower.png")] public static const AIR_TOWER:Class;
-		[Embed(source = "assets/meleeTower.png")] public static const MELEE_TOWER:Class;
+		[Embed(source = "assets/rangedTower1.png")] public static const RANGED_TOWER_1:Class;
+		[Embed(source = "assets/rangedTower2.png")] public static const RANGED_TOWER_2:Class;
+		[Embed(source = "assets/rangedTower3.png")] public static const RANGED_TOWER_3:Class;
+		
+		[Embed(source = "assets/aoeTower1.png")] public static const AOE_TOWER_1:Class;
+		[Embed(source = "assets/aoeTower2.png")] public static const AOE_TOWER_2:Class;
+		[Embed(source = "assets/aoeTower3.png")] public static const AOE_TOWER_3:Class;
+		
+		[Embed(source = "assets/airTower1.png")] public static const AIR_TOWER_1:Class;
+		[Embed(source = "assets/airTower2.png")] public static const AIR_TOWER_2:Class;
+		[Embed(source = "assets/airTower3.png")] public static const AIR_TOWER_3:Class;
+		
+		[Embed(source = "assets/meleeTower1.png")] public static const MELEE_TOWER_1:Class;
+		[Embed(source = "assets/meleeTower2.png")] public static const MELEE_TOWER_2:Class;
+		[Embed(source = "assets/meleeTower3.png")] public static const MELEE_TOWER_3:Class;
+		
 		[Embed(source = "assets/towerPlace.png")] public static const PLACE_TOWER:Class;
 		
 		// Projectiles
 		[Embed(source = "assets/arrow.png")] public static const ARROW:Class;
 		[Embed(source = "assets/wave.png")] public static const WAVE:Class;
+		[Embed(source = "assets/explosion.png")] public static const EXPLOSION:Class;
+		[Embed(source = "assets/greenExplosion.png")] public static const GREEN_EXPLOSION:Class;
 		
 		// Enemies
 		[Embed(source = "assets/normalEnemy.png")] public static const NORMAL_ENEMY:Class;

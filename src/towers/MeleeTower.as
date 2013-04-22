@@ -17,7 +17,7 @@ package towers
 		public function MeleeTower(x:Number, y:Number) 
 		{
 			super(x, y, Global.MELEE_RANGE, Global.MELEE_DAMAGE, Global.MELEE_SPEED, Global.MELEE_CANATTACK, Global.MELEE_ARMORPIERCING, "", Global.MELEE_TOWERDESCIPT, this,  Global.MELEE_COST, Global.MELEE_UPGRADE_COST);
-			towerImage = new Image(Assets.MELEE_TOWER);
+			towerImage = new Image(Assets.MELEE_TOWER_1);
 			super.graphic = towerImage;
 			timer = 0;
 			setHitboxTo(towerImage);
@@ -34,6 +34,8 @@ package towers
 					range = Global.MELEE_RANGE_UPGRADE1;
 					damage = Global.MELEE_DAMAGE_UPGRADE1;
 					speed = Global.MELEE_SPEED_UPGRADE1;
+					towerImage = new Image(Assets.MELEE_TOWER_2);
+					graphic = towerImage;
 					break;
 				case 2:
 					range = Global.MELEE_RANGE_UPGRADE2;
@@ -41,6 +43,8 @@ package towers
 					speed = Global.MELEE_SPEED_UPGRADE2;
 					special = Global.MELEE_SPECIAL;
 					armorPiercing = Global.MELEE_ARMORPIERCING_UPGRADE2;
+					towerImage = new Image(Assets.MELEE_TOWER_3);
+					graphic = towerImage;
 			}
 		}
 		

@@ -21,7 +21,7 @@ package towers
 		public function AirTower(x:Number, y:Number)
 		{
 			super(x, y, Global.AIR_RANGE, Global.AIR_DAMAGE, Global.AIR_SPEED, Global.AIR_CANATTACK, Global.AIR_ARMORPIERCING, "", Global.AIR_TOWERDESCIPT, this, Global.AIR_COST, Global.AIR_UPGRADE_COST);
-			towerImage = new Image(Assets.AIR_TOWER);
+			towerImage = new Image(Assets.AIR_TOWER_1);
 			super.graphic = towerImage;
 			timer = 0;
 			setHitboxTo(towerImage);
@@ -38,12 +38,16 @@ package towers
 					range = Global.AIR_RANGE_UPGRADE1;
 					damage = Global.AIR_DAMAGE_UPGRADE1;
 					speed = Global.AIR_SPEED_UPGRADE1;
+					towerImage = new Image(Assets.AIR_TOWER_2);
+					graphic = towerImage;
 					break;
 				case 2:
 					range = Global.AIR_RANGE_UPGRADE2;
 					damage = Global.AIR_DAMAGE_UPGRADE2;
 					speed = Global.AIR_SPEED_UPGRADE2;
 					special = Global.AIR_SPECIAL;
+					towerImage = new Image(Assets.AIR_TOWER_3);
+					graphic = towerImage;
 			}
 		}
 		

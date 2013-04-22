@@ -1,10 +1,13 @@
 package towers 
 {
 	import enemies.Enemy;
-	import towers.TowerUI;
-	import net.flashpunk.graphics.Image;
+	
 	import net.flashpunk.FP;
+	import net.flashpunk.graphics.Image;
 	import net.flashpunk.utils.Input;
+	
+	import towers.TowerUI;
+	
 	import ui.BuildButton;
 	/**
 	 * ...
@@ -15,11 +18,12 @@ package towers
 		private var towerImage:Image;
 		private var timer:Number;
 		private static var towerUI:TowerUI;
+		private var explosion:Explosion;
 		
 		public function AoETower(x:Number, y:Number) 
 		{
 			super(x, y, Global.AOE_RANGE, Global.AOE_DAMAGE, Global.AOE_SPEED, Global.AOE_CANATTACK, Global.AOE_ARMORPIERCING, "", Global.AOE_TOWERDESCIPT, this, Global.AOE_COST, Global.AOE_UPGRADE_COST);
-			towerImage = new Image(Assets.AOE_TOWER);
+			towerImage = new Image(Assets.AOE_TOWER_1);
 			super.graphic = towerImage;
 			timer = 0;
 			setHitboxTo(towerImage);
@@ -37,12 +41,16 @@ package towers
 					range = Global.AOE_RANGE_UPGRADE1;
 					damage = Global.AOE_DAMAGE_UPGRADE1;
 					speed = Global.AOE_SPEED_UPGRADE1;
+					towerImage = new Image(Assets.AOE_TOWER_2);
+					graphic = towerImage;
 					break;
 				case 2:
 					range = Global.AOE_RANGE_UPGRADE2;
 					damage = Global.AOE_DAMAGE_UPGRADE2;
 					speed = Global.AOE_SPEED_UPGRADE2;
 					special = Global.AOE_SPECIAL;
+					towerImage = new Image(Assets.AOE_TOWER_3);
+					graphic = towerImage;
 			}
 		}
 		
@@ -62,9 +70,17 @@ package towers
 					if(distToEnemy <= this.range)
 					{
 						if (upgradeCur == 2)
+						{
 							(Enemy)(enemy).getPoisoned(Global.POISON_DURATION, Global.POISON_DAMAGE);
+							explosion = new Explosion(this, Assets.GREEN_EXPLOSION);
+							world.add(explosion);
+						}
 						else
+						{
 							(Enemy)(enemy).takeDamage(this.damage, this.armorPiercing, this.special);
+							explosion = new Explosion(this, Assets.EXPLOSION);
+							world.add(explosion);
+						}
 					}
 				}
 			}
