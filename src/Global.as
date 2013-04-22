@@ -58,11 +58,11 @@ package
 		// 0 - Normal 1 - Fast 2 - Flying 3- Armored
 		public static const waves:Vector.<Vector.<Number>> = new Vector.<Vector.<Number>>(5);
 		waves[0] = new Vector.<Number>(5);
-		waves[0][0] = 2;
-		waves[0][1] = 2;
-		waves[0][2] = 2;
-		waves[0][3] = 2;
-		waves[0][4] = 2;
+		waves[0][0] = 0;
+		waves[0][1] = 0;
+		waves[0][2] = 0;
+		waves[0][3] = 0;
+		waves[0][4] = 0;
 		
 		waves[1] = new Vector.<Number>(10);
 		waves[1][0] = 0;
@@ -95,26 +95,26 @@ package
 		
 		
 		waves[4] = new Vector.<Number>(8);
-		waves[3][0] = 0;
-		waves[3][1] = 0;
-		waves[3][2] = 0;
-		waves[3][3] = 0;
-		waves[3][4] = 0;
-		waves[3][5] = 3;
-		waves[3][6] = 3;
-		waves[3][7] = 3;
-		waves[3][8] = 3;
-		waves[3][9] = 2;
-		waves[3][10] = 2;
-		waves[3][11] = 2;
-		waves[3][12] = 2;
-		waves[3][13] = 2;
-		waves[3][14] = 1;
-		waves[3][15] = 1;
-		waves[3][16] = 1;
-		waves[3][17] = 1;
-		waves[3][18] = 0;
-		waves[3][19] = 0;
+		waves[4][0] = 0;
+		waves[4][1] = 0;
+		waves[4][2] = 0;
+		waves[4][3] = 0;
+		waves[4][4] = 0;
+		waves[4][5] = 3;
+		waves[4][6] = 3;
+		waves[4][7] = 3;
+		waves[4][8] = 3;
+		waves[4][9] = 2;
+		waves[4][10] = 2;
+		waves[4][11] = 2;
+		waves[4][12] = 2;
+		waves[4][13] = 2;
+		waves[4][14] = 1;
+		waves[4][15] = 1;
+		waves[4][16] = 1;
+		waves[4][17] = 1;
+		waves[4][18] = 0;
+		waves[4][19] = 0;
 		
 		public static function genPoint(a:Point):Point
 		{
@@ -130,15 +130,15 @@ package
 		
 		// Tower and Upgrade Costs
 		public static const RANGED_COST:Number = 50;
-		public static const RANGED_UPGRADE_COST:Number = 100;
+		public static const RANGED_UPGRADE_COST:Number = 125;
 		
 		public static const MELEE_COST:Number = 75;
 		public static const MELEE_UPGRADE_COST:Number = 125;
 		
 		public static const AIR_COST:Number = 100;
-		public static const AIR_UPGRADE_COST:Number = 200;
+		public static const AIR_UPGRADE_COST:Number = 150;
 		
-		public static const AOE_COST:Number = 100;
+		public static const AOE_COST:Number = 125;
 		public static const AOE_UPGRADE_COST:Number = 200;
 		
 		// Melee Tower starting attributes
@@ -152,7 +152,7 @@ package
 		
 		// Ranged Tower starting attributes
 		public static const RANGED_RANGE:Number = 150;
-		public static const RANGED_DAMAGE:Number = 4;		
+		public static const RANGED_DAMAGE:Number = 3;		
 		public static const RANGED_SPEED:Number = .8;			
 		public static const RANGED_CANATTACK:Array = new Array("normal", "fast", "armored", "flying"); 		
 		public static const RANGED_ARMORPIERCING:Number = .01;  
@@ -192,12 +192,12 @@ package
 		public static const MELEE_ARMORPIERCING_UPGRADE2:Number = 1;
 		
 		public static const RANGED_RANGE_UPGRADE1:Number = 175;
-		public static const RANGED_DAMAGE_UPGRADE1:Number = 6;		
+		public static const RANGED_DAMAGE_UPGRADE1:Number = 3;		
 		public static const RANGED_SPEED_UPGRADE1:Number = .6;	
 		
 		public static const RANGED_RANGE_UPGRADE2:Number = 175;
-		public static const RANGED_DAMAGE_UPGRADE2:Number = 4;		
-		public static const RANGED_SPEED_UPGRADE2:Number = .15;	
+		public static const RANGED_DAMAGE_UPGRADE2:Number = 3;		
+		public static const RANGED_SPEED_UPGRADE2:Number = .35;	
 		
 		
 		public static const AOE_RANGE_UPGRADE1:Number = 150;
