@@ -10,13 +10,14 @@ package
 		// Menus / Screens
 		[Embed(source = "assets/gameOver.png")] public static const GAME_OVER:Class;
 		[Embed(source = "assets/youWin.png")] public static const YOU_WIN:Class;
+		[Embed(source = "assets/startScreen.png")] public static const START_SCREEN:Class;
 		
 		// UI Elements
 		[Embed(source = "assets/upgradeUI.png")] public static const UPGRADE_UI:Class;
 		[Embed(source = "assets/buildButton.png")] public static const BUILD_BUTTON:Class; 
-		[Embed(source = "assets/button.png")] public static const BUTTON:Class;
-		[Embed(source = "assets/button_down.png")] public static const BUTTON_DOWN:Class;
-		[Embed(source = "assets/button_hover.png")] public static const BUTTON_HOVER:Class;
+		[Embed(source = "assets/buttonTest.png")] public static const BUTTON:Class;
+		[Embed(source = "assets/buttonTest.png")] public static const BUTTON_DOWN:Class;
+		[Embed(source = "assets/buttonTest.png")] public static const BUTTON_HOVER:Class;
 		[Embed(source = "assets/hoverBackground.png")] public static const HOVER_BACK:Class;
 		
 		// Levels
