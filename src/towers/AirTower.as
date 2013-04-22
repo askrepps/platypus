@@ -86,7 +86,7 @@ package towers
 			if (closestEnemy.type != null)
 			{
 				world.add(new Projectile(centerX, centerY, (Enemy)(closestEnemy), damage, armorPiercing, upgradeCur));
-				if ((this.upgradeCur == 2) && (secondClosest != closestEnemy))
+				if ((this.upgradeCur == 2) && (secondClosest != closestEnemy) && (secondClosest.type != null))
 					world.add(new Projectile(centerX, centerY, (Enemy)(secondClosest), damage, armorPiercing, upgradeCur));
 			}
 		}

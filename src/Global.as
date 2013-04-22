@@ -54,7 +54,7 @@ package
 		public static const NUM_WAVES = 4;
 		
 		// Waves
-		// 0 - Normal 1 - Fast 3 - Armored 4 - Flying
+		// 0 - Normal 1 - Fast 2 - Flying 3- Armored
 		public static const waves:Vector.<Vector.<Number>> = new Vector.<Vector.<Number>>(5);
 		waves[0] = new Vector.<Number>(5);
 		waves[0][0] = 0;
@@ -64,15 +64,15 @@ package
 		waves[0][4] = 0;
 		
 		waves[1] = new Vector.<Number>(5);
-		waves[1][0] = 0;
-		waves[1][1] = 0;
-		waves[1][2] = 0;
-		waves[1][3] = 3;
-		waves[1][4] = 3;
+		waves[1][0] = 2;
+		waves[1][1] = 2;
+		waves[1][2] = 2;
+		waves[1][3] = 2;
+		waves[1][4] = 2;
 		
 		waves[2] = new Vector.<Number>(5);
-		waves[2][0] = 4;
-		waves[2][1] = 4;
+		waves[2][0] = 3;
+		waves[2][1] = 3;
 		waves[2][2] = 4;
 		waves[2][3] = 4;
 		waves[2][4] = 4;

@@ -1,5 +1,6 @@
 package
 {
+	import levels.StartScreen;
 	import levels.TestWorld;
 	import net.flashpunk.Engine;	
 	import net.flashpunk.FP;
@@ -13,7 +14,7 @@ package
 		public function Main()
 		{
 			super(Global.GAME_WIDTH, Global.GAME_HEIGHT, 60, false);
-			FP.world = new TestWorld();
+			FP.world = new StartScreen();
 		//	FP.console.enable();
 			Global.music = new Sfx(Assets.MUSIC_LOOP);
 			Global.music.loop();
