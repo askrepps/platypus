@@ -66,7 +66,9 @@ package levels
 			Global.playerGold = 100000;
 			paused = false;
 			
-			add(new BuildButton(700, 700, "Next Wave", advanceWave));
+			var button:BuildButton = new BuildButton(500, 0, "Next Wave", advanceWave);
+			button.layer = -42;
+			add(button);
 		}
 		
 		public function advanceWave():void

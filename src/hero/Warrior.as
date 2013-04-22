@@ -59,9 +59,9 @@ package hero
 			speed = speedArray[0];
 			
 			
-			super.cooldown1 = new CooldownDisplay(100, FP.screen.height - 120, ability1CD / Global.WARRIOR_ABIL_1_CD, "Cleave",ability1);
-			super.cooldown2 = new CooldownDisplay(150, FP.screen.height - 120, ability2CD / Global.WARRIOR_ABIL_2_CD, "Jump",ability2);
-			super.cooldown3 = new CooldownDisplay(200, FP.screen.height - 120, ability3CD / Global.WARRIOR_ABIL_3_CD, "Dash", ability3);
+			super.cooldown1 = new CooldownDisplay(FP.screen.width/2 - 100, FP.screen.height - 120, ability1CD / Global.WARRIOR_ABIL_1_CD, "Cleave",ability1);
+			super.cooldown2 = new CooldownDisplay(FP.screen.width/2 - 30, FP.screen.height - 120, ability2CD / Global.WARRIOR_ABIL_2_CD, "Jump",ability2);
+			super.cooldown3 = new CooldownDisplay(FP.screen.width/2 + 40, FP.screen.height - 120, ability3CD / Global.WARRIOR_ABIL_3_CD, "Dash", ability3);
 			
 			heroImage.setAnimFrame("walking", 0);
 		}

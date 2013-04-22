@@ -100,6 +100,9 @@ package hero
 		{
 			world.remove(xpBar);
 			world.remove(healthBar);
+			cooldown1.isEnabled = false;
+			cooldown2.isEnabled = false;
+			cooldown3.isEnabled = false;
 		}
 		
 		override public function update():void

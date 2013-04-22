@@ -63,7 +63,7 @@ package enemies
 			elapsed = 0;
 			
 			attackedByHero = false;
-			
+			poisonCounter = 0;
 			maxHealth = health;
 			healthBar = new HealthBar(centerX, (this.y + 10), 20, 5, health);
 		}
@@ -86,6 +86,7 @@ package enemies
 		{
 			poisonDuration = duration;
 			poisonDamage = damage;
+			poisonCounter = 0;
 			isPoisoned = true;
 		}
 		

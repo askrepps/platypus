@@ -2,9 +2,8 @@ package ui
 {
 	import net.flashpunk.Entity;
 	import net.flashpunk.graphics.Text;
-	import net.flashpunk.graphics.Image;
-	import net.flashpunk.graphics.Graphiclist;
 	import net.flashpunk.FP;
+	import net.flashpunk.utils.Draw;
 	/**
 	 * ...
 	 * @author Jonathan Benkovic
@@ -17,17 +16,16 @@ package ui
 		{
 
 			label = new Text("", 1, 20, { size: 14, color: 0xFFFFFF, align: "center" } );
-			//this.x = FP.screen.width - label.textWidth - 10;
-			//this.y = FP.screen.height - 20;
-			label.x = 400;
-			label.y = 400;
-			graphic = label;
-			
+
+			layer = -40;
 		}
-		
-		override public function update():void
+
+		override public function render():void
 		{
-			label.text = String("Gold " + Global.playerGold.toString());
+			Draw.rect(0, 0, FP.screen.width, 40, 0x000000);
+			Draw.text("Gold: " + Global.playerGold.toString(), 40, 10, { size: 20, color: 0xFFFFFF, align: "center" } )
+			Draw.text("Eggs: " + Global.eggsLeft.toString(), 200, 10, { size: 20, color: 0xFFFFFF, align: "center" } )
+			Draw.text("Hero Level: " + Global.hero.level.toString(), 320, 10, { size: 20, color: 0xFFFFFF, align: "center" } );
 		}
 	}
 

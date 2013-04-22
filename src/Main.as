@@ -14,7 +14,7 @@ package
 		{
 			super(Global.GAME_WIDTH, Global.GAME_HEIGHT, 60, false);
 			FP.world = new TestWorld();
-			FP.console.enable();
+		//	FP.console.enable();
 			Global.music = new Sfx(Assets.MUSIC_LOOP);
 			Global.music.loop();
 			Global.music.volume = 0;
