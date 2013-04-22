@@ -85,11 +85,11 @@ package towers
 			}
 			
 		
-			if(Global.playerGold < tower.upgradeCost)
+			if((Global.playerGold < tower.upgradeCost) || (tower.upgradeCur == 2))
 			{
 				upgradeButton.enabled = false;
 			}
-			else
+			else 
 				upgradeButton.enabled = true;
 		
 			
