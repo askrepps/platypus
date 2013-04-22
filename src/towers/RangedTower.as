@@ -20,7 +20,7 @@ package towers
 		public function RangedTower(x:Number, y:Number)
 		{
 			super(x, y, Global.RANGED_RANGE, Global.RANGED_DAMAGE, Global.RANGED_SPEED, Global.RANGED_CANATTACK, Global.RANGED_ARMORPIERCING, "", Global.RANGED_TOWERDESCIPT, this, Global.RANGED_COST, Global.RANGED_UPGRADE_COST);
-			towerImage = new Image(Assets.RANGED_TOWER);
+			towerImage = new Image(Assets.RANGED_TOWER_1);
 			super.graphic = towerImage;
 			timer = 0;
 			setHitboxTo(towerImage);
@@ -37,12 +37,16 @@ package towers
 					range = Global.RANGED_RANGE_UPGRADE1;
 					damage = Global.RANGED_DAMAGE_UPGRADE1;
 					speed = Global.RANGED_SPEED_UPGRADE1;
+					towerImage = new Image(Assets.RANGED_TOWER_2);
+					graphic = towerImage;
 					break;
 				case 2:
 					range = Global.RANGED_RANGE_UPGRADE2;
 					damage = Global.RANGED_DAMAGE_UPGRADE2;
 					speed = Global.RANGED_SPEED_UPGRADE2;
 					special = Global.RANGED_SPECIAL;
+					towerImage = new Image(Assets.RANGED_TOWER_3);
+					graphic = towerImage;
 			}
 		}
 		
